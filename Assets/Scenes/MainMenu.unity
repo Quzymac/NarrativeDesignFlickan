@@ -408,6 +408,31 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 223241840012021250, guid: 252824103bd21364b96957dcef591b0e,
+        type: 2}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861011647789156, guid: 252824103bd21364b96957dcef591b0e,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861011647789156, guid: 252824103bd21364b96957dcef591b0e,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861011647789156, guid: 252824103bd21364b96957dcef591b0e,
+        type: 2}
+      propertyPath: m_ReferenceResolution.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861011647789156, guid: 252824103bd21364b96957dcef591b0e,
+        type: 2}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 252824103bd21364b96957dcef591b0e, type: 2}
   m_IsPrefabAsset: 0
@@ -797,6 +822,16 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 223448888072050228, guid: 6252f69afae17ce4bb0a95ca9fe43b59,
+        type: 2}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356913022446668, guid: 6252f69afae17ce4bb0a95ca9fe43b59,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6252f69afae17ce4bb0a95ca9fe43b59, type: 2}
