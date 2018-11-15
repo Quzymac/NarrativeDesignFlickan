@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CH_PlayerCamera : MonoBehaviour {
+public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som helst
 
     [SerializeField]
-    private Transform camTransform;
+    private Transform target, cameraUpDown, cameraLeftRight; //Target = spelaren, cameraUpDown och leftRight är päron till kameran
     [SerializeField]
     private float sensitivity = 0.5f;
+    private float maxAngleX = 80, minAngleX = 20;
 
     private void Start()
     {
@@ -15,7 +16,17 @@ public class CH_PlayerCamera : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update () {
-            camTransform.Rotate(0, Input.GetAxis("Mouse X") * sensitivity, 0);
-	}
+    void Update()
+    {
+        cameraLeftRight.Rotate(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+        cameraUpDown.Rotate(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
+        if (cameraUpDown.localRotation.eulerAngles.x < minAngleX)
+        {
+            cameraUpDown.localRotation = Quaternion.Euler(new Vector3(minAngleX, 0, 0));
+        } else if (cameraUpDown.localRotation.eulerAngles.x > maxAngleX)
+        {
+            cameraUpDown.localRotation = Quaternion.Euler(new Vector3(maxAngleX, 0, 0));
+        }
+        cameraLeftRight.position = target.position;
+    }
 }

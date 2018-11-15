@@ -7,7 +7,9 @@ public class CH_PlayerMovement : MonoBehaviour {
     [SerializeField]
     private Rigidbody body;
     [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 3, rotationSpeed = 10;
+    [SerializeField]
+    private Transform cameraTrans;
 
     bool climbing;
 
@@ -48,8 +50,7 @@ public class CH_PlayerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Vector3 direction;
-        
+        Vector3 direction = Vector3.zero;
 
         if (climbing)
         {
@@ -62,14 +63,25 @@ public class CH_PlayerMovement : MonoBehaviour {
         }
         else
         {
-            //TODO Add running animation here.
-            direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            if (direction.magnitude > 1)
-                Vector3.Normalize(direction);
-            direction *= moveSpeed;
-            direction.y = body.velocity.y;
+            /*** Vända sig ***/
+            Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));    //Input vector
+            float cameraAngle = -Vector3.Angle(cameraTrans.forward, Vector3.forward);   //Kamerans vinkel jämfört med världen
+            if (Vector3.Angle(cameraTrans.right, Vector3.forward) > 90f)                //Om kameran är åt vänster, 360 - vinkeln (Pga anledningar)
+                cameraAngle = 360 - cameraAngle;
+            Vector3 moveDirection = Quaternion.AngleAxis(cameraAngle, Vector3.up) * inputDirection; //Hållet spelaren vill gå
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, Time.deltaTime * rotationSpeed, 0);  //Den nya riktningen karaktären ska kolla mot
+            transform.rotation = Quaternion.LookRotation(newDirection); //Rotera karaktären så den kollar mot den nya riktningen
+
+            /*** Gå ***/
+            float velocity = inputDirection.magnitude * moveSpeed; //Så att den typ accelererar lite + att den står stilla om man inte klickar något
+            if (velocity > 0)
+            {
+                //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)
+                newDirection *= velocity; //Gångra med movespeed och ^ det där
+                newDirection.y = body.velocity.y;   //Vi vill inte ändra velocity i y led eftersom det skulle påvärka gravitationen
+                body.velocity = newDirection;   //GO! BLAH!
+            }
         }
-        body.velocity = direction;
 
         if (Input.GetKeyDown("e") && interactable != null)
         {
