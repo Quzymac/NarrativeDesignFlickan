@@ -35,4 +35,9 @@ public class UI_PausMenu : MonoBehaviour {
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
+
+    public void TimeScaleOne()
+    {
+        Time.timeScale = 1f;
+    }
 }
