@@ -15,12 +15,18 @@ public class Interactable : MonoBehaviour
 
     public void PlayText()
     {
-        textDisplay.text = text;
+        if (textDisplay != null)
+        {
+            textDisplay.text = text;
+        }
     }
 
     public void RemoveText()
     {
-        textDisplay.text = "";
+        if (textDisplay != null)
+        {
+            textDisplay.text = "";
+        }
     }
 
 }
