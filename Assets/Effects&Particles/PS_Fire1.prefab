@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198295274998095790}
   - component: {fileID: 199313676289158982}
   m_Layer: 0
-  m_Name: PS_Fire
+  m_Name: PS_Fire1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
