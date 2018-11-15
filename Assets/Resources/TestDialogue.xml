@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="Shroom">
+        <Text text="This is a test to see if text can be displayed.">
+          </Text>
+    </Name>
+      <Name name="Shroom">
+        <Text text="This is a magical shroom.">
+          </Text>
+    </Name>
+      <Name name="Shroom">
+        <Text text="Very trippy :>.">
+          </Text>
+    </Name>
+</Dialogue>
