@@ -10,10 +10,16 @@ public class CH_PlayerMovement : MonoBehaviour {
     private float moveSpeed = 3, rotationSpeed = 10;
     [SerializeField]
     private Transform cameraTrans;
+    private bool stop;
 
     bool climbing;
 
     private GameObject interactable;
+
+    public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
+    {
+        stop = b;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -61,7 +67,7 @@ public class CH_PlayerMovement : MonoBehaviour {
             direction *= moveSpeed;
             direction.z = body.velocity.z;
         }
-        else
+        else if (!stop)
         {
             /*** Vända sig ***/
             Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));    //Input vector
@@ -72,7 +78,7 @@ public class CH_PlayerMovement : MonoBehaviour {
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, Time.deltaTime * rotationSpeed, 0);  //Den nya riktningen karaktären ska kolla mot
             transform.rotation = Quaternion.LookRotation(newDirection); //Rotera karaktären så den kollar mot den nya riktningen
 
-            /*** Gå ***/
+            /*** Gå ***/ //Ska ändra movement lite senare (gå segare medans man roterar typ)
             float velocity = inputDirection.magnitude * moveSpeed; //Så att den typ accelererar lite + att den står stilla om man inte klickar något
             if (velocity > 0)
             {
