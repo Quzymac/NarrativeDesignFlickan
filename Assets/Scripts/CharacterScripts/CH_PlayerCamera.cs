@@ -8,7 +8,8 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     private Transform target, cameraUpDown, cameraLeftRight; //Target = spelaren, cameraUpDown och leftRight är päron till kameran
     [SerializeField]
     private float sensitivity = 0.5f;
-    private float maxAngleX = 80, minAngleX = 20;
+    private float maxAngleX = 65, minAngleX = 20;
+    private bool stop;
 
     private void Start()
     {
@@ -16,17 +17,35 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void FreeMouse(bool b) //True = låst kamera och olåst mus
+    {
+        stop = b;
+        if (stop)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        } else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
     void Update()
     {
-        cameraLeftRight.Rotate(0, Input.GetAxis("Mouse X") * sensitivity, 0);
-        cameraUpDown.Rotate(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
-        if (cameraUpDown.localRotation.eulerAngles.x < minAngleX)
+        if (!stop)
         {
-            cameraUpDown.localRotation = Quaternion.Euler(new Vector3(minAngleX, 0, 0));
-        } else if (cameraUpDown.localRotation.eulerAngles.x > maxAngleX)
-        {
-            cameraUpDown.localRotation = Quaternion.Euler(new Vector3(maxAngleX, 0, 0));
+            cameraLeftRight.Rotate(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+            cameraUpDown.Rotate(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
+            if (cameraUpDown.localRotation.eulerAngles.x < minAngleX)
+            {
+                cameraUpDown.localRotation = Quaternion.Euler(new Vector3(minAngleX, 0, 0));
+            }
+            else if (cameraUpDown.localRotation.eulerAngles.x > maxAngleX)
+            {
+                cameraUpDown.localRotation = Quaternion.Euler(new Vector3(maxAngleX, 0, 0));
+            }
+            cameraLeftRight.position = target.position;
         }
-        cameraLeftRight.position = target.position;
     }
 }
