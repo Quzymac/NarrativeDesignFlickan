@@ -38,8 +38,10 @@ public class OB_Item : OB_Interactable {
 
         if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
         {
-            if (gameObject.GetComponent<Rigidbody>().isKinematic == true)
+            if (gameObject.GetComponent<Rigidbody>() != null && gameObject.GetComponent<Rigidbody>().isKinematic == true)
+            {
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
             gameObject.SetActive(false);
         }
 

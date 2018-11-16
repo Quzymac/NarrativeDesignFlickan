@@ -91,7 +91,7 @@ public class CH_Inventory : MonoBehaviour {
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
-            items[itemSlot].GetComponent<Rigidbody>().velocity = Vector3.forward*5 + Vector3.up*10;
+            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward*5 + transform.up*10;
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
