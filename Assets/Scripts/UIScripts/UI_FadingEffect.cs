@@ -5,8 +5,12 @@ using UnityEngine;
 public class UI_FadingEffect : MonoBehaviour {
 
     public GameObject Fade;
-
-	public void ActivateFading()
+    public static UI_FadingEffect FadeActivation;
+    private void Start()
+    {
+        FadeActivation = this;
+    }
+    public void ActivateFading()
     {
         Fade.SetActive(true);
     }
@@ -16,4 +20,8 @@ public class UI_FadingEffect : MonoBehaviour {
         Fade.SetActive(false);
     }
 
+    public GameObject Returnfade()
+    {
+        return Fade;
+    }
 }
