@@ -117,16 +117,16 @@ public class CH_Inventory : MonoBehaviour {
     }
     
     //Hittar ett item i inventory och retunerar true om den hittas annars false. 
-    public bool SearchInventory(GameObject itemToFind)
+    public GameObject SearchInventory(Item itemToFind)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] != null && items[i].gameObject == itemToFind.gameObject)
+            if (items[i] != null && items[i].GetComponent<OB_Item>().GetItemType() == itemToFind)
             {
-                return true;
+                return items[i];
             }
         }
-        return false;
+        return null;
     }
 
     //Tar bort ett item från inventory.
