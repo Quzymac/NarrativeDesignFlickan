@@ -5,13 +5,10 @@ using UnityEngine.Events;
 
 //Skriptet är för stunden bara för saker man kan ta upp. Kommer ändra till generella saker senare. 
 //Objektet måste ha en till collider som är en trigger som är större än objektet.
-public enum Sak { bajs, lala } //Ska alla dialoger vara här?
 public class OB_Interactable : MonoBehaviour {
 
     [SerializeField]
     GameObject givenItemPosition; //Lägg ett tomt object där man vill ett item ska hamna när man lämnar in det. Optional
-    [SerializeField]
-    Sak dialog; // Välj vilken dialog som ska köras
     [SerializeField]
     UnityEvent method; //Välj vilken method som ska köras närman interagerar med ett objekt.
 
@@ -48,6 +45,8 @@ public class OB_Interactable : MonoBehaviour {
     {
         if (inventory.AddItem(gameObject))
         {
+            if (gameObject.GetComponent<Rigidbody>().isKinematic == true)
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
             interactable = false;
             gameObject.SetActive(false);
         }
@@ -60,13 +59,14 @@ public class OB_Interactable : MonoBehaviour {
             item.transform.position = givenItemPosition.transform.position;
             item.SetActive(true);
             inventory.RemoveItem(item);
+            item.GetComponent<Rigidbody>().isKinematic = true;
             recivedItem = true;
         }
     }
 
     public void NeedItem(GameObject requestedItem)
     {
-        if (inventory.SearchInventory(requestedItem))
+        if (inventory.SearchInventory(requestedItem) && recivedItem == false)
         {
             PlaceItem(requestedItem);
             inventory.RemoveItem(requestedItem);
@@ -77,10 +77,9 @@ public class OB_Interactable : MonoBehaviour {
         {
             Debug.Log("I need a " + requestedItem.name);
         }
+        else if(recivedItem == true)
+        {
+            Debug.Log("I have already recieved a" + requestedItem.name);
+        }
     }
-
-    /*public void Dialog()
-    {
-        blala(grej)
-    }*/
 }
