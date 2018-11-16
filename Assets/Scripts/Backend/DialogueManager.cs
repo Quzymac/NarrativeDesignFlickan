@@ -8,11 +8,14 @@ using System.Xml;
 public enum Dialogues { NONE, TestDialogue }
 
 //This class handles the currently active dialogue. It stores all indivdual Dialogue data containers in a list. 
-//TODO: Add data manipulation abbilities such as determining which line of dialogue to display next. Perhaps LoadData region should be made into its own script?
+//TODO: Perhaps LoadData region should be made into its own script?
 public class DialogueManager
 {
     private List<Dialogue> activeDialogues = new List<Dialogue>();
     public List<Dialogue> ActiveDialogues { get { return activeDialogues; } set { activeDialogues = value; } }
+
+    private int dialogueIndex = 0;
+    public int DialogueIndex { set { dialogueIndex = value; } }
 
     //private bool isFirstSentence;
  
@@ -39,7 +42,7 @@ public class DialogueManager
     //<Summary>
     //This method loads dialogue data from an xml file and adds it to a list. 
     //--------------------------------------------------------------------------------
-    //IMPORTANT: Make sure the xml file is named according to "dialogueObject.xml" else a the file wont be found.
+    //IMPORTANT: Make sure the xml file is named according to "dialogueObject.xml" else the file wont be found.
     //--------------------------------------------------------------------------------
     //Arguments: An enum corresponding to the file to read.
     //Return: A list containing all received Dialogue data containers.
@@ -85,18 +88,26 @@ public class DialogueManager
     }
     #endregion
 
-    public Dialogue NextDialogue()  //WORK IN PROGRESS
+    public void NextDialogue()  //WORK IN PROGRESS
     {
-        Dialogue nextDialogue = null;
-        if (/*isFirstSentence*/ true)   //Use a a switch here instead. might be a few ifs..
+        if (HasRemaningMessages())   
         {
-            /*isFirstSentence = false;*/
-            if(activeDialogues.Count > 0)
-            {
-                nextDialogue = activeDialogues[0];
-                activeDialogues.RemoveAt(0);
-            }
+            NextMessage();
         }
-        return nextDialogue;
+    }
+
+    public Dialogue Message()
+    {
+        return ActiveDialogues[dialogueIndex];
+    }
+
+    public bool HasRemaningMessages()
+    {
+        return dialogueIndex + 1 < ActiveDialogues.Count;
+    }
+
+    private void NextMessage()
+    {
+        dialogueIndex = (dialogueIndex + 1) % ActiveDialogues.Count;
     }
 }
