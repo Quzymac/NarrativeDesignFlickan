@@ -28,6 +28,7 @@ public class UI_PausMenu : MonoBehaviour {
 
     public void Resume()
     {
+        FindObjectOfType<CH_PlayerCamera>().FreeMouse(false);
         pauseMenuUI.SetActive(false);
         inventoryUI.SetActive(true);
         Time.timeScale = 1f;
@@ -36,6 +37,7 @@ public class UI_PausMenu : MonoBehaviour {
 
     void Pause()
     {
+        FindObjectOfType<CH_PlayerCamera>().FreeMouse(true);
         inventoryUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
