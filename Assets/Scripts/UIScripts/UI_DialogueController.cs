@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UI_DialogueController : MonoBehaviour {
+public class UI_DialogueController : MonoBehaviour {    
 
     //Set in inspector
     [SerializeField]
     private Text nameField;
     [SerializeField]
     private Text textBox;
+    [SerializeField]
+    private Text textBoxFirstChar;  //Unity only support one font per text object. This one will be used to apply a different font to the first character in the textbox.
     [SerializeField]
     private Image panel;
 
@@ -74,6 +76,7 @@ public class UI_DialogueController : MonoBehaviour {
         panel.enabled = false;
         nameField.text = null;
         textBox.text = null;
+        textBoxFirstChar.text = null;
         isActive = false;
     }
 
@@ -105,7 +108,8 @@ public class UI_DialogueController : MonoBehaviour {
     //<Summary>
     private void SetText(string text)
     {
-        textBox.text = "";
+        textBox.text = "     ";         //Change this if text font size is changed
+        textBoxFirstChar.text = "";
         StopAllCoroutines();
         StartCoroutine(EffectTypeText(text));
     }
@@ -117,9 +121,18 @@ public class UI_DialogueController : MonoBehaviour {
     //<Summary>
     private IEnumerator EffectTypeText(string message)
     {
-        foreach(char character in message.ToCharArray())
+        char[] charMessage = message.ToCharArray();
+        for (int i = 0; i < charMessage.Length; i++)
         {
-            textBox.text += character;
+            //Add the first character to it's own text component. This is nessecary to display two different fonts.
+            if(i == 0)
+            {
+                textBoxFirstChar.text += charMessage[i];
+            }
+            else
+            {
+                textBox.text += charMessage[i];
+            }
             yield return null;
         }
     }

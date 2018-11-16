@@ -96,16 +96,31 @@ public class DialogueManager
         }
     }
 
+    //<Summary>
+    //This method retrievs the dialogue elemtn at the current dialogueindex.
+    //Arguments: void.
+    //Return: The dialog element at the current index.
+    //<Summary>
     public Dialogue Message()
     {
         return ActiveDialogues[dialogueIndex];
     }
 
+    //<Summary>
+    //This method checks if there are any remaining dialogue elements waiting to be displayed.
+    //Arguments: void.
+    //Return: True if there are more elements to display, false if there are none.
+    //<Summary>
     public bool HasRemaningMessages()
     {
         return dialogueIndex + 1 < ActiveDialogues.Count;
     }
 
+    //<Summary>
+    //This method moves the dialogue index one step.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     private void NextMessage()
     {
         dialogueIndex = (dialogueIndex + 1) % ActiveDialogues.Count;
