@@ -25,6 +25,11 @@ public class UI_DialogueController : MonoBehaviour {
         }
     }
 
+    //<Summary>
+    //This method handles displaying the textbox and dialogue on the UI.
+    //Arguments: A dialogue to display.
+    //Return: void.
+    //<Summary>
     private void DisplayTextBox(Dialogues dialogue) 
     {
         if (!isActive && Input.GetKeyDown(KeyCode.E))
@@ -43,6 +48,11 @@ public class UI_DialogueController : MonoBehaviour {
         }
     }
 
+    //<Summary>
+    //This method opens up the dialogbox and displays a message if a message could be found.
+    //Arguments: A dialogue to display.
+    //Return: void.
+    //<Summary>
     private void OpenDialogue(Dialogue nextDialogue)
     {
         if (nextDialogue != null)
@@ -53,6 +63,11 @@ public class UI_DialogueController : MonoBehaviour {
         }
     }
 
+    //<Summary>
+    //This method closes the dialogbox and resets the dialogue indexer.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     private void EndDialogue()
     {
         DialogueManager.Instance.DialogueIndex = 0;
@@ -62,17 +77,32 @@ public class UI_DialogueController : MonoBehaviour {
         isActive = false;
     }
 
+    //<Summary>
+    //This method sets the title and textbox values to a new string.
+    //Arguments: A dialogue to display.
+    //Return: void.
+    //<Summary>
     private void SetDialogue(Dialogue nextDialogue)
     {
         SetTitle(nextDialogue.Name);
         SetText(nextDialogue.Text);
     }
 
+    //<Summary>
+    //This method is a helper function for SetDialogue.
+    //Arguments: A string to set the title value to.
+    //Return: void.
+    //<Summary>
     private void SetTitle(string text)
     {
         nameField.text = text;
     }
 
+    //<Summary>
+    //This method is a helper function for SetDialogue.
+    //Arguments: A string to set the text value to.
+    //Return: void.
+    //<Summary>
     private void SetText(string text)
     {
         textBox.text = "";
@@ -80,6 +110,11 @@ public class UI_DialogueController : MonoBehaviour {
         StartCoroutine(EffectTypeText(text));
     }
 
+    //<Summary>
+    //This Coroutine adds a typewriter effect to the text.
+    //Arguments: A string to type out charachter for character.
+    //Return: void.
+    //<Summary>
     private IEnumerator EffectTypeText(string message)
     {
         foreach(char character in message.ToCharArray())
