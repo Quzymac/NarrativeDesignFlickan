@@ -25,33 +25,68 @@ public class UI_DialogueController : MonoBehaviour {
         }
     }
 
-    private void DisplayTextBox(Dialogues dialogue) //TODO: Split this into smaller functions.
-    {       
+    private void DisplayTextBox(Dialogues dialogue) 
+    {
         if (!isActive && Input.GetKeyDown(KeyCode.E))
         {
-            DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);  //temp
-            panel.enabled = true;
-            Dialogue nextDialogue = DialogueManager.Instance.NextDialogue();
-            nameField.text = nextDialogue.Name;
-            textBox.text = nextDialogue.Text;
-            isActive = true;
+            DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
+            OpenDialogue(DialogueManager.Instance.Message());
         }
-        //else if (isActive &&)
-        //{
-
-        //}
+        else if (isActive && DialogueManager.Instance.HasRemaningMessages() && Input.GetKeyDown(KeyCode.E))
+        {
+            DialogueManager.Instance.NextDialogue();
+            SetDialogue(DialogueManager.Instance.Message());
+        }
         else if (isActive && Input.GetKeyDown(KeyCode.E))
         {
             EndDialogue();
         }
     }
 
+    private void OpenDialogue(Dialogue nextDialogue)
+    {
+        if (nextDialogue != null)
+        {
+            panel.enabled = true;
+            SetDialogue(DialogueManager.Instance.Message());
+            isActive = true;
+        }
+    }
+
     private void EndDialogue()
     {
+        DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
         nameField.text = null;
         textBox.text = null;
         isActive = false;
+    }
+
+    private void SetDialogue(Dialogue nextDialogue)
+    {
+        SetTitle(nextDialogue.Name);
+        SetText(nextDialogue.Text);
+    }
+
+    private void SetTitle(string text)
+    {
+        nameField.text = text;
+    }
+
+    private void SetText(string text)
+    {
+        textBox.text = "";
+        StopAllCoroutines();
+        StartCoroutine(EffectTypeText(text));
+    }
+
+    private IEnumerator EffectTypeText(string message)
+    {
+        foreach(char character in message.ToCharArray())
+        {
+            textBox.text += character;
+            yield return null;
+        }
     }
 }
 
