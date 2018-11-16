@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class UI_PausMenu : MonoBehaviour {
     public static bool GameIsPaused = false;
+    
+    [SerializeField]
+    private GameObject pauseMenuUI;
 
-    public GameObject pauseMenuUI;
+    [SerializeField]
+    private GameObject inventoryUI;
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -25,12 +29,14 @@ public class UI_PausMenu : MonoBehaviour {
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        inventoryUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     void Pause()
     {
+        inventoryUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
