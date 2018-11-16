@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CH_PlayerMovement : MonoBehaviour {
+public class CH_PlayerMovement : MonoBehaviour
+{
 
     [SerializeField]
     private Rigidbody body;
@@ -11,8 +12,6 @@ public class CH_PlayerMovement : MonoBehaviour {
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-
-    bool climbing;
 
     private GameObject interactable;
 
@@ -23,10 +22,7 @@ public class CH_PlayerMovement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Climbable"))
-        {
-            climbing = true;
-        }
+        //If you walk in to an interactable 
         if (other.tag.Equals("Interactable"))
         {
             interactable = other.gameObject;
@@ -35,40 +31,20 @@ public class CH_PlayerMovement : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag.Equals("Climbable"))
-        {
-            climbing = false;
-        }
+        //If you walk out of an interactable 
         if (other.tag.Equals("Interactable"))
         {
-            interactable.GetComponent<Interactable>().RemoveText();
             interactable = null;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Ground"))
-        {
-            climbing = false;
         }
     }
 
     void FixedUpdate()
     {
-        Vector3 direction = Vector3.zero;
 
-        if (climbing)
+        if (!stop)
         {
-            //TODO Add climbing animation here.
-            direction = new Vector3(0f, Input.GetAxis("Vertical"), 0f);
-            if (direction.magnitude > 1)
-                Vector3.Normalize(direction);
-            direction *= moveSpeed;
-            direction.z = body.velocity.z;
-        }
-        else if (!stop)
-        {
+            Vector3 direction = Vector3.zero;
+
             /*** Vända sig ***/
             Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));    //Input vector
             float cameraAngle = -Vector3.Angle(cameraTrans.forward, Vector3.forward);   //Kamerans vinkel jämfört med världen
@@ -89,9 +65,11 @@ public class CH_PlayerMovement : MonoBehaviour {
             }
         }
 
+        //if you press e inside of an interactable
         if (Input.GetKeyDown("e") && interactable != null)
         {
-            interactable.GetComponent<Interactable>().PlayText();
+            //Send the player gameobject to the interactable
+            interactable.GetComponent<Interactable>().Interact(gameObject);
         }
     }
 }

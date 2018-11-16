@@ -7,26 +7,39 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField]
     private string text;
-    public Text textDisplay;
-    public void Start()
-    {
+    [SerializeField]
+    private Text textDisplay;
 
-    }
+    [SerializeField]
+    private GameObject climbable;
 
-    public void PlayText()
+    public void Interact (GameObject player)
     {
+        //if there is a textdisplay play text
         if (textDisplay != null)
         {
-            textDisplay.text = text;
+            PlayText();
+        }
+        //if there is a climbing call Climbing
+        if (climbable != null)
+        {
+            climbable.GetComponent<Climbing>().ClimbUp(player);
         }
     }
 
-    public void RemoveText()
+    private void PlayText()
     {
-        if (textDisplay != null)
+        textDisplay.text = text;
+
+        if (Input.GetKeyDown("e"))
         {
-            textDisplay.text = "";
+            RemoveText();
         }
+    }
+
+    private void RemoveText()
+    {
+        textDisplay.text = "";
     }
 
 }
