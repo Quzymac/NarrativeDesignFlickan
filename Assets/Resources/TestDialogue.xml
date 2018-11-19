@@ -3,6 +3,16 @@
       <Name name="Shroom">
         <Text text="This is a test to see if text can be displayed.">
           </Text>
+        <Optionregion>
+          <Choices choice="This is a choice I made.">
+          </Choices>
+            <ChoiceIndex choiceIndex="0">
+            </ChoiceIndex>
+          <Choices choice="I dont want to talk anymore.">
+          </Choices>
+            <ChoiceIndex choiceIndex="1">
+            </ChoiceIndex>
+        </Optionregion>
     </Name>
       <Name name="Shroom">
         <Text text="This is a magical shroom.">
