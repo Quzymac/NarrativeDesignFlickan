@@ -22,16 +22,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     [SerializeField]
     private Image panel;    //BackgroundSprite
 
-    private bool isActive = false;
-	
-	// TODO: Change this to initiate with ontriggerenter with interactable. 
-	void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DisplayTextBox(Dialogues.TestDialogue);
-        }
-    }
+    private bool isActive = false;	
 
     //Do something when waking up.
     private void Awake()
@@ -64,7 +55,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //Arguments: A dialogue to display.
     //Return: void.
     //<Summary>
-    private void DisplayTextBox(Dialogues dialogue) 
+    public void DisplayTextBox(Dialogues dialogue) 
     {
         if (!isActive && Input.GetKeyDown(KeyCode.E))
         {
