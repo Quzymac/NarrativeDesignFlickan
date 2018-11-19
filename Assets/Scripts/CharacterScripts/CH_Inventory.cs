@@ -78,16 +78,22 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
-        items[itemSlot].SetActive(true);
-        items[itemSlot] = null;
-        itemImages[itemSlot].sprite = null;
-        itemImages[itemSlot].gameObject.SetActive(false);
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f),Quaternion.identity,-1,QueryTriggerInteraction.Ignore) == false)
+        {
+            items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
+            items[itemSlot].SetActive(true);
+            items[itemSlot].GetComponent<Rigidbody>().Sleep();
+            items[itemSlot] = null;
+            itemImages[itemSlot].sprite = null;
+            itemImages[itemSlot].gameObject.SetActive(false);
+        }
+        else
+            Debug.Log("Can't drop items here");
     }
 
     void ThrowItem()
     {
-        if (items[itemSlot].GetComponent<Rigidbody>() != null)
+        if (items[itemSlot].GetComponent<Rigidbody>() != null && Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -97,7 +103,7 @@ public class CH_Inventory : MonoBehaviour {
             itemImages[itemSlot].gameObject.SetActive(false);
         }
         else
-            Debug.Log("Can't throw this");
+            Debug.Log("Can't throw this here");
     }
 
     //Lägger till en referens till ett gameobject.

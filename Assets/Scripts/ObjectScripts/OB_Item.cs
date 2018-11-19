@@ -9,9 +9,10 @@ public class OB_Item : OB_Interactable {
 
     [SerializeField]
     Item type;
-
     [SerializeField]
     Sprite invPicture;
+    [SerializeField]    //För nuvarandeplacerade jag en audiosource på playercameran och lade till en ljudfil där.
+    AudioSource source;
 
     public Item GetItemType()
     {
@@ -38,6 +39,9 @@ public class OB_Item : OB_Interactable {
 
         if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
         {
+            if(source != null)
+                source.Play();
+
             if (gameObject.GetComponent<Rigidbody>() != null && gameObject.GetComponent<Rigidbody>().isKinematic == true)
             {
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -51,30 +55,7 @@ public class OB_Item : OB_Interactable {
     {
         DoThings();
     }
-
-    /*public void TakeItem()
-    {
-        if (inventory.AddItem(gameObject))
-        {
-            if (gameObject.GetComponent<Rigidbody>().isKinematic == true)
-                gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            interactable = false;
-            gameObject.SetActive(false);
-        }
-    }
-
-    public void PlaceItem(GameObject item)
-    {
-        if (givenItemPosition != null && inventory.SearchInventory(item))
-        {
-            item.transform.position = givenItemPosition.transform.position;
-            item.SetActive(true);
-            inventory.RemoveItem(item);
-            item.GetComponent<Rigidbody>().isKinematic = true;
-            recivedItem = true;
-        }
-    }
-
+    /*
     public void NeedItem(GameObject requestedItem)
     {
         if (inventory.SearchInventory(requestedItem) && recivedItem == false)
