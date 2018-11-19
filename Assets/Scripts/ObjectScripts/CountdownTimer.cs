@@ -17,7 +17,7 @@ public class CountdownTimer : MonoBehaviour {
     int timeDisplayed;
     bool timerActive;
     
-
+    //Call this method to start timer. 
     public void StartTimer()
     {
         countdownCanvas.SetActive(true);
@@ -27,15 +27,13 @@ public class CountdownTimer : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartTimer();
-        }
-
+        
         if (timerActive)
         {
+            //counts down if timer is active
             timer -= Time.deltaTime;
 
+            //Displays text set in inspector and calls selected method also set in inspector when timer reaches 0.
             if (timer < 0f)
             {
                 countDownText.text = CountdownFinishedText;
@@ -44,11 +42,11 @@ public class CountdownTimer : MonoBehaviour {
                 if(timer < -1.5f)
                 {
                     timerActive = false;
-                    countDownText.text = "";
                     countdownCanvas.SetActive(false);
                 }
             }
 
+            //displays seconds left on timer
             if (timer > 0f)
             {
                 if (Mathf.RoundToInt(timer + 0.5f) != timeDisplayed)
