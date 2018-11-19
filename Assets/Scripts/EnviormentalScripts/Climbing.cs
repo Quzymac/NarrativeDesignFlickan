@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Climbing : MonoBehaviour {
+public class Climbing : OB_Interactable {
 
     [SerializeField]
     private GameObject climbBottom;
@@ -17,6 +17,16 @@ public class Climbing : MonoBehaviour {
     private bool climbingDown = false;
     private bool startClimbingDown = false;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        OnEnter(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        OnExit(other);
+    }
+
     public void ClimbUp(GameObject Player)
     {
         player = Player;
@@ -25,10 +35,14 @@ public class Climbing : MonoBehaviour {
         player.GetComponent<Rigidbody>().isKinematic = true;// Is kenetic so you don't fly away
         player.GetComponent<CH_PlayerMovement>().SetStop(true);// Restrict player movment during climb
         climbingUp = true;
-    }  
+    }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (!climbingUp && !startClimbingDown)
+        {
+            DoThings();
+        }
         //climb up.
         if (climbingUp)
         {
@@ -38,7 +52,7 @@ public class Climbing : MonoBehaviour {
                 climbingUp = false;
                 climbingDown = true;
             }
-        }      
+        }
         //If you are at the top of cimbling and press e you start clibing down.
         if (climbingDown && Input.GetKeyDown("e"))
         {
@@ -58,4 +72,13 @@ public class Climbing : MonoBehaviour {
             }
         }
     }
+
+    public override void Activate(GameObject player)
+    {
+        if (!climbingUp)
+        {
+            ClimbUp(player);
+        }
+    }
+
 }
