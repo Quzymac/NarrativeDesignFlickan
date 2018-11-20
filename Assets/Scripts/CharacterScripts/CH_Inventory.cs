@@ -89,17 +89,22 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f),Quaternion.identity,-1,QueryTriggerInteraction.Ignore) == false)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
-            items[itemSlot].GetComponent<Rigidbody>().Sleep();
+            if (items[itemSlot].GetComponent<Rigidbody>())
+            {
+                items[itemSlot].GetComponent<Rigidbody>().Sleep();
+            }
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
         }
         else
+        {
             Debug.Log("Can't drop items here");
+        }
     }
 
     void ThrowItem()
@@ -108,14 +113,17 @@ public class CH_Inventory : MonoBehaviour {
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
-            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength*2);
+            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
             strength = 0f;
         }
         else
+        {
+            strength = 0f;
             Debug.Log("Can't throw this here");
+        }
     }
 
     //Lägger till en referens till ett gameobject.
