@@ -10,9 +10,15 @@ public class OB_Item : OB_Interactable {
     [SerializeField]    //Ställ in i inspektorn vilket sorts item detta är.
     Item type;
     [SerializeField]    //Lägg till den sprite som objektet ska ha i UI Inventorys
-    Sprite invPicture; 
-    [SerializeField]    //För nuvarandeplacerade jag en audiosource på playercameran och lade till en ljudfil där.
-    AudioSource source;
+    Sprite invPicture;
+    [SerializeField]
+    Sounds sound;
+    AudioHandler audioHandler;
+
+    private void Start()
+    {
+        audioHandler = FindObjectOfType<AudioHandler>();
+    }
 
     public Item GetItemType()
     {
@@ -39,8 +45,8 @@ public class OB_Item : OB_Interactable {
 
         if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
         {
-            if(source != null)
-                source.PlayOneShot(source.clip);
+            if (audioHandler != null)
+                audioHandler.PlaySound(sound);
 
             if (gameObject.GetComponent<Rigidbody>() != null && gameObject.GetComponent<Rigidbody>().isKinematic == true)
             {
