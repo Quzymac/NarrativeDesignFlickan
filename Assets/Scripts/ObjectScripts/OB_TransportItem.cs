@@ -10,7 +10,6 @@ public class OB_TransportItem : OB_Interactable {
     Transform target;
 
     float startTime = 0f;
-    float delayTime = 1;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,11 +23,11 @@ public class OB_TransportItem : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        StartCoroutine(MoveObject(delayTime));
+        StartCoroutine(MoveObject());
     }
 
     //Coroutinen körs tills objektet har flyttats fram till target.
-    IEnumerator MoveObject(float delay)
+    IEnumerator MoveObject()
     {
         startTime = 0f;
         gameObject.GetComponent<Collider>().enabled = false;
@@ -45,11 +44,6 @@ public class OB_TransportItem : OB_Interactable {
 
             yield return null;
         }
-    }
-
-    private void Update()
-    {
-        DoThings();
     }
 
 }

@@ -10,16 +10,27 @@ public class CH_Inventory : MonoBehaviour {
     Button[] inventorySlots = new Button[8];
     [SerializeField]
     Image[] itemImages = new Image[8];
-    public int itemSlot = 0;
+    int itemSlot = 0;
+    float strength = 0f;
 
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X) && items[itemSlot] != null)
-            DropItem();
 
-        if (Input.GetKeyDown(KeyCode.Z) && items[itemSlot] != null)
-            ThrowItem();
+        if (Input.GetKey(KeyCode.X) && items[itemSlot] != null && strength < 5)
+            strength += Time.deltaTime * 4;
+        if (Input.GetKeyUp(KeyCode.X) && items[itemSlot] != null)
+        {
+            if (strength < 1f)
+            {
+                DropItem();
+                strength = 0f;
+            }
+            else
+            {
+                ThrowItem();
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -97,10 +108,11 @@ public class CH_Inventory : MonoBehaviour {
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
-            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward*5 + transform.up*10;
+            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength*2);
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
+            strength = 0f;
         }
         else
             Debug.Log("Can't throw this here");

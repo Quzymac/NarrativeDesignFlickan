@@ -42,12 +42,13 @@ public class OB_PlaceItem : OB_Interactable {
             player.GetComponent<CH_Inventory>().AddItem(item);
             item.GetComponent<Rigidbody>().isKinematic = false;
             item.GetComponent<OB_Item>().enabled = true;
+            player.GetComponent<CH_Interact>().RemoveInteractable(item);
             haveItem = false;
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         DoThings();
-    }
+    }*/
 }
