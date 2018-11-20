@@ -5,37 +5,43 @@ using UnityEngine.UI;
 
 public class UI_InteractionText : MonoBehaviour {
 
+
+    //Add interact canvas to item prefab 
+    //Add Camera in inspector to canvas event camera
+
     [SerializeField] Canvas interactionTextCanvas;
-    [SerializeField] Transform cam;
-    [SerializeField] Text displayedText;
-
-    string itemName;
-    string interactionName;
-
-    bool showCanvas;
-
-    //What distance from center of object the text will appear
-    [SerializeField] float offsetPosX = 1f;
+    Transform cam;
+    string itemType;
+    bool canvasActive;
 
     //Call this method with "true" when interaction is possible to display text.
     //Call this method with "false" when interaction is not possible to stop displaying text
 	public void SetTextActive(bool isActive)
     {
-        interactionTextCanvas.enabled = isActive;
-        showCanvas = isActive;
+        interactionTextCanvas.gameObject.SetActive(isActive);
+        canvasActive = isActive;
     }
 
     void Start()
     {
-        itemName = GetComponentInParent<OB_Item>().GetItemType().ToString();
-        displayedText.text = "E to pick up " + itemName;
+        cam = FindObjectOfType<Camera>().transform;
 
-        //Offsets text closer to camera
-        interactionTextCanvas.GetComponentInChildren<Text>().rectTransform.localPosition = new Vector3(0, 0, -offsetPosX);
+        //Sets text to match itemType
+        itemType = GetComponentInParent<OB_Item>().GetItemType().ToString();
+        interactionTextCanvas.GetComponentInChildren<Text>().text = itemType;
+
+        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + itemType;
     }
 
-    void Update () {
-        if (showCanvas)
+    void Update ()
+    {
+        //for testing, remove when implemented in OB_Interactable
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetTextActive(!canvasActive);
+        }
+
+        if (canvasActive)
         {
             //Rotates text towards camera when active
             interactionTextCanvas.transform.LookAt(cam);
