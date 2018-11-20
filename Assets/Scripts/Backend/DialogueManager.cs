@@ -95,6 +95,7 @@ public class DialogueManager
     }
     #endregion
 
+    #region DialogueHandling
     public void NextDialogue()  //WORK IN PROGRESS
     {
         if (HasRemainingMessages())   
@@ -145,4 +146,5 @@ public class DialogueManager
     {
         dialogueIndex = (dialogueIndex + 1) % ActiveDialogues.Count;
     }
+    #endregion
 }

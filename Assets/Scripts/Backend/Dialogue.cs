@@ -8,7 +8,7 @@ public class Dialogue
     //Data
     private string text;                                                  
     private string name;
-    private List<string> dialogueOptions = new List<string>();      //This should be on the buttons to display what the differnet choices for the player to say are. Name element fo these are always player character.
+    private List<string> dialogueOptions = new List<string>();      //This should be on the buttons to display what the differnet choices for the player to say are. Name element for these are always player character.
     private List<int> dialogueOptionsIndexes = new List<int>();     //This should link to the next non player dialogue in the DialogueManager.
 
     //Properties

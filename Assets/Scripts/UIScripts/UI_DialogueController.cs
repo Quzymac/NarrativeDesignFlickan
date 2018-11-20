@@ -15,14 +15,15 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     [SerializeField]
     private Text textBoxFirstChar;  //Unity only supports one font per text object. This one will be used to apply a different font to the first character in the textbox.
 
+    [Header("DialogueOptionButtons")]
     [SerializeField]
-    private Button[] optionButtons = new Button[3]; 
+    private Button[] optionButtons= new Button[3];
 
     [Header("TextboxSprite")]
     [SerializeField]
     private Image panel;    //BackgroundSprite
 
-    private bool isActive = false;	
+    private bool isActive = false;
 
     //Do something when waking up.
     private void Awake()
@@ -32,7 +33,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             instance = this;
         else
             Destroy(this);
-       // DontDestroyOnLoad(this);    //Carry the same dialogue manager (this object) over to the next scene instead of destroying it. This needs to be called on root object: probably a good idea to move it!
+        // DontDestroyOnLoad(this);    //Carry the same dialogue manager (this object) over to the next scene instead of destroying it. This needs to be called on root object: probably a good idea to move it!
         //
     }
 
@@ -55,27 +56,34 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //Arguments: A dialogue to display.
     //Return: void.
     //<Summary>
-    public void DisplayTextBox(Dialogues dialogue) 
+    public void DisplayTextBox(Dialogues dialogue) //This needs more cleanup. Maybe make a switch statement too?
     {
-        if (!isActive && Input.GetKeyDown(KeyCode.E))
+        if (!isActive && Input.GetKeyDown(KeyCode.E))   //Initiate dialogue
         {
             DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
             OpenDialogue(DialogueManager.Instance.Message());
+            SetButtonsState();
         }
-        else if (isActive && !DialogueManager.Instance.IsResponding && !DialogueManager.Instance.HasOptions() && DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E))
+        else if (isActive && !DialogueManager.Instance.IsResponding && !DialogueManager.Instance.HasOptions() && DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //Jump to the dialogue at index+1 if there are no options.
         {
             DialogueManager.Instance.NextDialogue();
             SetDialogue(DialogueManager.Instance.Message());
+            SetButtonsState();
         }
-        else if (isActive && DialogueManager.Instance.IsResponding && Input.GetKeyDown(KeyCode.E))
+        else if (isActive && DialogueManager.Instance.IsResponding && Input.GetKeyDown(KeyCode.E))  //If we are responding, set the next dialogue to be the current index.
         {
             SetDialogue(DialogueManager.Instance.Message());
+            SetButtonsState();
             DialogueManager.Instance.IsResponding = false;
-            Debug.Log(DialogueManager.Instance.DialogueIndex.ToString());
         }
-        else if (isActive && !DialogueManager.Instance.HasOptions() && Input.GetKeyDown(KeyCode.E))
+        else if (isActive && DialogueManager.Instance.HasOptions()) //If we have options, take one.
+        {
+            ActivateOptionButtons(DialogueManager.Instance.Message());
+        }
+        else if (isActive && !DialogueManager.Instance.HasOptions() && !DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //if there are no remaining messages and no options, end.
         {
             EndDialogue();
+            DisableOptionButtons();
         }
     }
 
@@ -169,6 +177,40 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             yield return null;
         }
     }
+    #endregion
+
+    //This region activates and deactivates options buttons.
+    #region Buttons
+        //Perahps a keybind manager should be set up to define all keybinds?
+
+    private void SetButtonsState()
+    {
+         if (DialogueManager.Instance.HasOptions())
+         {
+            ActivateOptionButtons(DialogueManager.Instance.Message());
+         }
+         else
+         {
+            DisableOptionButtons();
+         }            
+    }
+
+    private void ActivateOptionButtons(Dialogue dialogue)
+    {
+        for(int i=0; i < dialogue.DialogueOptions.Count; i++)
+        {
+            optionButtons[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void DisableOptionButtons()
+    {
+        foreach(Button button in optionButtons)
+        {
+            button.gameObject.SetActive(false); 
+        }
+    }
+
     #endregion
 }
 
