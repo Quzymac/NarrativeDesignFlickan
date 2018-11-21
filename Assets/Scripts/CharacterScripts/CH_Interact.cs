@@ -5,7 +5,7 @@ using UnityEngine;
 public class CH_Interact : MonoBehaviour
 {
 
-    public List<GameObject> interacables;
+    List<GameObject> interacables = new List<GameObject>();
 
     public void AddInteractable(GameObject gameObject)
     {

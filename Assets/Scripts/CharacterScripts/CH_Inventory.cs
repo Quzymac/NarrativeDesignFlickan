@@ -12,8 +12,17 @@ public class CH_Inventory : MonoBehaviour {
     Image[] itemImages = new Image[8];
     int itemSlot = 0;
     float strength = 0f;
+    [SerializeField]
+    ParticleSystem particle;
+    ParticleSystem activeParticle;
+    List<Item> consumables = new List<Item> { Item.Apple, Item.Blueberry, Item.Chanterelle, Item.Lingonberry, Item.Wine };
+    string[] itemNames = {"Äpple", "Blåbär", "Kantarell", "Röd flugsvamp", "Lingon", "Gulfotshätta", "Vinflaska", "Falukorv", "Björkticka", "Tallkotte", "Grankotte" };
+    string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
+    "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
+    "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
 
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
+    //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
     {
 
@@ -84,12 +93,17 @@ public class CH_Inventory : MonoBehaviour {
             inventorySlots[itemSlot].Select();
         }
 
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ConsumeItem();
+        }
+
     }
 
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -109,7 +123,12 @@ public class CH_Inventory : MonoBehaviour {
 
     void ThrowItem()
     {
-        if (items[itemSlot].GetComponent<Rigidbody>() != null && Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        if (items[itemSlot].GetComponent<Rigidbody>() == null)
+        {
+            Debug.Log("Can't throw this item");
+            strength = 0f;
+        }
+        else if(Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -123,6 +142,67 @@ public class CH_Inventory : MonoBehaviour {
         {
             strength = 0f;
             Debug.Log("Can't throw this here");
+        }
+    }
+
+    void ConsumeItem()
+    {
+        if (items[itemSlot].GetComponent<OB_Item>().GetItemType() == Item.Wine)
+        {
+            activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
+            StartCoroutine(DrunkEffect(5));
+        }
+        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()]);
+        if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
+        {
+            Destroy(items[itemSlot]);
+            items[itemSlot] = null;
+            itemImages[itemSlot].sprite = null;
+            itemImages[itemSlot].gameObject.SetActive(false);
+        }
+        StartCoroutine(RemoveItemText());
+    }
+
+    IEnumerator RemoveItemText()
+    {
+        int time = 3;
+        while(true)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            if (time <= 0)
+            {
+                UI_DialogueController.Instance.Closemessage();
+                yield break;
+            }
+            else
+            {
+                time--;
+                Debug.Log(time);
+                yield return null;
+            }
+        }
+
+    }
+
+    IEnumerator DrunkEffect(int drunkTime)
+    {
+        int time = drunkTime;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (time <= 0)
+            {
+                Destroy(activeParticle.gameObject);
+                activeParticle = null;
+                //Avaktivera saker som startas med drunk effect här.
+                yield break;
+            }
+            else
+            {
+                time--;
+                yield return null;
+            }
         }
     }
 
