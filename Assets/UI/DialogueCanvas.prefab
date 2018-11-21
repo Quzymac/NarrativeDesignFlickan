@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   button: {fileID: 114528769991607084}
-  key: 98
+  key: 50
 --- !u!114 &114161565360569090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8c7f1d4d3899e644eb80a307f7f3e4c3, type: 3}
-    m_FontSize: 16
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -414,7 +414,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8c7f1d4d3899e644eb80a307f7f3e4c3, type: 3}
-    m_FontSize: 16
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   button: {fileID: 114256448559685854}
-  key: 97
+  key: 49
 --- !u!114 &114465683518593118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   button: {fileID: 114631563170245898}
-  key: 99
+  key: 51
 --- !u!114 &114656720865361944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1059,7 +1059,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00030517578, y: 260}
-  m_SizeDelta: {x: 1000, y: 30}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224634942267307570
 RectTransform:
@@ -1078,7 +1078,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0004272461, y: 220}
-  m_SizeDelta: {x: 1000, y: 30}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224918140537221682
 RectTransform:
@@ -1097,7 +1097,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00046679378, y: 180}
-  m_SizeDelta: {x: 1000, y: 30}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224943154848054074
 RectTransform:
