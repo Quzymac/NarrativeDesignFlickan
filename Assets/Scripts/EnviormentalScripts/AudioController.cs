@@ -7,23 +7,21 @@ public class AudioController : MonoBehaviour {
     [SerializeField]
     AudioSource gameMusic;
     float thisMusic;
-    //bool hasExit = false;
 
     private void OnTriggerExit(Collider other)
     {
         thisMusic = gameMusic.volume;
-        StartCoroutine(FadeOut(gameMusic, 4));
-        //hasExit = true;     
+        StartCoroutine(FadeOut(gameMusic, 4)); 
     }
   
     private void OnTriggerEnter(Collider other)
     {
-        /*if (hasExit == true)
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("Found Player");
             StartCoroutine(FadeIn(gameMusic, 3));
         }
-        hasExit = false;*/
-        StartCoroutine(FadeIn(gameMusic, 3));
+        //StartCoroutine(FadeIn(gameMusic, 3));
     }
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeOutTime)
     {
