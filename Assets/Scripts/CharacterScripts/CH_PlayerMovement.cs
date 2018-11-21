@@ -8,7 +8,7 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody body;
     [SerializeField]
-    private float defaultMoveSpeed = 3, defaultRotationSpeed = 10;
+    private float defaultMoveSpeed = 3, defaultRotationSpeed = 10, runMultiplier = 2;
     private float moveSpeed, rotationSpeed;
     [SerializeField]
     private Transform cameraTrans;
@@ -25,6 +25,16 @@ public class CH_PlayerMovement : MonoBehaviour
         stop = b;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SetSpeed(defaultMoveSpeed * runMultiplier, defaultRotationSpeed);
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            SetSpeed();
+        }
+    }
     void FixedUpdate()
     {
         if (!stop)
@@ -51,7 +61,7 @@ public class CH_PlayerMovement : MonoBehaviour
             body.velocity = velocityVector;   //GO! BLAH!
         }
     }
-    public void SetSpeed(float moveSpeed, float rotationSpeed)
+    public void SetSpeed(float moveSpeed = 0, float rotationSpeed = 0)
     {
         if (moveSpeed == 0)
         {
