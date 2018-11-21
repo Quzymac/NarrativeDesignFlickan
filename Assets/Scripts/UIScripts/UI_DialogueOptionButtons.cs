@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //This class handles the player making choices in dialogues by pressing buttons.
+//PLACE THIS ON A DIALOGUE OPTION BUTTON.
 public class UI_DialogueOptionButtons : MonoBehaviour
 {
     //Set in inspector.
     [Header("DialogueOptionId")]
     [SerializeField]
     int id;         //Set to match the requested index in dialogueoptions. Starts at 0.
-    [SerializeField]
+
     [Header("ThisButton")]
+    [SerializeField]
     private Button button;
+
     [Header("Keybind")]
     [SerializeField]
     private KeyCode key;
 
+    //<Summary>
+    //This method is linked to the button in the inspector and initiates a dialogue choice when pressed.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     public void OnPress()
     {
         UI_DialogueController.Instance.SetDialogue(DialogueManager.Instance.DialogueOption(id));
@@ -25,6 +33,7 @@ public class UI_DialogueOptionButtons : MonoBehaviour
         UI_DialogueController.Instance.DisableOptionButtons();
     }
 
+    //This chesks for keypresses matching the serialized key every frame and invokes onpress
     private void Update()   //Check for key presses
     {
         if (DialogueManager.Instance.HasOptions() && Input.GetKeyDown(key))
@@ -38,6 +47,11 @@ public class UI_DialogueOptionButtons : MonoBehaviour
             FadeToColor(button.colors.normalColor);
     }
 
+    //<Summary>
+    //This method fakes the colour effect of a button press when using a keybind instead.
+    //Arguments: A colour to fade to.
+    //Return: void.
+    //<Summary>
     private void FadeToColor(Color color)   //Fake button press with keys.
     {
         Graphic graphic = GetComponent<Graphic>();

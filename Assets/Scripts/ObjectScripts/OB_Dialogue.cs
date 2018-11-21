@@ -16,8 +16,9 @@ public class OB_Dialogue : OB_Interactable
     {
         OnExit(other);
     }
-    //This needs to be changed from hardcoded keycodes. 
-    public override void Activate(GameObject player)    //Change this to switch statement
+
+    //Maybe a keybind manager should be created?
+    public override void Activate(GameObject player)    
     {
         if (Input.GetKeyDown(KeyCode.E))
         {

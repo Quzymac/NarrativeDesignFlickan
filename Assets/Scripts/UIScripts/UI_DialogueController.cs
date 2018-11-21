@@ -48,6 +48,35 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
 
     #endregion
 
+    //This region handles displaying simple messageboxes with strings aquired at runtime.
+    #region Display Message string
+
+    //<Summary>
+    //This method opens up the dialogbox and displays a simple message based on strings instead of the dialogue container. Use to display single messageboxes with runtime information.
+    //Arguments: a title and text to display.
+    //Return: void.
+    //<Summary>
+    public void DisplayMessage(string title, string message)
+    {
+        panel.enabled = true;
+        isActive = true;
+        SetTitle(title);
+        SetText(message);
+        Time.timeScale = 0;
+    }
+
+    //<Summary>
+    //This method closes the dialogbox. Exists for clarity putposes and is to be used together with the DisplayMessage method.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
+    public void Closemessage()
+    {
+        EndDialogue();
+    }
+
+    #endregion
+
     //This Region handles diplaying the dialogue on screen.
     #region Display Dialogue
 
@@ -88,7 +117,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     }
 
     //<Summary>
-    //This method opens up the dialogbox and displays a message if a message can be found.
+    //This method opens up the dialogbox and displays a dialogue if a message can be found.
     //Arguments: A dialogue to display.
     //Return: void.
     //<Summary>
@@ -96,6 +125,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     {
         if (nextDialogue != null)
         {
+            Time.timeScale = 0;
             panel.enabled = true;
             SetDialogue(DialogueManager.Instance.Message());
             isActive = true;
@@ -109,6 +139,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     private void EndDialogue()
     {
+        Time.timeScale = 1;
         DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
         nameField.text = null;
@@ -126,6 +157,16 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     {
         SetTitle(nextDialogue.Name);
         SetText(nextDialogue.Text);
+    }
+
+    //<Summary>
+    //This method gets the dialogue option at the specified index and returns it as a string.
+    //Arguments: A dialogue containing the options and the index of the option.
+    //Return: A string containing the option text to display on the optionbutton.
+    //<Summary>
+    private string GetOptionString(Dialogue dialogue, int index)
+    {
+        return (index + 1).ToString() +" "+ dialogue.DialogueOptions[index];
     }
 
     //<Summary>
@@ -181,8 +222,12 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
 
     //This region activates and deactivates options buttons.
     #region Buttons
-        //Perahps a keybind manager should be set up to define all keybinds?
 
+    //<Summary>
+    //This method determines wether the option buttons should be active or not.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     private void SetButtonsState()
     {
          if (DialogueManager.Instance.HasOptions())
@@ -195,19 +240,31 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
          }            
     }
 
+    //<Summary>
+    //This method displays the optionbuttons.
+    //Arguments: The dialogue containing the different options.
+    //Return: void.
+    //<Summary>
     private void ActivateOptionButtons(Dialogue dialogue)
     {
-        for(int i=0; i < dialogue.DialogueOptions.Count; i++)
+        for(int index=0; index < dialogue.DialogueOptions.Count; index++)
         {
-            optionButtons[i].gameObject.SetActive(true);
+            optionButtons[index].gameObject.SetActive(true);
+            optionButtons[index].GetComponentInChildren<Text>().text = GetOptionString(dialogue, index);
         }
     }
 
+    //<Summary>
+    //This method disables the optionbuttons
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     public void DisableOptionButtons()
     {
         foreach(Button button in optionButtons)
         {
-            button.gameObject.SetActive(false); 
+            button.gameObject.SetActive(false);
+            button.GetComponentInChildren<Text>().text = null;
         }
     }
 
