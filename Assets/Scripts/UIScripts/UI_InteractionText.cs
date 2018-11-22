@@ -9,9 +9,9 @@ public class UI_InteractionText : MonoBehaviour {
     //Add interact canvas to item prefab 
     //Add Camera in inspector to canvas event camera
 
-    [SerializeField] Canvas interactionTextCanvas;
+    Canvas interactionTextCanvas;
     Transform cam;
-    string itemType;
+    string itemName;
     bool canvasActive;
 
     //Call this method with "true" when interaction is possible to display text.
@@ -25,12 +25,21 @@ public class UI_InteractionText : MonoBehaviour {
     void Start()
     {
         cam = FindObjectOfType<Camera>().transform;
+        interactionTextCanvas = GetComponentInChildren<Canvas>();
+        interactionTextCanvas.gameObject.SetActive(false);
 
+        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" to interact";
         //Sets text to match itemType
-        itemType = GetComponentInParent<OB_Item>().GetItemType().ToString();
-        interactionTextCanvas.GetComponentInChildren<Text>().text = itemType;
+        if (GetComponent<OB_Item>())
+        {
+            itemName = GetComponentInParent<OB_Item>().GetItemType().ToString();
+            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + itemName;
+        }
 
-        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + itemType;
+        if (GetComponent<OB_Dialogue>())
+        {
+            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" to speak";
+        }
     }
 
     void Update ()
