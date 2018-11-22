@@ -57,6 +57,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: a96a6398765e3b8409dbc9332cee440a, type: 2}
   - {fileID: 2100000, guid: 126805a9bfa530944bdee0982c0f9d05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -93,7 +94,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
+  m_Radius: 0.7
   m_Height: 10.836383
   m_Direction: 1
-  m_Center: {x: -0.3, y: 5.4181914, z: 0.0920912}
+  m_Center: {x: -0.3, y: 5.265306, z: 0.091832995}
