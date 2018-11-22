@@ -60,7 +60,16 @@ public class CH_PlayerPushing : MonoBehaviour {
             velocityVector.y = body.velocity.y;   //Vi vill inte ändra velocity i y led eftersom det skulle påvärka gravitationen
             body.velocity = velocityVector;   //GO! BLAH!
             velocityVector.y = bodyToMove.velocity.y;
-            bodyToMove.velocity = velocityVector;
+            float distanceBonus = 1; //Ser till så att det man puttar på inte åker snabbare/saktare än spelaren
+            if (speedForward < 0)
+            {
+                distanceBonus = 1.1f;
+            }
+            else
+            {
+                distanceBonus = 1f;
+            }
+            bodyToMove.velocity = velocityVector * distanceBonus;
         }
     }
 }
