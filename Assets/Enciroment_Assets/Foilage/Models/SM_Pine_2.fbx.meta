@@ -1,25 +1,18 @@
 fileFormatVersion: 2
-guid: 0f42884e8c532804ab9f823f886da64d
+guid: 5ccc30c8889e1594aa2ff8aceab44b05
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: group2
-    100002: //RootNode
-    100004: Trunk1
-    400000: group2
-    400002: //RootNode
-    400004: Trunk1
-    2100000: lambert1
-    2100002: lambert2
-    2300000: group2
-    2300002: Trunk1
-    3300000: group2
-    3300002: Trunk1
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert6
+    2100002: lambert7
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Trunk1
-    4300002: group2
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1

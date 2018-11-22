@@ -1,21 +1,15 @@
 fileFormatVersion: 2
-guid: 7bcb535481e59fd4da34aafe9123e444
+guid: 0e3d67efc6124a54d9f81f0b304320b9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Tree_Branches2
-    100004: Trunk
     400000: //RootNode
-    400002: Tree_Branches2
-    400004: Trunk
     2100000: lambert1
-    2300000: Tree_Branches2
-    2300002: Trunk
-    3300000: Tree_Branches2
-    3300002: Trunk
-    4300000: Trunk
-    4300002: Tree_Branches2
+    2100002: lambert2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Tree_1
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -74,7 +68,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
