@@ -20,7 +20,7 @@ public class CH_Inventory : MonoBehaviour {
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
     "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
-
+    
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
@@ -93,11 +93,39 @@ public class CH_Inventory : MonoBehaviour {
             inventorySlots[itemSlot].Select();
         }
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             ConsumeItem();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.R) && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && givingItems)
+        {
+            if (!itemsToGive.Contains(items[itemSlot]))
+            {
+                itemsToGive.Add(items[itemSlot]);
+            }
+            Debug.Log("Added a " + items[itemSlot].GetComponent<OB_Item>().GetItemType().ToString() + " to give");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && givingItems)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (itemsToGive.Contains(items[i]))
+                {
+                    items[i] = null;
+                }
+            }
+            GiveItems();
+            givingItems = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.T) && givingItems)
+        {
+            itemsToGive.Clear();
+            givingItems = false;
+            gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
+        }
     }
 
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
@@ -216,12 +244,37 @@ public class CH_Inventory : MonoBehaviour {
                 items[i] = itemToAdd;
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
+                if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple)
+                {
+                    StartCoroutine(SpawnNewItem(itemToAdd));
+                }
                 return true;
             }
         }
         return false;
     }
-    
+
+    IEnumerator SpawnNewItem(GameObject copy)
+    {
+        int time = 10;
+        GameObject newItem;
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            if (time <= 0)
+            {
+                newItem = Instantiate(copy);
+                newItem.SetActive(true);
+                yield break;
+            }
+            else
+            {
+                time--;
+                yield return null;
+            }
+        }
+    }
+
     //Hittar ett item i inventory och retunerar true om den hittas annars false. 
     public GameObject SearchInventory(Item itemToFind)
     {
@@ -249,5 +302,29 @@ public class CH_Inventory : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public List<GameObject> itemsToGive;
+    GameObject requester;
+    bool givingItems;
+    List<Item> reqItems = new List<Item>();
+    public void RequestItems(GameObject inRequester, Item[] inItems)
+    {
+        requester = inRequester;
+        reqItems.AddRange(inItems);
+        inRequester.GetComponent<OB_Interactable>().enabled = false;
+        itemsToGive = new List<GameObject>();
+        givingItems = true;
+        Debug.Log("Giving Items");
+        gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
+    }
+
+    public void GiveItems()
+    {
+        requester.GetComponent<CH_RequestItems>().GiveItems(itemsToGive);
+        requester.GetComponent<OB_Interactable>().enabled = true;
+        requester = null;
+        gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
+        itemsToGive.Clear();
     }
 }

@@ -17,7 +17,6 @@ public abstract class OB_Interactable : MonoBehaviour {
         {
             interactable = true;
             player = other.gameObject;
-            Debug.Log("Can Interact");
             other.GetComponent<CH_Interact>().AddInteractable(gameObject);
             if (GetComponent<UI_InteractionText>() != null)
                 GetComponent<UI_InteractionText>().SetTextActive(true);
@@ -31,7 +30,6 @@ public abstract class OB_Interactable : MonoBehaviour {
         {
             interactable = false;
             player = null;
-            Debug.Log("Can't interact");
             other.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
             if (GetComponent<UI_InteractionText>() != null)
                 GetComponent<UI_InteractionText>().SetTextActive(false);
