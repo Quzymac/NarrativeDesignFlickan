@@ -83,6 +83,12 @@ public class DialogueManager
                                 case "ChoiceIndex":
                                     dialogue.DialogueOptionsIndexes.Add(Convert.ToInt32(reader["choiceIndex"]));
                                     break;
+                                case "ChoiceName":
+                                    dialogue.ChoiceNames.Add(reader["choiceName"]);
+                                    break;
+                                case "ChoiceBool":
+                                    dialogue.WorldChoices.Add(Convert.ToInt32(reader["choiceBool"]));
+                                    break;
                             }
                         }
                     }

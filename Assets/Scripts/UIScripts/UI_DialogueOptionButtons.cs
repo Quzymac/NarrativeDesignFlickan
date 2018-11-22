@@ -27,10 +27,15 @@ public class UI_DialogueOptionButtons : MonoBehaviour
     //<Summary>
     public void OnPress()
     {
+        if(DialogueManager.Instance.Message().ChoiceNames[id] != null)
+        {
+            OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[id], DialogueManager.Instance.Message().WorldChoices[id]);
+        }
         UI_DialogueController.Instance.SetDialogue(DialogueManager.Instance.DialogueOption(id));
         DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.ActiveDialogues[DialogueManager.Instance.DialogueIndex].DialogueOptionsIndexes[id];   //Sets the next index. Split this into its own
         DialogueManager.Instance.IsResponding = true;//more descriptive method.
         UI_DialogueController.Instance.DisableOptionButtons();
+        UI_DialogueController.Instance.SetNextPageText();
     }
 
     //This chesks for keypresses matching the serialized key every frame and invokes onpress

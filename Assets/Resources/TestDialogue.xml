@@ -2,17 +2,26 @@
 <Dialogue>
       <Name name="Shroom">
         <Text text="This is a test to see if text can be displayed.">
-          </Text>
+          </Text>       
         <Optionregion>
           <Choices choice="This is a choice I made.">
           </Choices>
+          <ChoiceName choiceName="test">
+          </ChoiceName>
             <ChoiceIndex choiceIndex="0">
             </ChoiceIndex>
+          <ChoiceBool choiceBool="0">
+          </ChoiceBool>         
           <Choices choice="I dont want to talk anymore.">
           </Choices>
+          <ChoiceName choiceName="test">
+          </ChoiceName>
             <ChoiceIndex choiceIndex="1">
             </ChoiceIndex>
+          <ChoiceBool choiceBool="1">
+          </ChoiceBool>
         </Optionregion>
+        
     </Name>
       <Name name="Shroom">
         <Text text="This is a magical shroom.">

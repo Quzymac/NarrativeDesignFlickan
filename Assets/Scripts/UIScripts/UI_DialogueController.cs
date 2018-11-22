@@ -9,6 +9,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //Set in inspector
     [Header("TextFields")]
     [SerializeField]
+    private Text nextTextPage;
+    [SerializeField]
     private Text nameField;
     [SerializeField]
     private Text textBox;
@@ -19,11 +21,21 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     [SerializeField]
     private Button[] optionButtons= new Button[3];
 
-    [Header("TextboxSprite")]
+    [Header("TextboxSprites")]
+    [SerializeField]
+    private Image arrow;
     [SerializeField]
     private Image panel;    //BackgroundSprite
 
+    [Header("Blinkinterval & delay")]
+    [SerializeField]
+    private float interval;
+    [SerializeField]
+    private float startDelay;
+
     private bool isActive = false;
+    private bool isBlinking = false;
+
 
     //Do something when waking up.
     private void Awake()
@@ -62,7 +74,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         isActive = true;
         SetTitle(title);
         SetText(message);
-        Time.timeScale = 0;
     }
 
     //<Summary>
@@ -91,28 +102,35 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         {
             DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
             OpenDialogue(DialogueManager.Instance.Message());
-            SetButtonsState();
+            SetNextPageText();
+            //SetButtonsState();
         }
         else if (isActive && !DialogueManager.Instance.IsResponding && !DialogueManager.Instance.HasOptions() && DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //Jump to the dialogue at index+1 if there are no options.
         {
             DialogueManager.Instance.NextDialogue();
             SetDialogue(DialogueManager.Instance.Message());
-            SetButtonsState();
+            SetNextPageText();
+            //SetButtonsState();
         }
         else if (isActive && DialogueManager.Instance.IsResponding && Input.GetKeyDown(KeyCode.E))  //If we are responding, set the next dialogue to be the current index.
         {
             SetDialogue(DialogueManager.Instance.Message());
-            SetButtonsState();
+            //SetButtonsState();
             DialogueManager.Instance.IsResponding = false;
+            SetNextPageText();
         }
         else if (isActive && DialogueManager.Instance.HasOptions()) //If we have options, take one.
         {
             ActivateOptionButtons(DialogueManager.Instance.Message());
+            SetTitle("");
+            SetText("");
+            DisableNextPageText();
         }
         else if (isActive && !DialogueManager.Instance.HasOptions() && !DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //if there are no remaining messages and no options, end.
         {
             EndDialogue();
             DisableOptionButtons();
+            DisableNextPageText();
         }
     }
 
@@ -125,7 +143,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     {
         if (nextDialogue != null)
         {
-            Time.timeScale = 0;
             panel.enabled = true;
             SetDialogue(DialogueManager.Instance.Message());
             isActive = true;
@@ -191,6 +208,19 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         StopAllCoroutines();
         StartCoroutine(EffectTypeText(text));
     }
+
+    public void SetNextPageText()
+    {
+        nextTextPage.text = "Press E to continue";
+        nextTextPage.enabled = true;
+        StartBlink(arrow);
+    }
+
+    private void DisableNextPageText()
+    {
+        nextTextPage.enabled = false;
+        StopBlink();
+    }
     #endregion
 
     //This region adds effects to the text in the currently displayed dialogue.
@@ -218,6 +248,29 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             yield return null;
         }
     }
+
+    private void StartBlink(Image image)
+    {
+        if (isBlinking)
+            return;
+        if (image != null)
+        {
+            isBlinking = true;
+            InvokeRepeating("ToggleState", startDelay, interval);
+        }
+    }
+
+    private void StopBlink()
+    {
+        CancelInvoke("Togglestate");
+        isBlinking = false;
+    }
+
+    private void ToggleState()
+    {
+        arrow.enabled = !arrow.enabled;
+    }
+
     #endregion
 
     //This region activates and deactivates options buttons.
