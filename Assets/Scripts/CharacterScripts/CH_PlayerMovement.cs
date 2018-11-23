@@ -30,6 +30,7 @@ public class CH_PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             SetSpeed(defaultMoveSpeed * runMultiplier, defaultRotationSpeed);
+            CameraShake.Instance.ShakeCamera(.1f, .05f, 5);
         } else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             SetSpeed();
