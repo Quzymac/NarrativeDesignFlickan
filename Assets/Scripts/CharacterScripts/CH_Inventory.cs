@@ -101,20 +101,30 @@ public class CH_Inventory : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.R) && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && givingItems)
         {
-            if (!itemsToGive.Contains(items[itemSlot]))
+            if(!itemsToGive.Contains(items[itemSlot]) && itemsToGive.Count < maximumItems)
             {
                 itemsToGive.Add(items[itemSlot]);
+                Debug.Log("Added a " + items[itemSlot].GetComponent<OB_Item>().GetItemType().ToString() + " to give");
             }
-            Debug.Log("Added a " + items[itemSlot].GetComponent<OB_Item>().GetItemType().ToString() + " to give");
+            else if(itemsToGive.Count == maximumItems)
+            {
+                Debug.Log("Du kan inte ge " + requester.name + " fler saker");
+            }
+            else
+            {
+                Debug.Log(requester.name + " vill inte ha detta item");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Return) && givingItems)
         {
-            for (int i = 0; i < items.Length; i++)
+            for(int i = 0; i < items.Length; i++)
             {
-                if (itemsToGive.Contains(items[i]))
+                if(itemsToGive.Contains(items[i]))
                 {
                     items[i] = null;
+                    itemImages[i].sprite = null;
+                    itemImages[i].gameObject.SetActive(false);
                 }
             }
             GiveItems();
@@ -188,7 +198,7 @@ public class CH_Inventory : MonoBehaviour {
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
         }
-        StartCoroutine(RemoveItemText());
+        //StartCoroutine(RemoveItemText());
     }
 
     IEnumerator RemoveItemText()
@@ -205,7 +215,6 @@ public class CH_Inventory : MonoBehaviour {
             else
             {
                 time--;
-                Debug.Log(time);
                 yield return null;
             }
         }
@@ -304,13 +313,15 @@ public class CH_Inventory : MonoBehaviour {
         return false;
     }
 
-    public List<GameObject> itemsToGive;
+    List<GameObject> itemsToGive;
     GameObject requester;
     bool givingItems;
+    int maximumItems;
     List<Item> reqItems = new List<Item>();
-    public void RequestItems(GameObject inRequester, Item[] inItems)
+    public void RequestItems(GameObject inRequester, Item[] inItems, int maxNumberOfItems)
     {
         requester = inRequester;
+        maximumItems = maxNumberOfItems;
         reqItems.AddRange(inItems);
         inRequester.GetComponent<OB_Interactable>().enabled = false;
         itemsToGive = new List<GameObject>();

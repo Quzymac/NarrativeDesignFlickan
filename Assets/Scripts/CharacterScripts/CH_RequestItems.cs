@@ -9,6 +9,8 @@ public class CH_RequestItems : OB_Interactable {
     UnityEvent character;
     [SerializeField]
     Item[] itemsWanted;
+    [SerializeField]
+    int maxNumberOfItemsToBeGiven;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,7 +22,7 @@ public class CH_RequestItems : OB_Interactable {
         OnExit(other);
     }
 
-    public void GiveItems(List<GameObject> inItems)
+    public void GiveItems(List<GameObject> inItems)//GameObject[] inItems
     {
         items.AddRange(inItems);
         character.Invoke();
@@ -31,7 +33,7 @@ public class CH_RequestItems : OB_Interactable {
     {
         if (character != null)
         {
-            player.GetComponent<CH_Inventory>().RequestItems(gameObject, itemsWanted);
+            player.GetComponent<CH_Inventory>().RequestItems(gameObject, itemsWanted, maxNumberOfItemsToBeGiven);
         }
     }
 
@@ -65,45 +67,46 @@ public class CH_RequestItems : OB_Interactable {
 
         if (falukorv == true && berry == false && mushroom == false)
         {
-            Debug.Log("Usch va salt dehär va! magen min kommer vara arg senare!");
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Usch, va salt dehär va! Magen min känner sig inte gla'!",false));
         }
         else if (falukorv == true && berry == true && mushroom == false)
         {
-            //De va gött, men mera mat hade vart härligt!
-            //return true;
+            StartCoroutine(SendMessage("Troll", "De va alldeles lagom gött, men mera mat hade också vart väl mött!",false));
         }
         else if (falukorv  == true && berry == true && mushroom == true)
         {
-            //Det här va det bäste jag äti på länge, låt mig hjälp dig ned, när du kommer närmare vattnet så ska du se till att hålla dig borta från Näcken,
-            //han spelar fiol så du vet! Du ska också se till att kolla under alla stenar som ser spännande ut!return true;
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Det va det bäste ja äti på ett tag, låt mej hjälp dej ned. Om du är vid sjön senare idag, se till att lämna Näcken ifred.",true));
         }
         else if (falukorv == true && berry == false && mushroom == true)
         {
-            //Suck, det här va smaskit, men något som drar på kinderna och något annat mums hade gjort de goare
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Suck, det här va väl rätt smaskigt, men annat mums som drar på kinderna hade inte vart taskigt.",false));
         }
         else if (falukorv == false && berry == true && mushroom == true)
         {
-            //Det här var gott, men det var något med mer smak som jag hade velat ha, spring bort och hämta något mer till mej.
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Det här va gott, men nåt smakrikare hade suttit bra. Om du inte har brått' vill jag mer mat ha.",false));
         }
         else if (falukorv == false && berry == true && mushroom == false)
         {
-            //Det här fick kinderna att dra iväg och var mums, men något mer krävs för att hålla mig mätt
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Det här va delikat och magen min känns rätt, men det ä' väl klart att mer krävs för att ja ska bli mätt.",false));
         }
         else if (falukorv == false && berry == false && mushroom == true)
         {
-            //Det här var alldeles för lite, Spring iväg och ge mig mer mat
-            //return true;
+            StartCoroutine(SendMessage("Troll", "Det här ä' på tok för lite mat för mej, om du ä' klok så hämtar du nån mer grej.",false));
         }
         else
         {
-            Debug.Log(" Jag tänker inte hjälpa dig");
-            //return false;
+            StartCoroutine(SendMessage("Troll", "Jag tänker inte hjälpa dig",false));
         }
     }
-        
+
+    IEnumerator SendMessage(string character, string text, bool extraText)
+    {
+        UI_DialogueController.Instance.DisplayMessage(character, text);
+        yield return new WaitForSecondsRealtime(5);
+        UI_DialogueController.Instance.Closemessage();
+        if(extraText)
+        {
+            StartCoroutine(SendMessage("Troll", "Näcken spelar violin, så skärp örona dina.Och om du än har energin, kolla under alla stenar fina!",false));
+        }
+    } 
 }
