@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="Alf">
+        <Text text="Varför står du här? spring iväg och hämta mat nu!?">
+          </Text>              
+    </Name>
+</Dialogue>

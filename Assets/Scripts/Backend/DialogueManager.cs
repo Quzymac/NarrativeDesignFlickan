@@ -6,7 +6,7 @@ using System.IO;
 using System.Xml;
 
 //This enum is slightly clunky, but works. Set on interactable object you wish to examine/ talk to. Might need to be changed later on if things get complicated.
-public enum Dialogues { NONE, TestDialogue }
+public enum Dialogues { NONE, TestDialogue, B1_Alf_1, B1_Alf_E }
 
 //This class handles the currently active dialogue. It stores all indivdual Dialogue data containers in a list. 
 //TODO: Perhaps LoadData region should be made into its own script?
@@ -135,7 +135,7 @@ public class DialogueManager
     //<Summary>
     public bool HasRemainingMessages()
     {
-        return dialogueIndex + 1 < ActiveDialogues.Count && dialogueIndex > 0;
+        return dialogueIndex + 1 < ActiveDialogues.Count && dialogueIndex > -1;
     }
 
     public bool HasOptions()

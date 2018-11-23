@@ -68,12 +68,17 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //Arguments: a title and text to display.
     //Return: void.
     //<Summary>
-    public void DisplayMessage(string title, string message)
+    public void DisplayMessage(string title, string message, float time = 0)
     {
         panel.enabled = true;
         isActive = true;
         SetTitle(title);
         SetText(message);
+        if(time > 0.001)
+        {
+            Wait(time);
+            Closemessage();
+        }
     }
 
     //<Summary>
@@ -110,6 +115,10 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             DialogueManager.Instance.NextDialogue();
             SetDialogue(DialogueManager.Instance.Message());
             SetNextPageText();
+            for(int i =0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
+            {
+                OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
+            }
             //SetButtonsState();
         }
         else if (isActive && DialogueManager.Instance.IsResponding && Input.GetKeyDown(KeyCode.E))  //If we are responding, set the next dialogue to be the current index.
@@ -131,6 +140,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             EndDialogue();
             DisableOptionButtons();
             DisableNextPageText();
+            Debug.Log(OptionsManager.Instance.GetOptionArea1("B1_Alf_1"));
         }
     }
 
@@ -156,6 +166,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     private void EndDialogue()
     {
+        StopAllCoroutines();
         Time.timeScale = 1;
         DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
@@ -163,6 +174,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         textBox.text = null;
         textBoxFirstChar.text = null;
         isActive = false;
+        arrow.enabled = false;
+        StopBlink();
     }
 
     //<Summary>
@@ -219,7 +232,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     private void DisableNextPageText()
     {
         nextTextPage.enabled = false;
-        StopBlink();
+        //StopBlink();
     }
     #endregion
 
@@ -249,6 +262,16 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         }
     }
 
+    private IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+
+    //<Summary>
+    //This Method starts aplying a blink effect to an image.
+    //Arguments: A image to start blinking.
+    //Return: void.
+    //<Summary>
     private void StartBlink(Image image)
     {
         if (isBlinking)
@@ -260,12 +283,22 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         }
     }
 
+    //<Summary>
+    //This method stops the blink effect on the image.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     private void StopBlink()
     {
-        CancelInvoke("Togglestate");
+        CancelInvoke("ToggleState");
         isBlinking = false;
     }
 
+    //<Summary>
+    //This method toggles the next page image on and off.
+    //Arguments: void.
+    //Return: void.
+    //<Summary>
     private void ToggleState()
     {
         arrow.enabled = !arrow.enabled;
