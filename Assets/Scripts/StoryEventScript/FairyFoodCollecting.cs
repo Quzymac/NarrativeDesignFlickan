@@ -9,20 +9,20 @@ public class FairyFoodCollecting : MonoBehaviour {
     [SerializeField] Transform fairyGameOverPos;
     [SerializeField] GameObject scriptManager;
     [SerializeField] GameObject fadeInCanvas;
+    bool fairyAreFollowing = false;
     
-
 
     void StartGame ()
     {
         countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
-        FairyFollow(true);
+        GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
         Debug.Log("s");
 
     }
 
     public void GameTimerFinished()
     {
-        FairyFollow(false);
+        GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
         StartCoroutine(TeleportToFairies());
         Debug.Log("f");
     }
@@ -30,30 +30,21 @@ public class FairyFoodCollecting : MonoBehaviour {
     IEnumerator TeleportToFairies()
     {
         //Fade WIP
-        scriptManager.GetComponent<UI_FadingEffect>().ActivateFading();
+        //scriptManager.GetComponent<UI_FadingEffect>().ActivateFading();
         yield return new WaitForSeconds(1);
+        //player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
         player.transform.position = fairyGameOverPos.position;
         yield return new WaitForSeconds(0.8f);
-        fadeInCanvas.SetActive(true);
+        //fadeInCanvas.SetActive(true);
         yield return new WaitForSeconds(1.5f);
 
     }
-    void FairyFollow(bool following)
-    {
-        if (following)
-        {
-            //follow player
-        }
-        else
-        {
-            //stop following player
-        }
-    }
 
-	// Update is called once per frame
-	void Update () {
+    void Update () {
+
         if (Input.GetKeyDown(KeyCode.P)){
             StartGame();
         }
-	}
+        
+    }
 }

@@ -47,7 +47,7 @@ public class CountdownTimer : MonoBehaviour {
             }
 
             //displays seconds left on timer
-            if (timer > 0f)
+            else if (timer > 0f)
             {
                 if (Mathf.RoundToInt(timer + 0.5f) != timeDisplayed)
                 {
