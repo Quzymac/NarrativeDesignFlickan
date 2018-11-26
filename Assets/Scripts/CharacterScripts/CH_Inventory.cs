@@ -257,6 +257,7 @@ public class CH_Inventory : MonoBehaviour {
                 {
                     StartCoroutine(SpawnNewItem(itemToAdd));
                 }
+                OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
             }
         }
@@ -295,6 +296,19 @@ public class CH_Inventory : MonoBehaviour {
             }
         }
         return null;
+    }
+    //Returnar hur många av ett vist item man har
+    public int NumberOfSpecificItem(Item item)
+    {
+        int n = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null && items[i].GetComponent<OB_Item>().GetItemType() == item)
+            {
+                n++;
+            }
+        }
+        return n;
     }
 
     //Tar bort ett item från inventory.
