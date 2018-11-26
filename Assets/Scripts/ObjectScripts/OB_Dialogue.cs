@@ -43,6 +43,11 @@ public class OB_Dialogue : OB_Interactable
             {
                 dialogueFile = exhausteddialogueFile;
             }
+            if(e.Value == 2)
+            {
+                
+                enabled = false;
+            }
         }
     }
 }

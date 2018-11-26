@@ -338,7 +338,9 @@ MonoBehaviour:
   - {fileID: 114256448559685854}
   - {fileID: 114528769991607084}
   - {fileID: 114631563170245898}
-  arrow: {fileID: 114545894952212010}
+  arrowImage: {fileID: 114545894952212010}
+  arrowLight: {fileID: 21300000, guid: 50a86ad1f124be845b2137803bd852a9, type: 3}
+  arrowDark: {fileID: 21300000, guid: cbecf3fb4acdb3a40b59122bef29683c, type: 3}
   panel: {fileID: 114359057977269714}
   interval: 1
   startDelay: 0.5
@@ -667,7 +669,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 50a86ad1f124be845b2137803bd852a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

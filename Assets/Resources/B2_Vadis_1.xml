@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="Tyra">
+        <Text text="Vem gömmer sej där? Är du den store vitormen så ska du veta att jag inte är snopen att du är här - jag såg dina spår tidigare!">
+          </Text>              
+    </Name>
+      <Name name="Vådis">
+        <Text text="Det finns inga vitormar i Ärlaskogen! Jag är Vådis, men det behöver du inte veta för hit får du ändå inte gå.">
+          </Text>
+    </Name>
+      <Name name="Tyra">
+        <Text text="Varför får jag inte det? Skogen tillhör väl inte dej.">
+          </Text>
+    </Name>
+  <Name name="Vådis">
+    <Text text="Trollmor Saga har sagt att ingen får gå över bron som hon gjort, utan hennes tillstånd!">
+    </Text>
+  </Name>
+  <Name name="Vådis">
+    <Text text="Saga har sagt att hon är kompis med Vådis och folk som är dumma mot mina kompisar ska passa sej.">
+    </Text>
+  </Name>
+  <Name name="Tyra">
+    <Text text="[Så det var inte en vitorm, utan ett träd som hade släpats på marken.]">
+    </Text>
+  </Name>
+  <Name name="Tyra">
+    <Text text="Mitt namn är Tyra. Saga är också min vän och har sagt att jag får passera.">
+    </Text>
+  </Name>
+  <Name name="Vådis">
+    <Text text="Tyra kan väl bevisa det om det är så. Vet du vad Sagas favoritträd är?">
+    </Text>
+  </Name>
+  <Name name="Vådis">
+    <Text text="Hämta något från Sagas favoritträd och släng ner i bäcken. Kompisar ska väl veta sånt om varandra!">
+    </Text>
+    <ChoiceName choiceName="B2_Vadis_1">
+    </ChoiceName>
+    <ChoiceBool choiceBool="2">
+    </ChoiceBool>
+  </Name>
+</Dialogue>

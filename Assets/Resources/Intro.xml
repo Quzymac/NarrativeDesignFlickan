@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="På 1200-talets Sverige så är världen inhiberad av olika väsen utöver människor.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Det är inte så ovanligt att få syn på tomtar, irrbloss, vättar, en jätte i horisonten eller något som är vanligare att se. Troll.">
+    </Text>
+  </Name>
+      <Name name="">
+        <Text text="Troll är väldigt lika människor, lite fulare och har ofta en svans, de utmärks mera av sin förmåga att trolla.">
+          </Text>
+    </Name>
+  <Name name="">
+    <Text text="De bor i salar under flyttblock eller i berg där de förvarade enorma rikedomar.">
+    </Text>
+  </Name>
+  <Name name="">
+        <Text text="Utöver sin trollförmåga så är det vanligt att troll utför hyss och kan till och med försöka byta bort sina barn mot ett människobarn.">
+          </Text>
+    </Name>
+  <Name name="">
+    <Text text="När bytet sker så byter trollmamman skepnad på trollbarnet så att ingen ska märka skillnad.">
+    </Text>
+  </Name>
+</Dialogue>

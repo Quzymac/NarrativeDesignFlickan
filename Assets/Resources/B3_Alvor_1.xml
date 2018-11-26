@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="Älvor">
+        <Text text="Tack för att du har lagat vår ring. En ynklig tomtenisse hade sönder den, vilket har kvävt våra magiska förmågor i flera veckor.">
+          </Text>
+
+        <Optionregion>
+          <Choices choice="Vad elakt av honom att göra. Jag säger till honom att skärpa sig om jag ser honom!">
+          </Choices>
+            <ChoiceIndex choiceIndex="1">
+            </ChoiceIndex>        
+          <Choices choice="Vad elakt av er att säga. Han gjorde det kanske inte med flit!">
+          </Choices>
+            <ChoiceIndex choiceIndex="3">
+            </ChoiceIndex>
+        </Optionregion>
+            </Name>
+  
+      <Name name="Älvor">
+        <Text text="Du förstår precis rätt, flicka lilla.">
+          </Text>
+    </Name>
+  <Name name="Älvor">
+    <Text text="Vi älvor har samsats om att tomtar ej längre är välkomna i vårt rike.">
+    </Text>
+  </Name>
+  <Choices choice="JumpIndex">
+  </Choices>
+  <ChoiceIndex choiceIndex="5">
+  </ChoiceIndex>
+
+  <Name name="Älvor">
+    <Text text="Det må vara så, flicka lilla">
+    </Text>
+  </Name>
+  <Name name="Älvor">
+    <Text text="Till och med vi älvor gör stundom fel av oss..">
+    </Text>
+  </Name>
+  
+  <Name name="Älvor">
+    <Text text="Nog om det. Idag är det en alldeles särskild dag för alla älvor, ty vi skall fira vår vördade Älvdrottnings tusenårsdag.">
+    </Text>   
+  </Name>
+    
+  <Name name="Älvor">
+    <Text text="Vi börjar alltid med att hålla en ceremoni, där vi samlar dussintals vackra skogsting i Hennes Majestäts ära. Vill du delta?">
+    </Text>
+
+    <Optionregion>
+      <Choices choice="Ja, gärna. Det låter roligt!">
+      </Choices>
+      <ChoiceIndex choiceIndex="10">
+      </ChoiceIndex>
+      <Choices choice="Nej, jag har faktiskt inte tid. Min lillebror har blivit tagen av troll och jag måste hjälpa honom hem!">
+      </Choices>
+      <ChoiceIndex choiceIndex="7">
+      </ChoiceIndex>
+    </Optionregion>
+    
+  </Name>
+  
+  
+  <Name name="Älvor">
+    <Text text="Trollen skadar ej brodern din och dagen är ännu lång. Om du hedrar Hennes Majestät ställer vi älvor gärna upp med en tjänst i gengäld efteråt.">
+    </Text>
+
+    <Optionregion>
+      <Choices choice="Ja, ni har väl rätt. Jag kan vara med!">
+      </Choices>
+      <ChoiceIndex choiceIndex="10">
+      </ChoiceIndex>
+      <Choices choice="Nej, jag måste verkligen skynda mig. Tänk om trollet är hungrigt och äter upp honom!">
+      </Choices>
+      <ChoiceIndex choiceIndex="8">
+      </ChoiceIndex>
+    </Optionregion>
+
+  </Name>
+  <Name name="Älvor">
+    <Text text="Du oförskämda och uppblåsta flicksnärta förstår dig på varken älvor eller ens simpla troll.">
+    </Text>
+  </Name>
+  <Name name="Älvor">
+    <Text text="Vi älvor glömmer aldrig bort sådan hänsynslöshet.">
+    </Text>
+
+    <Choices choice="JumpIndex">
+    </Choices>
+    <ChoiceIndex choiceIndex="-1">
+    </ChoiceIndex>
+    <ChoiceName choiceName="B3_Alvor_1">
+    </ChoiceName>
+    <ChoiceBool choiceBool="2">
+    </ChoiceBool>
+
+  </Name>
+
+  <Name name="Älvor">
+    <Text text="Flicka lilla, se dig omkring häri gläntan, bland skogens underbara skatter. Människor förstår sig sällan på dessa gåvors ändlösa värde.">
+    </Text>
+  </Name>
+  <Name name="Älvor">
+    <Text text="Samla upp det vackraste du kan finna och placera det i älvskålen på stenen.">
+    </Text>
+  </Name>
+  <Name name="Älvor">
+    <Text text="Denna speciella dag tillåter varken menlösa eller vidriga ting, så var klok, flicka lilla, och tänk ej tanken att visa Drottningen hänsynslöshet.">
+    </Text>
+
+    <ChoiceName choiceName="B3_Alvor_1">
+    </ChoiceName>
+    <ChoiceBool choiceBool="1">
+    </ChoiceBool>
+
+  </Name>
+</Dialogue>

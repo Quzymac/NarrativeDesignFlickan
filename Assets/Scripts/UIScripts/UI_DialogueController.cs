@@ -23,7 +23,11 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
 
     [Header("TextboxSprites")]
     [SerializeField]
-    private Image arrow;
+    private Image arrowImage;
+    [SerializeField]
+    private Sprite arrowLight;
+    [SerializeField]
+    private Sprite arrowDark;
     [SerializeField]
     private Image panel;    //BackgroundSprite
 
@@ -129,17 +133,23 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         }
         else if (isActive && DialogueManager.Instance.HasOptions()) //If we have options, take one.
         {
-            ActivateOptionButtons(DialogueManager.Instance.Message());
-            SetTitle("");
-            SetText("");
-            DisableNextPageText();
+            if (DialogueManager.Instance.HasMultipleOptions())
+            {
+                ActivateOptionButtons(DialogueManager.Instance.Message());
+                SetTitle("");
+                SetText("");
+                DisableNextPageText();
+            }
+            else
+            {
+                DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
+            }
         }
         else if (isActive && !DialogueManager.Instance.HasOptions() && !DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //if there are no remaining messages and no options, end.
         {
             EndDialogue();
             DisableOptionButtons();
             DisableNextPageText();
-            Debug.Log(OptionsManager.Instance.GetOptionArea1("B1_Alf_1"));
         }
     }
 
@@ -173,7 +183,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         textBox.text = null;
         textBoxFirstChar.text = null;
         isActive = false;
-        arrow.enabled = false;
+        arrowImage.enabled = false;
         StopBlink();
     }
 
@@ -225,7 +235,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     {
         nextTextPage.text = "Press E to continue";
         nextTextPage.enabled = true;
-        StartBlink(arrow);
+        StartBlink(arrowImage);
     }
 
     private void DisableNextPageText()
@@ -273,6 +283,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         if (image != null)
         {
             isBlinking = true;
+            arrowImage.enabled = true;
             InvokeRepeating("ToggleState", startDelay, interval);
         }
     }
@@ -295,7 +306,16 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     private void ToggleState()
     {
-        arrow.enabled = !arrow.enabled;
+        if(arrowImage.sprite.Equals(arrowDark))
+        {
+            arrowImage.sprite = arrowLight;
+            arrowImage.enabled = true;
+        }
+        else
+        {
+            arrowImage.sprite = arrowDark;
+            arrowImage.enabled = true;
+        }
     }
 
     #endregion
