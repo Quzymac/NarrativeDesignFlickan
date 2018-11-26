@@ -31,7 +31,18 @@ public class OB_PlaceItem : OB_Interactable {
                 item.transform.position = givenItemPosition.transform.position;
                 item.SetActive(true);
                 player.GetComponent<CH_Inventory>().RemoveItem(item);
-                item.GetComponent<Rigidbody>().isKinematic = true;
+                if (item.GetComponent<Rigidbody>())
+                {
+                    item.GetComponent<Rigidbody>().isKinematic = true;
+                }
+                player.GetComponent<CH_Interact>().RemoveInteractable(item);
+                foreach(Collider c in item.GetComponents<Collider>())
+                {
+                    if(c.isTrigger)
+                    {
+                        c.enabled = false;
+                    }
+                }
                 item.GetComponent<OB_Item>().enabled = false;
                 haveItem = true;
             }
@@ -40,15 +51,22 @@ public class OB_PlaceItem : OB_Interactable {
         {
             item.SetActive(false);
             player.GetComponent<CH_Inventory>().AddItem(item);
-            item.GetComponent<Rigidbody>().isKinematic = false;
-            item.GetComponent<OB_Item>().enabled = true;
+            if (item.GetComponent<Rigidbody>())
+            {
+                item.GetComponent<Rigidbody>().isKinematic = false;
+            }
             player.GetComponent<CH_Interact>().RemoveInteractable(item);
+            foreach (Collider c in item.GetComponents<Collider>())
+            {
+                if (c.isTrigger)
+                {
+                    c.enabled = true;
+                }
+            }
+            item.GetComponent<Collider>().enabled = true;
+            item.GetComponent<OB_Item>().enabled = true;
             haveItem = false;
+            item = null;
         }
     }
-
-    /*private void Update()
-    {
-        DoThings();
-    }*/
 }
