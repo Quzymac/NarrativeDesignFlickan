@@ -8,13 +8,15 @@ public class InvisibleWallCollision : MonoBehaviour {
     string skog = "I should not stray to far in the forest";
     string fog = "I could get lost in the fog, i should stop here";
     string mammapappaRum = "Jag borde inte gå in i deras rum";
+    string by = "Det finns ingenting för mig att göra i byn.";
+
     string textToDisplay;
     [SerializeField]
     private string customText;
 
     enum TypeOfWall
     {
-        vatten, skog, fog, mammaPappaRum, custom
+        vatten, skog, fog, mammaPappaRum, by, custom
     }
     [SerializeField] TypeOfWall wallType;
 
@@ -33,6 +35,9 @@ public class InvisibleWallCollision : MonoBehaviour {
                 break;
             case TypeOfWall.mammaPappaRum:
                 textToDisplay = mammapappaRum;
+                break;
+            case TypeOfWall.by:
+                textToDisplay = by;
                 break;
             case TypeOfWall.custom:
                 textToDisplay = customText;

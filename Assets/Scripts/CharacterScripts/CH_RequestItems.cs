@@ -11,6 +11,7 @@ public class CH_RequestItems : OB_Interactable {
     Item[] itemsWanted;
     [SerializeField]
     int maxNumberOfItemsToBeGiven;
+    List<GameObject> items = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +27,7 @@ public class CH_RequestItems : OB_Interactable {
     {
         items.AddRange(inItems);
         character.Invoke();
-        character = null;
+        //character = null;
     }
 
     public override void Activate(GameObject player)
@@ -42,7 +43,33 @@ public class CH_RequestItems : OB_Interactable {
         return true;
     }
 
-    List<GameObject> items = new List<GameObject>();
+    public void Vadis()
+    {
+        string[] Conversation = new string[19] { "Vem gömmer sej där? Är du den store vitormen så ska du veta att jag inte är snopen att du är här - jag såg dina spår tidigare!",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+        };
+        
+
+    }
+
+    
     public void Troll()
     {
         bool falukorv = false;
