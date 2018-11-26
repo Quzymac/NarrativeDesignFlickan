@@ -10,10 +10,11 @@ public class InvisibleWallCollision : MonoBehaviour {
     string mammapappaRum = "Jag borde inte gå in i deras rum";
     string textToDisplay;
     [SerializeField]
+    private string customText;
 
     enum TypeOfWall
     {
-        vatten, skog, fog, mammaPappaRum
+        vatten, skog, fog, mammaPappaRum, custom
     }
     [SerializeField] TypeOfWall wallType;
 
@@ -32,6 +33,9 @@ public class InvisibleWallCollision : MonoBehaviour {
                 break;
             case TypeOfWall.mammaPappaRum:
                 textToDisplay = mammapappaRum;
+                break;
+            case TypeOfWall.custom:
+                textToDisplay = customText;
                 break;
         }
     }
