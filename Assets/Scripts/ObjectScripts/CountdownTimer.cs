@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class CountdownTimer : MonoBehaviour {
 
 
-    [SerializeField] float countdownStart = 3f;
+    [SerializeField] float countDownTime = 3f;
     [SerializeField] string CountdownFinishedText;
     [SerializeField] UnityEvent TimedEvent;
 
@@ -21,7 +21,7 @@ public class CountdownTimer : MonoBehaviour {
     public void StartTimer()
     {
         countdownCanvas.SetActive(true);
-        timer = countdownStart;
+        timer = countDownTime;
         timerActive = true;
     }
 

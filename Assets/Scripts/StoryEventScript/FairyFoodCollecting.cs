@@ -10,21 +10,25 @@ public class FairyFoodCollecting : MonoBehaviour {
     [SerializeField] GameObject scriptManager;
     [SerializeField] GameObject fadeInCanvas;
     bool fairyAreFollowing = false;
-    
+
+    bool _b3MiniGameActive = true;
+    public bool B3MiniGameActive { get { return _b3MiniGameActive; } set { _b3MiniGameActive = value; } }
+
 
     void StartGame ()
     {
         countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
         GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
-        Debug.Log("s");
+        B3MiniGameActive = true;
 
     }
 
     public void GameTimerFinished()
     {
+        B3MiniGameActive = false;
         GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
         StartCoroutine(TeleportToFairies());
-        Debug.Log("f");
+
     }
 
     IEnumerator TeleportToFairies()

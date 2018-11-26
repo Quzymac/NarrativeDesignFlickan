@@ -19,7 +19,7 @@ public class FairyBarrier : MonoBehaviour {
         //}
     }
 
-    IEnumerator PushPlayerAway() //Call this when fairy is pushing player out of B3
+    public IEnumerator PushPlayerAway() //Call this when fairy is pushing player out of B3
     {
         float startTime = 0f;
         player.GetComponent<CH_PlayerMovement>().SetStop(true);

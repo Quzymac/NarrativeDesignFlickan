@@ -15,6 +15,12 @@ public class OB_Item : OB_Interactable {
     Sounds sound;
     AudioHandler audioHandler;
 
+    // Till den punkt där objektet ska flyttas. Rekommenderar ett tomt objekt. Objektet måste ha en transform. Används i B3
+    [SerializeField] Transform target;
+    float startTime = 0f;
+    [SerializeField] GameObject scriptManager;
+    
+
     private void Start()
     {
         audioHandler = FindObjectOfType<AudioHandler>();
@@ -42,20 +48,49 @@ public class OB_Item : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-
-        if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
+        if (!scriptManager.GetComponent<FairyFoodCollecting>().B3MiniGameActive)
         {
-            if (audioHandler != null)
-                audioHandler.PlaySound(sound);
-
-            if (gameObject.GetComponent<Rigidbody>() != null && gameObject.GetComponent<Rigidbody>().isKinematic == true)
+            if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
             {
-                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                if (audioHandler != null)
+                    audioHandler.PlaySound(sound);
+
+                if (gameObject.GetComponent<Rigidbody>() != null && gameObject.GetComponent<Rigidbody>().isKinematic == true)
+                {
+                    gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                }
+                player.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
+                gameObject.SetActive(false);
             }
-            player.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
-            gameObject.SetActive(false);
+        }
+        //Only in use during b3 mini game
+        else
+        {
+            StartCoroutine(MoveObject(player));
         }
 
+    }
+
+    //Coroutinen körs tills objektet har flyttats fram till target.
+    IEnumerator MoveObject(GameObject player)
+    {
+        startTime = 0f;
+        gameObject.GetComponent<Collider>().enabled = false;
+        while (true)
+        {
+            startTime += Time.deltaTime;
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target.position, startTime);
+            if (gameObject.transform.position == target.position)
+            {
+                player.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
+
+                target.gameObject.GetComponent<OB_TransportTarget>().SetObject(gameObject);
+                gameObject.GetComponent<Collider>().enabled = true;
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 
     /*
