@@ -326,6 +326,21 @@ public class CH_Inventory : MonoBehaviour {
         }
         return false;
     }
+    //Tar bort flera items av en viss sort
+    public void RemoveItems(Item itemToRemove, int amount)
+    {
+        int n = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null && items[i].GetComponent<OB_Item>().GetItemType() == itemToRemove && n < amount)
+            {
+                items[i] = null;
+                itemImages[i].sprite = null;
+                itemImages[i].gameObject.SetActive(false);
+                n++;
+            }
+        }
+    }
 
     List<GameObject> itemsToGive;
     GameObject requester;
