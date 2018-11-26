@@ -76,8 +76,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         SetText(message);
         if(time > 0.001)
         {
-            Wait(time);
-            Closemessage();
+            Invoke("Closemessage", time);
         }
     }
 
@@ -260,11 +259,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             }
             yield return null;
         }
-    }
-
-    private IEnumerator Wait(float time)
-    {
-        yield return new WaitForSeconds(time);
     }
 
     //<Summary>
