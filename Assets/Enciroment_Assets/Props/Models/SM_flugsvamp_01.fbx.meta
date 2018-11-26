@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 84f188fa9ad3f7047ae52988e3352267
+guid: bfc718e29af1e7b469f6940368602161
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: flugsvamp
+    4300000: flugsvamp1
   externalObjects: {}
   materials:
     importMaterials: 1

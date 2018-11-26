@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5acd1e48691db904ea2a1b58b13f64a0
+guid: 4d262a1b370ce4c49996a652c8f5a3db
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Stor_svamp
+    4300000: "gulfotsh\xE4tta_01"
   externalObjects: {}
   materials:
     importMaterials: 1

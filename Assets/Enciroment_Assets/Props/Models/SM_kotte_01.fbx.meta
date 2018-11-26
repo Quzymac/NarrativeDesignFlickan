@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3bcd9c7942006b41a14d80e4c281807
+guid: 7a63ec04a9b2de94e844f4d027c4996c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: kotte_01
+    4300000: "kotter\xE4tt"
   externalObjects: {}
   materials:
     importMaterials: 1
