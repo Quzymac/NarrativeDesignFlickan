@@ -1697,7 +1697,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Flickan Game
+  m_Text: Bortbyting
 --- !u!222 &1662745990
 CanvasRenderer:
   m_ObjectHideFlags: 0
