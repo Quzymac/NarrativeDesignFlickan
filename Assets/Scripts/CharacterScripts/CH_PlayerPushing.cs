@@ -20,14 +20,14 @@ public class CH_PlayerPushing : MonoBehaviour {
         positionToLookAt.y = transform.position.y;*/
         float xDif = bodyToMove.transform.position.x - transform.position.x;
         float zDif = bodyToMove.transform.position.z - transform.position.z;
-        Vector3 positionToLookAt = transform.position;
-        if (Mathf.Abs(xDif) > Mathf.Abs(zDif))
+        Vector3 positionToLookAt = bodyToMove.transform.position;
+        /*if (Mathf.Abs(xDif) > Mathf.Abs(zDif))
         {
             positionToLookAt += Vector3.right * xDif;
         } else
         {
             positionToLookAt += Vector3.forward * zDif;
-        }
+        }*/
         transform.LookAt(positionToLookAt);
     }
     public void StopPushing(Rigidbody bodyToMove)
