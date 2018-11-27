@@ -87,14 +87,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248607768178606}
-  m_LocalRotation: {x: -0, y: -0.49999917, z: -0, w: 0.8660259}
-  m_LocalPosition: {x: 163.99661, y: 2.8274822, z: 111.38495}
+  m_LocalRotation: {x: -0, y: -0.6144672, z: -0, w: 0.7889424}
+  m_LocalPosition: {x: 167.59862, y: 2.8274822, z: 109.13998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4910407417920584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -60.000004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -75.826004, z: 0}
 --- !u!4 &4910407417920584
 Transform:
   m_ObjectHideFlags: 1
@@ -261,7 +261,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   particle: {fileID: 0}
-  itemsToGive: []
 --- !u!114 &114210721505206794
 MonoBehaviour:
   m_ObjectHideFlags: 1

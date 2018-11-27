@@ -21,6 +21,7 @@ public class CH_PlayerPushing : MonoBehaviour {
         float xDif = bodyToMove.transform.position.x - transform.position.x;
         float zDif = bodyToMove.transform.position.z - transform.position.z;
         Vector3 positionToLookAt = bodyToMove.transform.position;
+        positionToLookAt.y = transform.position.y;
         /*if (Mathf.Abs(xDif) > Mathf.Abs(zDif))
         {
             positionToLookAt += Vector3.right * xDif;
