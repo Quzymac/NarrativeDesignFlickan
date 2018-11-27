@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4620269363258750}
   - component: {fileID: 33354582400423844}
   - component: {fileID: 23546774517124612}
-  - component: {fileID: 65858513680603722}
   m_Layer: 0
   m_Name: PF_kantarell_Lowpoly
   m_TagString: Untagged
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577050135495774}
   m_Mesh: {fileID: 4300000, guid: c43878b7d93324b499fabe3163c08b32, type: 3}
---- !u!65 &65858513680603722
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1577050135495774}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.38821068, y: 0.34714845, z: 0.37444842}
-  m_Center: {x: -0.010859951, y: 0.17260481, z: -0.006142691}

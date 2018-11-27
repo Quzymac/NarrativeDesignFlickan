@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4334755320427662}
   - component: {fileID: 33630747580800212}
   - component: {fileID: 23518774594481204}
-  - component: {fileID: 65081331547524744}
   m_Layer: 0
   m_Name: "PF_gulfotsh\xE4tta_02"
   m_TagString: Untagged
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896329283296580}
   m_Mesh: {fileID: 4300000, guid: 4d262a1b370ce4c49996a652c8f5a3db, type: 3}
---- !u!65 &65081331547524744
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896329283296580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.30244148, y: 0.7236474, z: 0.30244154}
-  m_Center: {x: -0.06199848, y: 0.3618237, z: 0.0026467964}

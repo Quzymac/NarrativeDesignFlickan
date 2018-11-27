@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f22c9241efde94c29826462a368828c8
+guid: 02f1fb45b360e47ebb712b950377d721
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -67,7 +67,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
