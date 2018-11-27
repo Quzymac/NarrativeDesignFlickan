@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InvisibleWallCollision : MonoBehaviour {
 
-    string vatten = "I should not go in the water";
-    string skog = "I should not stray to far in the forest";
-    string fog = "I could get lost in the fog, i should stop here";
+    string vatten = "Mor min blir rosenrasande om jag förstör mina byxkläder å skor.";
+    string skog = "Jag får inte gå för långt in i skogen.";
+    string fog = "Dimman ser tjock och elak ut. Jag vågar inte gå längre.";
     string mammapappaRum = "Jag borde inte gå in i deras rum";
     string by = "Det finns ingenting för mig att göra i byn.";
 
