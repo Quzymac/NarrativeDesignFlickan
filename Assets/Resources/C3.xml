@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="I den här delen så kommer Tyra att få träffa en liten filur under en sten som hon kan få mata.">
+        </Text>
+    </Name>
+  <Name name ="">
+  <Text text="Då kommer den varna henne för vad som komma skall.">
+  </Text>
+  </Name>
+  <Name name="">
+    <Text text="Tyra Kan också välja att strunta i lurifaxen för att följa efter ett irrbloss.">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="Hon kommer få ledtrådar om vart trollmamman har tagit vägen innan hon börjar närma sig något fasligt.">
+    </Text>
+  </Name>
+</Dialogue>

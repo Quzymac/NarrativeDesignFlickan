@@ -11,9 +11,14 @@ public class OB_Dialogue : OB_Interactable
     [SerializeField]
     string exhaustDialogueVar;
 
-    private void Start()
+    private void OnEnable()
     {
         OptionsManager.NewChoice += OptionsScript_ValueChanged;
+    }
+
+    private void OnDisable()
+    {
+        OptionsManager.NewChoice -= OptionsScript_ValueChanged;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +50,6 @@ public class OB_Dialogue : OB_Interactable
             }
             if(e.Value == 2)
             {
-                
                 enabled = false;
             }
         }

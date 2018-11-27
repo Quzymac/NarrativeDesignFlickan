@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="Här Visas det att Trollmamman faktiskt har tagit väl hand om lillebror.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Trollmamman Saga har lagt märke till allt som Tyra har gjort för att få tillbaka sin lillebror.">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="Så tack vare Tyras Mod berättar Saga att Lillebror och Tyra ska få komma hem helt okända!">
+    </Text>
+  </Name>
+</Dialogue>

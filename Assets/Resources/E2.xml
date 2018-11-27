@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="Här kommer Tyra få träffa en jätte som hon kan få välja att hjälpa med det fasliga ljudet från klockor.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Hon kan också vara busig mot jätten som då kommer att vara arg och inte vilja hjälpa henne.">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="För att hon ska komma vidare måste hon då bevisa att hon är snäll.">
+    </Text>
+  </Name>
+</Dialogue>

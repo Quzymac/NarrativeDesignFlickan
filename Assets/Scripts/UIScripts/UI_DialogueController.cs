@@ -37,6 +37,9 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     [SerializeField]
     private float startDelay;
 
+    [SerializeField]
+    private CH_PlayerMovement ch_movement;
+
     private bool isActive = false;
     private bool isBlinking = false;
 
@@ -106,7 +109,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     public void DisplayTextBox(Dialogues dialogue) //This needs more cleanup. Maybe make a switch statement too?
     {
-        if (!isActive && Input.GetKeyDown(KeyCode.E))   //Initiate dialogue
+        if (!isActive && Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE)   //Initiate dialogue
         {
             DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
             OpenDialogue(DialogueManager.Instance.Message());
@@ -165,6 +168,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             panel.enabled = true;
             SetDialogue(DialogueManager.Instance.Message());
             isActive = true;
+            if(ch_movement != null)
+                ch_movement.SetStop(true);
         }
     }
 
@@ -176,7 +181,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     private void EndDialogue()
     {
         StopAllCoroutines();
-        Time.timeScale = 1;
         DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
         nameField.text = null;
@@ -185,6 +189,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         isActive = false;
         arrowImage.enabled = false;
         StopBlink();
+        if (ch_movement != null)
+            ch_movement.SetStop(false);
     }
 
     //<Summary>

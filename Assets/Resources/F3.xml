@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="Tyra får här träffa trollmamman och trollpappan i grottan när dem tar hand om lillebror.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Hon ser hur mycket kärlek de visar och inser rätt fort att hon skulle ha det bättre här,-">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="Där hon får vara i naturen med alla nya vänner som hon har skaffat.">
+    </Text>
+  </Name>
+      <Name name="">
+        <Text text="Hon frågar trollpappan och trollmamman om hon får vara kvar, de som är väldigt kärleksfulla svarar självklart ja!">
+          </Text>
+    </Name>
+</Dialogue>

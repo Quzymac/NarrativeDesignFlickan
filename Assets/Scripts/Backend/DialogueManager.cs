@@ -6,7 +6,7 @@ using System.IO;
 using System.Xml;
 
 //This enum is slightly clunky, but works. Set on interactable object you wish to examine/ talk to. Might need to be changed later on if things get complicated.
-public enum Dialogues { NONE, TestDialogue, B1_Alf_1, B1_Alf_E, B3_Alvor_1, Intro}
+public enum Dialogues { NONE, B1_Alf_1, B1_Alf_E, B1_Sopa_1, B2_Vadis_1, B3_Alvor_1, Intro, C1, C2, C3, D, E1, E2, F1, F2, F3}
 
 //This class handles the currently active dialogue. It stores all indivdual Dialogue data containers in a list. 
 //TODO: Perhaps LoadData region should be made into its own script?

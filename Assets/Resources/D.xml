@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="Här framme måste Tyra försöka sitt bästa för att rymma ifrån den hemska Näcken-">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Som kommer försöka locka Tyra till sin sjö för att dränka henne.">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="Tyra kommer behöva göra allt för att hålla sig undan, även om Näcken har massor av olika knep för att locka henne i vattnet.">
+    </Text>
+  </Name>
+      <Name name="">
+        <Text text="Beroende på vilka Tyra har hjälpt innan kan hon komma ifrån Näcken på olika sätt.">
+          </Text>
+    </Name>
+</Dialogue>

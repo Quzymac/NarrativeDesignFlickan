@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="I denna del så ska Tyra få lösa gåtor för att kunna komma närmare Trollmamman.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Under pusslet måste Tyra använda sig av hela sin list och vad hon har hört av de gudar som hon inte tror vet något alls om.">
+    </Text>
+  </Name>
+      <Name name="">
+        <Text text="Hon får träffa ett troll som varnar om trollmammans ilska om man gör henne något ont.">
+          </Text>
+    </Name>
+</Dialogue>

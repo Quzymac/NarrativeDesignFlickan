@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogue>
+      <Name name="">
+        <Text text="Tyra kan få träffa Lindormen som är en gammal vän med ett Bergsrå.">
+        </Text>
+    </Name>
+  <Name name="">
+    <Text text="Hon kan få fiska och ha en trevlig stund med Lindormen.">
+    </Text>
+  </Name>
+  <Name name="">
+    <Text text="Det leder till att han använder sig av magi för att hjälpa Tyra på sin resa.">
+    </Text>
+  </Name>
+      <Name name="">
+        <Text text="Sen kommer Tyra att möta Bergsrået som antingen är snäll eller någon som hon måste bevisa sig för.">
+          </Text>
+    </Name>
+  <Name name="">
+    <Text text="Det hela slutar med att hon får hjälpa Bergsrået att få bort elaka vättar från hans hus.">
+    </Text>
+  </Name>
+</Dialogue>

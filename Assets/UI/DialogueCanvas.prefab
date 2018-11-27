@@ -344,6 +344,7 @@ MonoBehaviour:
   panel: {fileID: 114359057977269714}
   interval: 1
   startDelay: 0.5
+  ch_movement: {fileID: 0}
 --- !u!114 &114251653753516842
 MonoBehaviour:
   m_ObjectHideFlags: 1
