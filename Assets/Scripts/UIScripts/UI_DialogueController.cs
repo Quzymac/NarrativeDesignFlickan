@@ -16,6 +16,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     private Text textBox;
     [SerializeField]
     private Text textBoxFirstChar;  //Unity only supports one font per text object. This one will be used to apply a different font to the first character in the textbox.
+    [SerializeField]
+    private Text victoryText;
 
     [Header("DialogueOptionButtons")]
     [SerializeField]
@@ -95,6 +97,22 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     public void Closemessage()
     {
         EndDialogue();
+    }
+
+    public void DisplayVictoryMessage(string text, float time = 0)
+    {
+        victoryText.text = text;
+        victoryText.enabled = true;
+        if(time > 0.001)
+        {
+            Invoke("CloseVictoryMessage", time);
+        }
+    }
+
+    public void CloseVictoryMessage()
+    {
+        victoryText.text = null;
+        victoryText.enabled = false;
     }
 
     #endregion

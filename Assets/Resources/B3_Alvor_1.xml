@@ -91,7 +91,7 @@
     </ChoiceIndex>
     <ChoiceName choiceName="B3_Alvor_1">
     </ChoiceName>
-    <ChoiceBool choiceBool="2">
+    <ChoiceBool choiceBool="1">
     </ChoiceBool>
 
   </Name>
@@ -110,7 +110,7 @@
 
     <ChoiceName choiceName="B3_Alvor_1">
     </ChoiceName>
-    <ChoiceBool choiceBool="1">
+    <ChoiceBool choiceBool="2">
     </ChoiceBool>
 
   </Name>
