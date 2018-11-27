@@ -1594,6 +1594,21 @@ Prefab:
       propertyPath: m_TreeCrossFadeLength
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 218918233564012632, guid: 5d5a735a9d4f9e841835ee47a3c2662b,
+        type: 2}
+      propertyPath: m_MaterialType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218918233564012632, guid: 5d5a735a9d4f9e841835ee47a3c2662b,
+        type: 2}
+      propertyPath: m_MaterialTemplate
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 218918233564012632, guid: 5d5a735a9d4f9e841835ee47a3c2662b,
+        type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5a735a9d4f9e841835ee47a3c2662b, type: 2}
   m_IsPrefabAsset: 0
