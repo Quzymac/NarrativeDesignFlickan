@@ -14,12 +14,10 @@
 			float4 vertex : POSITION;
 			float3 normal : NORMAL;
 		};
-
 		struct v2f {
 			float4 pos : POSITION;
 			float3 normal : NORMAL;
 		};
-
 		float _OutlineWidth;
 		float4 _OutlineColor;
 
@@ -31,7 +29,6 @@
 			o.pos = UnityObjectToClipPos(v.vertex);
 			return o;
 		}
-
 		ENDCG
 	SubShader
 	{
@@ -49,7 +46,6 @@
 			{
 				return _OutlineColor;
 			}
-
 			ENDCG
 		}
 		Pass
@@ -61,7 +57,6 @@
 				Diffuse[_Color]
 				Ambient[_Color]
 			}
-
 				Lighting On
 
 			SetTexture[_MainTex]
@@ -74,4 +69,36 @@
 			}
 		}
 	}
+			SubShader{
+		Tags { "RenderType" = "Opaque" }
+		LOD 200
+
+		CGPROGRAM
+				#pragma surface surf Standard fullforwardshadows
+				#pragma target 3.0
+
+				sampler2D _MainTex;
+
+				struct Input {
+					float2 uv_MainTex;
+				};
+
+				half _Glossiness;
+				half _Metallic;
+				fixed4 _Color;
+
+				UNITY_INSTANCING_BUFFER_START(Props)
+				UNITY_INSTANCING_BUFFER_END(Props)
+
+				void surf(Input IN, inout SurfaceOutputStandard o) {
+					fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+					o.Albedo = c.rgb;
+
+					o.Metallic = _Metallic;
+					o.Smoothness = _Glossiness;
+					o.Alpha = c.a;
+				}
+				ENDCG
+			}
+				FallBack "Diffuse"
 }
