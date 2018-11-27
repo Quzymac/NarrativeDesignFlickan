@@ -13,13 +13,28 @@ public class FairyBarrier : MonoBehaviour {
 	void Update ()
     {
         //Only for testing 000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------
-        //if (Input.GetKeyDown(KeyCode.P))
+        //if (Input.GetKeyDown(KeyCode.O))
         //{
         //    StartCoroutine(PushPlayerAway());
         //}
     }
+    public void Pushplayer()
+    {
+        StartCoroutine(PushPlayerAway());
+    }
 
-    public IEnumerator PushPlayerAway() //Call this when fairy is pushing player out of B3
+    private void OnEnable()
+    {
+        OptionsManager.NewChoice += PushPlayer;
+    }
+    void PushPlayer(object sender, OptionsEventArgs e)
+    {
+        if (e.Option == "B3_Alvor_1" && e.Value == 1)
+        {
+            StartCoroutine(PushPlayerAway());
+        }
+    }
+    IEnumerator PushPlayerAway() //Call this when fairy is pushing player out of B3
     {
         float startTime = 0f;
         player.GetComponent<CH_PlayerMovement>().SetStop(true);

@@ -5,10 +5,37 @@ using UnityEngine;
 //Placeras på det objekt som ska få ett annat objekt via transport
 public class OB_TransportTarget : MonoBehaviour {
 
+
+    //Seralized for testing
     [SerializeField] List<GameObject> transportedItems;
     [SerializeField] int itemsTier = 0;
     [SerializeField] Item dialogItem;
     int[] items = new int[10];
+
+    //[SerializeField] GameObject tier1; //TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
+    //[SerializeField] GameObject tier1a;
+    //[SerializeField] GameObject tier2;
+    //[SerializeField] GameObject tier2a;
+    //[SerializeField] GameObject tier3;
+    //[SerializeField] GameObject tier3a;
+
+    //private void Start()
+    //{
+    //    SetObject(tier1);
+    //    SetObject(tier1a);
+    //    SetObject(tier2);
+    //    SetObject(tier2a);
+    //    SetObject(tier3);
+    //    SetObject(tier3a);
+
+    //}
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.M))
+    //    {
+    //        Calculate();
+    //    }
+    //}//TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
 
     public Item GetDialogItem()
     {
@@ -47,7 +74,7 @@ public class OB_TransportTarget : MonoBehaviour {
         
         if (transportedItems.Count <= 3) //inte tillräckligt med items
         {
-            return 3;
+            return 0;
         }
         if (tierThree > tierTwo && tierThree > tierOne) // most of tier 3
         {
@@ -111,51 +138,3 @@ public class OB_TransportTarget : MonoBehaviour {
         }
     }
 }
-//Item[] tierOneItems = new Item[] { Item.Apple, Item.Blueberry, Item.Lingonberry };
-//Item[] tierTwoItems = new Item[] { Item.Chanterelle, Item.Birch_polypore, Item.Gulfotshatta };
-//Item[] tierThreeItems = new Item[] { Item.Fir_cone, Item.Pine_cone, Item.Fly_agaric };
-
-//switch (item.GetComponent<OB_Item>().GetItemType())
-//{
-//    case Item.Falukorv: // falukorv vinner alltid
-//        mostOf = Item.Falukorv; 
-//        return 3;
-//    case Item.Apple:
-//        apple++;
-//        tierOne++;
-//        break;
-//    case Item.Blueberry:
-//        blueBerry++;
-//        tierOne++;
-//        break;
-//    case Item.Lingonberry:
-//        lingonberry++;
-//        tierOne++;
-//        break;
-//    case Item.Chanterelle:
-//        chanterelle++;
-//        tierTwo++;
-//        break;
-//    case Item.Birch_polypore:
-//        birchPolypore++;
-//        tierTwo++;
-//        break;
-//    case Item.Gulfotshatta:
-//        gulfotshatta++;
-//        tierTwo++;
-//        break;
-//    case Item.Fly_agaric:
-//        flyAgaric++;
-//        tierThree++;
-//        break;
-//    case Item.Pine_cone:
-//        pineCone++;
-//        tierThree++;
-//        break;
-//    case Item.Fir_cone:
-//        firCone++;
-//        tierThree++;
-//        break;
-//    default:
-//        break;
-//}

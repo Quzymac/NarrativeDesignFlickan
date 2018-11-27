@@ -6,10 +6,14 @@ public class FairyFollowingPlayer : MonoBehaviour {
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject fairy;
-    [SerializeField] Transform fairyStartPos; //position fairy will teleport back to after minigame is finished (same position as before the game), where the player will talk to it
+    Vector3 fairyStartPos;
     bool fairyFollowing = false;
     [SerializeField] float followDistance = 3f;
 
+    private void Start()
+    {
+        fairyStartPos = transform.position;
+    }
 
 
     public void FairyFollowToggle(bool follow) // true to start following, false to stop and teleport fairy back
@@ -26,7 +30,7 @@ public class FairyFollowingPlayer : MonoBehaviour {
     }
     void TeleportFairyToStartPos()
     {
-        fairy.transform.position = fairyStartPos.position;
+        fairy.transform.position = fairyStartPos;
     }
 
     void Update()
@@ -36,9 +40,9 @@ public class FairyFollowingPlayer : MonoBehaviour {
             fairy.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * (Vector3.Distance(player.transform.position, fairy.transform.position) - 1));
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) //__===000__===0000 TESTING ONLY ===000___===000
-        {
-            FairyFollowToggle(!fairyFollowing);
-        }
+        //if (Input.GetKeyDown(KeyCode.F)) //__===000__===0000 TESTING ONLY ===000___===000
+        //{
+        //    FairyFollowToggle(!fairyFollowing);
+        //}
     }
 }

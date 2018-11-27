@@ -5,30 +5,131 @@ using UnityEngine;
 public class FairyFoodCollecting : MonoBehaviour {
 
     [SerializeField] GameObject player;
-    [SerializeField] Canvas countdownCanvas; //UI_Canvas
+    [SerializeField] Canvas dialogCanvas;
+    [SerializeField] Canvas countdownCanvas; //UI_Canvas, TimedEvent needs to be set in inspector (GameTimerFinished)
     [SerializeField] Transform fairyGameOverPos;
     [SerializeField] GameObject scriptManager;
     [SerializeField] GameObject fadeInCanvas;
-    bool fairyAreFollowing = false;
+    [SerializeField] GameObject fairyChest;
+    [SerializeField] GameObject fairy;
 
-    bool _b3MiniGameActive = true;
+    bool fairyAreFollowing = false;
+    [SerializeField] float dialogMessageDuration = 5f;
+
+    int dialogTier;
+    Item dialogItem;
+
+
+    bool _b3MiniGameActive = false;
     public bool B3MiniGameActive { get { return _b3MiniGameActive; } set { _b3MiniGameActive = value; } }
 
-
-    void StartGame ()
+    private void OnEnable()
     {
-        countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
-        GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
-        B3MiniGameActive = true;
-
+        OptionsManager.NewChoice += StartGame;//subscribe
     }
 
-    public void GameTimerFinished()
+    void StartGame (object sender, OptionsEventArgs e)
+    {
+        if (e.Option == "B3_Alvor_1" && e.Value == 2)
+        {
+            countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
+            fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
+            B3MiniGameActive = true;
+            OptionsManager.NewChoice -= StartGame;//unsubscribe
+        }
+    }
+
+    public void GameTimerFinished() //Teleports fairy + player back and sets variables for items in chest
     {
         B3MiniGameActive = false;
-        GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
         StartCoroutine(TeleportToFairies());
+        dialogItem = fairyChest.GetComponent<OB_TransportTarget>().GetDialogItem();
+        dialogTier = fairyChest.GetComponent<OB_TransportTarget>().GetItemsTier();
+        StartCoroutine(EndingDialog());
+    }
 
+    IEnumerator EndingDialog()
+    {
+        string item = "";
+
+        yield return new WaitForSeconds(dialogMessageDuration * 0.5f);
+
+        if (dialogTier == 0)
+        {
+            dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
+            yield return new WaitForSeconds(dialogMessageDuration);
+            dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
+            yield return new WaitForSeconds(dialogMessageDuration);
+            GetComponent<FairyBarrier>().Pushplayer();
+            //OptionsManager.Instance.SetOptionArea1("B3_Alvor_1", 1); //pushplayeraway
+            yield break;
+        }
+
+        dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Intressant...", dialogMessageDuration);
+        yield return new WaitForSeconds(dialogMessageDuration);
+        switch (dialogItem)
+        {
+            case Item.Apple:
+                item = "För oss älvor representerar äpplen visdom och gåtfullhet.";
+                break;
+            case Item.Blueberry:
+                item = "För oss älvor representerar blåbär rikedom och värdighet.";
+                break;
+            case Item.Lingonberry:
+                item = "För oss älvor representerar lingon renhet och passion.";
+                break;
+            case Item.Chanterelle:
+                item = "För oss älvor representerar kantareller lycka och hederlighet.";
+                break;
+            case Item.Falukorv:
+                item = "För oss älvor är människans tjusning i kött från elementära livsformer... svårbegriplig";
+                break;
+            case Item.Birch_polypore:
+                item = "För oss älvor representerar björktickor ståndaktighet och tillit";
+                break;
+            case Item.Fly_agaric:
+                item = "För oss älvor representerar röda flugsvampar egoism och melodrama.";
+                break;
+            case Item.Gulfotshatta:
+                item = "För oss älvor representerar gulfotshättor vänskap och samförstånd.";
+                break;
+            case Item.Pine_cone:
+                item = "För oss älvor representerar tallkottar feghet och enfald.";
+                break;
+            case Item.Fir_cone:
+                item = "För oss älvor representerar grankottar okunnighet och apati.";
+                break;
+            default:
+                break;
+        }
+        dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", item, dialogMessageDuration);
+        yield return new WaitForSeconds(dialogMessageDuration);
+
+        switch (dialogTier)
+        {
+            case 1:
+                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "[TIER 1] PLACEHOLDER", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                // Vidare till C1
+                break;
+            case 2:
+                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "[TIER 2] PLACEHOLDER", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                // Vidare till C3
+                break;
+            case 3:
+                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                GetComponent<FairyBarrier>().Pushplayer();
+                //OptionsManager.Instance.SetOptionArea1("B3_Alvor_1", 1); //pushplayeraway
+                break;
+            default:
+                GetComponent<FairyBarrier>().Pushplayer();
+                //OptionsManager.Instance.SetOptionArea1("B3_Alvor_1", 1);
+                break;
+        }
     }
 
     IEnumerator TeleportToFairies()
@@ -36,8 +137,9 @@ public class FairyFoodCollecting : MonoBehaviour {
         //Fade WIP
         //scriptManager.GetComponent<UI_FadingEffect>().ActivateFading();
         yield return new WaitForSeconds(1);
-        //player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
+        player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
         player.transform.position = fairyGameOverPos.position;
+        fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
         yield return new WaitForSeconds(0.8f);
         //fadeInCanvas.SetActive(true);
         yield return new WaitForSeconds(1.5f);
@@ -47,7 +149,9 @@ public class FairyFoodCollecting : MonoBehaviour {
     void Update () {
 
         if (Input.GetKeyDown(KeyCode.P)){
-            StartGame();
+            countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
+            fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
+            B3MiniGameActive = true;
         }
         
     }
