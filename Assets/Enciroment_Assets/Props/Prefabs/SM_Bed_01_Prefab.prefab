@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4429527486389290}
   - component: {fileID: 33230577244848676}
   - component: {fileID: 23203170915114216}
-  - component: {fileID: 95723238130233974}
-  - component: {fileID: 65063556099358232}
+  - component: {fileID: 65784242861756808}
   m_Layer: 0
   m_Name: SM_Bed_01_Prefab
   m_TagString: Untagged
@@ -37,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434833393593030}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.463822, y: 19.879139, z: 397.29947}
+  m_LocalPosition: {x: 349.87506, y: 0.3996617, z: 274.0381}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,8 +83,8 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434833393593030}
-  m_Mesh: {fileID: 4300000, guid: d8dc88d5c91b58742ad501a28bddd26d, type: 3}
---- !u!65 &65063556099358232
+  m_Mesh: {fileID: 4300000, guid: dd67bda372e7e294d8e99c55991b6beb, type: 3}
+--- !u!65 &65784242861756808
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,23 +94,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.7165785, y: 1.3132668, z: 4.1463623}
-  m_Center: {x: -0.00000047683716, y: -0.038740158, z: 0.011138916}
---- !u!95 &95723238130233974
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1434833393593030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d8dc88d5c91b58742ad501a28bddd26d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Size: {x: 2.086131, y: 1.108693, z: 3.1848044}
+  m_Center: {x: -1.0293646, y: 0.5359269, z: 1.6104472}

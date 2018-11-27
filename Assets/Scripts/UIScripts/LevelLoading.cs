@@ -26,7 +26,7 @@ public class LevelLoading : MonoBehaviour {
         SceneManager.LoadScene(buildIndex);
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }

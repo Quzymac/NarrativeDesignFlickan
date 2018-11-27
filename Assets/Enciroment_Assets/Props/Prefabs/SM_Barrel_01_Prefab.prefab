@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4090868005559812}
   - component: {fileID: 33828918111353820}
   - component: {fileID: 23701016562982384}
-  - component: {fileID: 95543542539125426}
-  - component: {fileID: 136073148031519708}
+  - component: {fileID: 136112716460023110}
   m_Layer: 0
   m_Name: SM_Barrel_01_Prefab
   m_TagString: Untagged
@@ -37,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811532482036382}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.39, y: 1.053, z: 401.68588}
+  m_LocalPosition: {x: 346.41058, y: 1.1991506, z: 274.7663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,26 +83,8 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811532482036382}
-  m_Mesh: {fileID: 4300000, guid: ec649509da201d34cb79771b2b8088cd, type: 3}
---- !u!95 &95543542539125426
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1811532482036382}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: ec649509da201d34cb79771b2b8088cd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &136073148031519708
+  m_Mesh: {fileID: 4300000, guid: c3e92f1bdbbcdc44d93cc7931530d8d1, type: 3}
+--- !u!136 &136112716460023110
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +93,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5224037
-  m_Height: 1.2630514
+  m_Radius: 0.59783936
+  m_Height: 1.3751208
   m_Direction: 1
-  m_Center: {x: -0.0028362274, y: -0.015882432, z: 0.000030457973}
+  m_Center: {x: 0.48357546, y: 0.6256289, z: -0.50476074}
