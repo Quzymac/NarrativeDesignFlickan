@@ -474,7 +474,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b2570e595f86ab641a76eb4ab75f04f8, type: 3}
     m_FontSize: 75
     m_FontStyle: 1
     m_BestFit: 0
@@ -1263,24 +1263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da5d64a2cd0eb747b57de5277057154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownStart: 3
+  countDownTime: 30
   CountdownFinishedText: DONE!
-  TimedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   countdownCanvas: {fileID: 1166207061567762}
   countDownText: {fileID: 114196869249781994}
 --- !u!114 &114549303623890642
@@ -1303,7 +1287,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b2570e595f86ab641a76eb4ab75f04f8, type: 3}
     m_FontSize: 70
     m_FontStyle: 1
     m_BestFit: 0
