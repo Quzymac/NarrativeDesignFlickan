@@ -4,4 +4,8 @@
         <Text text="Varför står du här? spring iväg och hämta mat nu!?">
           </Text>              
     </Name>
+  <Name name="Tyra Tänker">
+    <Text text="Det enda jag kan hämta här i skogen är frukt och bär, kanske också en svamp eller två.">
+    </Text>
+  </Name>
 </Dialogue>

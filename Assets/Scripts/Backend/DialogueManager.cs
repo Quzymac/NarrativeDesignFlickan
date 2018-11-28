@@ -140,7 +140,7 @@ public class DialogueManager
 
     public bool HasOptions()
     {
-        return ActiveDialogues[dialogueIndex].DialogueOptions.Count > 0;
+        return dialogueIndex > -1 && ActiveDialogues[dialogueIndex].DialogueOptions.Count > 0;
     }
 
     public bool HasMultipleOptions()

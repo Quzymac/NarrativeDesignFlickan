@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Dialogue>
       <Name name="">
-        <Text text="På 1200-talets Sverige så är världen inhiberad av olika väsen utöver människor.">
+        <Text text="I den här delen träffar Tyra på rovdjuret Ulf som är en varulv.">
         </Text>
     </Name>
   <Name name="">
-    <Text text="Det är inte så ovanligt att få syn på tomtar, irrbloss, vättar, en jätte i horisonten eller något som är vanligare att se. Troll.">
+    <Text text="Ulf beter sig som en uppjagad hund men är riktigt snäll och naiv av sig.">
     </Text>
   </Name>
       <Name name="">
-        <Text text="Troll är väldigt lika människor, lite fulare och har ofta en svans, de utmärks mera av sin förmåga att trolla.">
+        <Text text="Han är kapabel till att fritt byta mellan sin människoform och varg form.">
           </Text>
     </Name>
   <Name name="">
-    <Text text="De bor i salar under flyttblock eller i berg där de förvarade enorma rikedomar.">
+    <Text text="Ulf vill hjälpa Tyra hitta till trollmors berg och föreslår att hon ska rida på hans rygg för att komma igenom skogen snabbare.">
     </Text>
   </Name>
   <Name name="">
-        <Text text="Utöver sin trollförmåga så är det vanligt att troll utför hyss och kan till och med försöka byta bort sina barn mot ett människobarn.">
+        <Text text="Därefter startas ett minigame som går ut på att komma förbi skogens terräng.">
           </Text>
     </Name>
   <Name name="">
-    <Text text="När bytet sker så byter trollmamman skepnad på trollbarnet så att ingen ska märka skillnad.">
+    <Text text="När de når en stor bäck så nämner Ulf hur han inte kan fortsätta längre fram på grund av att det är ett annat väsens revir.">
     </Text>
   </Name>
 </Dialogue>

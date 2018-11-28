@@ -16,12 +16,17 @@
     </Name>
   
   <Name name="Tyra">
-    <Text text="Jag skulle kunna hjälpa dig med lit mat, bar det finns till mej oxå">
+    <Text text="Jag skulle kunna hjälpa dig med lit mat, bara det finns till mej oxå">
     </Text>
   </Name>
   
   <Name name="Alf">
     <Text text="Ja struntar väl i dej, fixa mat nu!">
+    </Text>
+  </Name>
+
+  <Name name="Tyra Tänker">
+    <Text text="Det enda jag kan hämta här i skogen är frukt och bär, kanske också en svamp eller två.">
     </Text>
     <ChoiceName choiceName="B1_Alf_1">
     </ChoiceName>

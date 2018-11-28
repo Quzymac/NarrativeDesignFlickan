@@ -27,7 +27,7 @@ public class UI_DialogueOptionButtons : MonoBehaviour
     //<Summary>
     public void OnPress()
     {
-        if(DialogueManager.Instance.Message().ChoiceNames[id] != null)
+        if(DialogueManager.Instance.Message().ChoiceNames.Count > 0)
         {
             OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[id], DialogueManager.Instance.Message().WorldChoices[id]);
         }

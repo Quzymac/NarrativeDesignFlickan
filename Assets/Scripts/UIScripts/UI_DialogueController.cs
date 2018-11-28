@@ -134,7 +134,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             SetNextPageText();
             //SetButtonsState();
         }
-        else if (isActive && !DialogueManager.Instance.IsResponding && !DialogueManager.Instance.HasOptions() && DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //Jump to the dialogue at index+1 if there are no options.
+        else if (isActive && !DialogueManager.Instance.IsResponding && DialogueManager.Instance.HasRemainingMessages() && !DialogueManager.Instance.HasOptions() && Input.GetKeyDown(KeyCode.E)) //Jump to the dialogue at index+1 if there are no options.
         {
             DialogueManager.Instance.NextDialogue();
             SetDialogue(DialogueManager.Instance.Message());
@@ -152,7 +152,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             DialogueManager.Instance.IsResponding = false;
             SetNextPageText();
         }
-        else if (isActive && DialogueManager.Instance.HasOptions()) //If we have options, take one.
+        else if (isActive && DialogueManager.Instance.HasOptions() && DialogueManager.Instance.HasRemainingMessages()) //If we have options, take one.
         {
             if (DialogueManager.Instance.HasMultipleOptions())
             {
@@ -164,6 +164,12 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             else
             {
                 DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
+                if(DialogueManager.Instance.DialogueIndex < 0)
+                {
+                    EndDialogue();
+                    DisableOptionButtons();
+                    DisableNextPageText();
+                }
             }
         }
         else if (isActive && !DialogueManager.Instance.HasOptions() && !DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //if there are no remaining messages and no options, end.
