@@ -165,6 +165,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
                     EndDialogue();
                     DisableOptionButtons();
                     DisableNextPageText();
+                    SetBools();
                 }
             }
         }
@@ -173,6 +174,18 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             EndDialogue();
             DisableOptionButtons();
             DisableNextPageText();
+            SetBools();
+        }
+    }
+
+    private void SetBools()
+    {
+        if(DialogueManager.Instance.Message().ChoiceNames.Count > 0)
+        {
+            for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
+            {
+                OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
+            }
         }
     }
 
@@ -200,10 +213,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     private void EndDialogue()
     {
-        for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
-        {
-            OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
-        }
         StopAllCoroutines();
         DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
@@ -214,8 +223,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         arrowImage.enabled = false;
         StopBlink();
         if (ch_movement != null)
-            ch_movement.SetStop(false);
-        //Set bools
+            ch_movement.SetStop(false);       
     }
 
     //<Summary>
