@@ -4,15 +4,20 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: eyes
     400000: //RootNode
-    2100000: girl_body_material
-    2100002: girl_eyes_material
+    400002: eyes
+    2100000: Tyra_material
+    2100002: tyra_eyes_material
     2300000: //RootNode
+    2300002: eyes
     3300000: //RootNode
-    4300000: lowpoly2Shape
+    3300002: eyes
+    4300000: CH_tyra
+    4300002: eyes
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
