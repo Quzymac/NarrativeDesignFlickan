@@ -5,9 +5,9 @@ using UnityEngine;
 public class CH_Interact : MonoBehaviour
 {
 
-    List<GameObject> interacables = new List<GameObject>();
+    List<OB_Interactable> interacables = new List<OB_Interactable>();
 
-    public void AddInteractable(GameObject gameObject)
+    public void AddInteractable(OB_Interactable gameObject)
     {
         if (gameObject != null)
         {
@@ -16,7 +16,7 @@ public class CH_Interact : MonoBehaviour
 
     }
 
-    public void RemoveInteractable(GameObject gameObject)
+    public void RemoveInteractable(OB_Interactable gameObject)
     {
         if (gameObject != null)
         {
@@ -30,7 +30,7 @@ public class CH_Interact : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                interacables[0].GetComponent<OB_Interactable>().Activate(gameObject);
+                interacables[0].Activate(gameObject);
             }
         }
     }

@@ -35,7 +35,7 @@ public class OB_PlaceItem : OB_Interactable {
                 {
                     item.GetComponent<Rigidbody>().isKinematic = true;
                 }
-                player.GetComponent<CH_Interact>().RemoveInteractable(item);
+                player.GetComponent<CH_Interact>().RemoveInteractable(item.GetComponent<OB_Interactable>());
                 foreach(Collider c in item.GetComponents<Collider>())
                 {
                     if(c.isTrigger)
@@ -55,7 +55,7 @@ public class OB_PlaceItem : OB_Interactable {
             {
                 item.GetComponent<Rigidbody>().isKinematic = false;
             }
-            player.GetComponent<CH_Interact>().RemoveInteractable(item);
+            player.GetComponent<CH_Interact>().RemoveInteractable(item.GetComponent<OB_Interactable>());
             foreach (Collider c in item.GetComponents<Collider>())
             {
                 if (c.isTrigger)

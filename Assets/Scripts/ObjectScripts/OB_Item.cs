@@ -68,7 +68,7 @@ public class OB_Item : OB_Interactable {
                 {
                     gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
-                player.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
+                player.GetComponent<CH_Interact>().RemoveInteractable(this);
                 gameObject.SetActive(false);
             }
         }
@@ -85,7 +85,7 @@ public class OB_Item : OB_Interactable {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target.position, startTime);
             if (gameObject.transform.position == target.position)
             {
-                player.GetComponent<CH_Interact>().RemoveInteractable(gameObject);
+                player.GetComponent<CH_Interact>().RemoveInteractable(this);
 
                 target.gameObject.GetComponent<OB_TransportTarget>().SetObject(gameObject);
                 gameObject.GetComponent<Collider>().enabled = true;

@@ -12,35 +12,80 @@ public class CH_RequestItems : OB_Interactable {
     [SerializeField]
     int maxNumberOfItemsToBeGiven;
     List<GameObject> items = new List<GameObject>();
+    int givinhgTomteItems = 1;
+
+    private void OnEnable()
+    {
+        OptionsManager.NewChoice += Compare;
+    }
+
+    private void Compare(object sender, OptionsEventArgs e)
+    {
+        if(e.Option == "B1_Alf_1")
+        {
+            if (e.Value == givinhgTomteItems)
+            {
+                enabled = true;
+                GetComponent<OB_Dialogue>().enabled = false;
+            }
+        }
+    }
+
+    private void Start()
+    {
+        enabled = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        OnEnter(other);
+        if(enabled)
+            OnEnter(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        OnExit(other);
+        if(enabled)
+            OnExit(other);
     }
 
-    public void GiveItems(List<GameObject> inItems)//GameObject[] inItems
+    public void GiveItems(List<GameObject> inItems)
     {
         items.AddRange(inItems);
         character.Invoke();
-        //character = null;
     }
 
     public override void Activate(GameObject player)
     {
-        if (character != null)
+        if(character.GetPersistentEventCount() > 0)
         {
             player.GetComponent<CH_Inventory>().RequestItems(gameObject, itemsWanted, maxNumberOfItemsToBeGiven);
         }
     }
 
-    public bool Tomte()
+    public void Tomte()
     {
-        return true;
+        foreach (GameObject item in items)
+        {
+            if (item.GetComponent<OB_Item>().GetItemType() == Item.Apple)
+            {
+                StartCoroutine(SendMessage("Tomte", "Man tackar, man tackar, Jag ska nog se till att du har lite tur längre fram på ditt äventyr"));
+                character = null;
+            }
+            else if (item.GetComponent<OB_Item>().GetItemType() == Item.Blueberry || item.GetComponent<OB_Item>().GetItemType() == Item.Lingonberry)
+            {
+                StartCoroutine(SendMessage("Tomte", "Tack så himla mycke flicka lilla, nån gång när du behöve hjelp kommer jag hjelpa dej"));
+                character = null;
+            }
+            else if (item.GetComponent<OB_Item>().GetItemType() == Item.Chanterelle)
+            {
+                StartCoroutine(SendMessage("Tomte", "Tack så mycke, men hitte du inte nå godare?"));
+                character = null;
+            }
+            else
+            {
+                StartCoroutine(SendMessage("Tomte", "Det var inte så snällt av dig, hoppas trollmamman tar dej som hon tog männskobarnet som sprang förbi nyss."));
+            }
+        }
     }
 
     public void Vadis()
@@ -94,31 +139,38 @@ public class CH_RequestItems : OB_Interactable {
 
         if (falukorv == true && berry == false && mushroom == false)
         {
-            StartCoroutine(SendMessage("Troll", "Usch, va salt dehär va! Magen min känner sig inte gla'!",false));
+            StartCoroutine(SendMessage("Troll", "Usch, va salt dehär va! Magen min känner sig inte gla'!"));
+            character = null;
         }
         else if (falukorv == true && berry == true && mushroom == false)
         {
-            StartCoroutine(SendMessage("Troll", "De va alldeles lagom gött, men mera mat hade också vart väl mött!",false));
+            StartCoroutine(SendMessage("Troll", "De va alldeles lagom gött, men mera mat hade också vart väl mött!"));
+            character = null;
         }
         else if (falukorv  == true && berry == true && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Det va det bäste ja äti på ett tag, låt mej hjälp dej ned. Om du är vid sjön senare idag, se till att lämna Näcken ifred.",true));
+            character = null;
         }
         else if (falukorv == true && berry == false && mushroom == true)
         {
-            StartCoroutine(SendMessage("Troll", "Suck, det här va väl rätt smaskigt, men annat mums som drar på kinderna hade inte vart taskigt.",false));
+            StartCoroutine(SendMessage("Troll", "Suck, det här va väl rätt smaskigt, men annat mums som drar på kinderna hade inte vart taskigt."));
+            character = null;
         }
         else if (falukorv == false && berry == true && mushroom == true)
         {
-            StartCoroutine(SendMessage("Troll", "Det här va gott, men nåt smakrikare hade suttit bra. Om du inte har brått' vill jag mer mat ha.",false));
+            StartCoroutine(SendMessage("Troll", "Det här va gott, men nåt smakrikare hade suttit bra. Om du inte har brått' vill jag mer mat ha."));
+            character = null;
         }
         else if (falukorv == false && berry == true && mushroom == false)
         {
-            StartCoroutine(SendMessage("Troll", "Det här va delikat och magen min känns rätt, men det ä' väl klart att mer krävs för att ja ska bli mätt.",false));
+            StartCoroutine(SendMessage("Troll", "Det här va delikat och magen min känns rätt, men det ä' väl klart att mer krävs för att ja ska bli mätt."));
+            character = null;
         }
         else if (falukorv == false && berry == false && mushroom == true)
         {
-            StartCoroutine(SendMessage("Troll", "Det här ä' på tok för lite mat för mej, om du ä' klok så hämtar du nån mer grej.",false));
+            StartCoroutine(SendMessage("Troll", "Det här ä' på tok för lite mat för mej, om du ä' klok så hämtar du nån mer grej."));
+            character = null;
         }
         else
         {
@@ -126,7 +178,7 @@ public class CH_RequestItems : OB_Interactable {
         }
     }
 
-    IEnumerator SendMessage(string character, string text, bool extraText)
+    IEnumerator SendMessage(string character, string text, bool extraText = false)
     {
         UI_DialogueController.Instance.DisplayMessage(character, text);
         yield return new WaitForSecondsRealtime(5);

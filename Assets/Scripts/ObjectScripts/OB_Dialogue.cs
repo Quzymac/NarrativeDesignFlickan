@@ -23,7 +23,8 @@ public class OB_Dialogue : OB_Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        OnEnter(other);
+        if(enabled)
+            OnEnter(other);
     }
 
     private void OnTriggerExit(Collider other)
