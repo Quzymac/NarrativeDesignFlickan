@@ -138,11 +138,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         {
             DialogueManager.Instance.NextDialogue();
             SetDialogue(DialogueManager.Instance.Message());
-            SetNextPageText();
-            for(int i =0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
-            {
-                OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
-            }
+            SetNextPageText();            
             //SetButtonsState();
         }
         else if (isActive && DialogueManager.Instance.IsResponding && Input.GetKeyDown(KeyCode.E))  //If we are responding, set the next dialogue to be the current index.
@@ -215,6 +211,11 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         StopBlink();
         if (ch_movement != null)
             ch_movement.SetStop(false);
+        //Set bools
+        for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
+        {
+            OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
+        }
     }
 
     //<Summary>
