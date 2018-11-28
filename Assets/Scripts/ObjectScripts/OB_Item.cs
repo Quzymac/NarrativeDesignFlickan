@@ -14,16 +14,21 @@ public class OB_Item : OB_Interactable {
     [SerializeField]
     Sounds sound;
     AudioHandler audioHandler;
+    public bool Respawn { get; set; }
 
     // Till den punkt där objektet ska flyttas. Rekommenderar ett tomt objekt. Objektet måste ha en transform. Används i B3
-    [SerializeField] Transform target;
+    Transform target;
     float startTime = 0f;
-    [SerializeField] GameObject scriptManager;
+    GameObject scriptManager;
     
 
     private void Start()
     {
         audioHandler = FindObjectOfType<AudioHandler>();
+        scriptManager = FindObjectOfType<UI_FadingEffect>().gameObject;
+        //target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
+        if (type == Item.Apple)
+            Respawn = true;
     }
 
     public Item GetItemType()

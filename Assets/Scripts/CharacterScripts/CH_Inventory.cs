@@ -253,8 +253,9 @@ public class CH_Inventory : MonoBehaviour {
                 items[i] = itemToAdd;
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
-                if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple)
+                if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
+                    itemToAdd.GetComponent<OB_Item>().Respawn = false;
                     StartCoroutine(SpawnNewItem(itemToAdd));
                 }
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
