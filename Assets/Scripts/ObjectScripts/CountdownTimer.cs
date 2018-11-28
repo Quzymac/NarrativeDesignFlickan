@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class CountdownTimer : MonoBehaviour {
+public class CountdownTimer : MonoBehaviour
+{
 
 
     [SerializeField] float countDownTime = 30f;
@@ -14,7 +15,8 @@ public class CountdownTimer : MonoBehaviour {
     float timer;
     int timeDisplayed;
     bool timerActive;
-    
+    bool halfTimePassed = false;
+
     //Call this method to start timer. 
     public void StartTimer()
     {
@@ -25,26 +27,25 @@ public class CountdownTimer : MonoBehaviour {
 
     void Update()
     {
-        
+
         if (timerActive)
         {
             //counts down if timer is active
             timer -= Time.deltaTime;
 
-            if(timer< (countDownTime * 0.5f)
+            if (timer < (countDownTime * 0.5f) && !halfTimePassed)
+            {
+                halfTimePassed = true;
+                FindObjectOfType<UI_DialogueController>().DisplayMessage("Älvor", "Halva tiden för ceremonin har löpt.", 4);
+            }
 
             //Displays text set in inspector and calls selected method also set in inspector when timer reaches 0.
             if (timer < 0f)
             {
-                countDownText.text = CountdownFinishedText;
-
+                FindObjectOfType<UI_DialogueController>().DisplayMessage("Älvor", "Ceremonin är fullbordad.", 4);
                 FindObjectOfType<FairyFoodCollecting>().GameTimerFinished();
-
-                if(timer < -1.5f)
-                {
-                    timerActive = false;
-                    countdownCanvas.SetActive(false);
-                }
+                timerActive = false;
+                countdownCanvas.SetActive(false);
             }
 
             //displays seconds left on timer

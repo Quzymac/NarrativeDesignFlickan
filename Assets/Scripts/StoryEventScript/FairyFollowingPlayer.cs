@@ -23,6 +23,7 @@ public class FairyFollowingPlayer : MonoBehaviour {
         if (follow)
         {
             fairyFollowing = true;
+            fairy.GetComponent<Collider>().enabled = false;
         }
         else
         {

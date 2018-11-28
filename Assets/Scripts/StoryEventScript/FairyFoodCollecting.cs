@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FairyFoodCollecting : MonoBehaviour {
+public class FairyFoodCollecting : MonoBehaviour
+{
 
     GameObject player;
     UI_DialogueController dialogController;
@@ -22,7 +23,7 @@ public class FairyFoodCollecting : MonoBehaviour {
     [SerializeField] float dialogMessageDuration = 5f;
     int dialogTier;
     Item dialogItem;
-    
+
     bool _b3MiniGameActive = false;
     public bool B3MiniGameActive { get { return _b3MiniGameActive; } set { _b3MiniGameActive = value; } }
 
@@ -39,7 +40,7 @@ public class FairyFoodCollecting : MonoBehaviour {
         OptionsManager.NewChoice += StartGame;//subscribe 
     }
 
-    void StartGame (object sender, OptionsEventArgs e)
+    void StartGame(object sender, OptionsEventArgs e)
     {
         if (e.Option == "B3_Alvor_1" && e.Value == 2)
         {
@@ -157,13 +158,15 @@ public class FairyFoodCollecting : MonoBehaviour {
 
     }
 
-    void Update () {
+    void Update()
+    {
 
-        if (Input.GetKeyDown(KeyCode.P)){
+        if (Input.GetKeyDown(KeyCode.P))
+        {
             countdownTimer.StartTimer();
             fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
             B3MiniGameActive = true;
         }
-        
+
     }
 }
