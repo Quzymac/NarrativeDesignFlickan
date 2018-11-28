@@ -31,6 +31,8 @@ public class CountdownTimer : MonoBehaviour {
             //counts down if timer is active
             timer -= Time.deltaTime;
 
+            if(timer< (countDownTime * 0.5f)
+
             //Displays text set in inspector and calls selected method also set in inspector when timer reaches 0.
             if (timer < 0f)
             {

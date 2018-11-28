@@ -26,7 +26,7 @@ public class FairyFoodCollecting : MonoBehaviour {
     bool _b3MiniGameActive = false;
     public bool B3MiniGameActive { get { return _b3MiniGameActive; } set { _b3MiniGameActive = value; } }
 
-    private void Start()
+    private void Awake()
     {
         player = FindObjectOfType<CH_PlayerMovement>().gameObject;
         fairy = FindObjectOfType<FairyFollowingPlayer>().gameObject;
