@@ -147,7 +147,7 @@ public class CH_Inventory : MonoBehaviour {
             items[itemSlot].SetActive(true);
             if (items[itemSlot].GetComponent<Rigidbody>())
             {
-                items[itemSlot].GetComponent<Rigidbody>().Sleep();
+                items[itemSlot].GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
@@ -235,7 +235,7 @@ public class CH_Inventory : MonoBehaviour {
                 if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(itemToAdd));
+                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position));
                 }
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
@@ -244,12 +244,12 @@ public class CH_Inventory : MonoBehaviour {
         return false;
     }
 
-    IEnumerator SpawnNewItem(GameObject copy)
+    IEnumerator SpawnNewItem(GameObject copy, Vector3 position)
     {
         //int time = 10;
         GameObject newItem;
         yield return new WaitForSeconds(10f);
-        newItem = Instantiate(copy);
+        newItem = Instantiate(copy,position, Quaternion.identity);
         newItem.SetActive(true);
     }
 
