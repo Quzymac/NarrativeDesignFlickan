@@ -1,38 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FairyFoodCollecting : MonoBehaviour {
 
-    [SerializeField] GameObject player;
-    [SerializeField] Canvas dialogCanvas;
-    [SerializeField] Canvas countdownCanvas; //UI_Canvas, TimedEvent needs to be set in inspector (GameTimerFinished)
-    [SerializeField] Transform fairyGameOverPos;
-    [SerializeField] GameObject scriptManager;
+    GameObject player;
+    UI_DialogueController dialogController;
+    CountdownTimer countdownTimer;
+    [SerializeField] Transform endGamePos;
     [SerializeField] GameObject fadeInCanvas;
-    [SerializeField] GameObject fairyChest;
-    [SerializeField] GameObject fairy;
+    GameObject fairyChest;
+    GameObject fairy;
+    public Transform GetFairyChest()
+    {
+        return fairyChest.transform;
+    }
 
     bool fairyAreFollowing = false;
-    [SerializeField] float dialogMessageDuration = 5f;
 
+    [SerializeField] float dialogMessageDuration = 5f;
     int dialogTier;
     Item dialogItem;
-
-
+    
     bool _b3MiniGameActive = false;
     public bool B3MiniGameActive { get { return _b3MiniGameActive; } set { _b3MiniGameActive = value; } }
 
+    private void Start()
+    {
+        player = FindObjectOfType<CH_PlayerMovement>().gameObject;
+        fairy = FindObjectOfType<FairyFollowingPlayer>().gameObject;
+        fairyChest = FindObjectOfType<OB_TransportTarget>().gameObject;
+        dialogController = FindObjectOfType<UI_DialogueController>();
+        countdownTimer = FindObjectOfType<CountdownTimer>();
+    }
     private void OnEnable()
     {
-        OptionsManager.NewChoice += StartGame;//subscribe
+        OptionsManager.NewChoice += StartGame;//subscribe 
     }
 
     void StartGame (object sender, OptionsEventArgs e)
     {
         if (e.Option == "B3_Alvor_1" && e.Value == 2)
         {
-            countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
+            countdownTimer.StartTimer();
             fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
             B3MiniGameActive = true;
             OptionsManager.NewChoice -= StartGame;//unsubscribe
@@ -56,16 +67,16 @@ public class FairyFoodCollecting : MonoBehaviour {
 
         if (dialogTier == 0)
         {
-            dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
+            dialogController.DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
             yield return new WaitForSeconds(dialogMessageDuration);
-            dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
+            dialogController.DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
             yield return new WaitForSeconds(dialogMessageDuration);
             GetComponent<FairyBarrier>().Pushplayer();
             //OptionsManager.Instance.SetOptionArea1("B3_Alvor_1", 1); //pushplayeraway
             yield break;
         }
 
-        dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Intressant...", dialogMessageDuration);
+        dialogController.DisplayMessage("Älvor", "Intressant...", dialogMessageDuration);
         yield return new WaitForSeconds(dialogMessageDuration);
         switch (dialogItem)
         {
@@ -102,25 +113,25 @@ public class FairyFoodCollecting : MonoBehaviour {
             default:
                 break;
         }
-        dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", item, dialogMessageDuration);
+        dialogController.DisplayMessage("Älvor", item, dialogMessageDuration);
         yield return new WaitForSeconds(dialogMessageDuration);
 
         switch (dialogTier)
         {
             case 1:
-                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "[TIER 1] PLACEHOLDER", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "[TIER 1] PLACEHOLDER", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
                 // Vidare till C1
                 break;
             case 2:
-                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "[TIER 2] PLACEHOLDER", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "[TIER 2] PLACEHOLDER", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
                 // Vidare till C3
                 break;
             case 3:
-                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Du gör narr av oss, flicksnärta.", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
-                dialogCanvas.GetComponent<UI_DialogueController>().DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Vi älvor glömmer aldrig bort sådan hänsynslöshet.", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
                 GetComponent<FairyBarrier>().Pushplayer();
                 //OptionsManager.Instance.SetOptionArea1("B3_Alvor_1", 1); //pushplayeraway
@@ -138,7 +149,7 @@ public class FairyFoodCollecting : MonoBehaviour {
         //scriptManager.GetComponent<UI_FadingEffect>().ActivateFading();
         yield return new WaitForSeconds(1);
         player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
-        player.transform.position = fairyGameOverPos.position;
+        player.transform.position = endGamePos.position;
         fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
         yield return new WaitForSeconds(0.8f);
         //fadeInCanvas.SetActive(true);
@@ -149,7 +160,7 @@ public class FairyFoodCollecting : MonoBehaviour {
     void Update () {
 
         if (Input.GetKeyDown(KeyCode.P)){
-            countdownCanvas.GetComponent<CountdownTimer>().StartTimer();
+            countdownTimer.StartTimer();
             fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
             B3MiniGameActive = true;
         }
