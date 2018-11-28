@@ -13,6 +13,8 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
+    private bool jump, grounded;
+    private float jumpTime;
 
     private void Start()
     {
@@ -35,11 +37,25 @@ public class CH_PlayerMovement : MonoBehaviour
         {
             SetSpeed();
         }
+        if (!stop && Input.GetKey(KeyCode.Space) && Time.time > jumpTime)
+        {
+            jump = true;
+        }
     }
     void FixedUpdate()
     {
         if (!stop)
         {
+            if (jump)
+            {
+                if (grounded)
+                {
+                    jumpTime = Time.time + .1f;
+                    body.AddForce(Vector3.up * 3, ForceMode.Impulse);
+                    grounded = false;
+                }
+                jump = false;
+            }
             /*** Vända sig ***/
             Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));    //Input vector
             if (inputDirection.magnitude > 1)
@@ -71,5 +87,26 @@ public class CH_PlayerMovement : MonoBehaviour
         }
         this.moveSpeed = moveSpeed;
         this.rotationSpeed = rotationSpeed;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = false;
+        }
     }
 }
