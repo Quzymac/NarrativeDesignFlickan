@@ -200,6 +200,10 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //<Summary>
     private void EndDialogue()
     {
+        for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
+        {
+            OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
+        }
         StopAllCoroutines();
         DialogueManager.Instance.DialogueIndex = 0;
         panel.enabled = false;
@@ -212,10 +216,6 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         if (ch_movement != null)
             ch_movement.SetStop(false);
         //Set bools
-        for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
-        {
-            OptionsManager.Instance.SetOptionArea1(DialogueManager.Instance.Message().ChoiceNames[i], DialogueManager.Instance.Message().WorldChoices[i]);
-        }
     }
 
     //<Summary>
