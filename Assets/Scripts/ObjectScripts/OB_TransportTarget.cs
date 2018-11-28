@@ -5,38 +5,11 @@ using UnityEngine;
 //Placeras på det objekt som ska få ett annat objekt via transport
 public class OB_TransportTarget : MonoBehaviour {
 
-
-    //Seralized for testing
-    [SerializeField] List<GameObject> transportedItems;
-    [SerializeField] int itemsTier = 0;
-    [SerializeField] Item dialogItem;
+    List<GameObject> transportedItems = new List<GameObject>();
+    int itemsTier = 0;
+    Item dialogItem;
     int[] items = new int[10];
-
-    //[SerializeField] GameObject tier1; //TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-    //[SerializeField] GameObject tier1a;
-    //[SerializeField] GameObject tier2;
-    //[SerializeField] GameObject tier2a;
-    //[SerializeField] GameObject tier3;
-    //[SerializeField] GameObject tier3a;
-
-    //private void Start()
-    //{
-    //    SetObject(tier1);
-    //    SetObject(tier1a);
-    //    SetObject(tier2);
-    //    SetObject(tier2a);
-    //    SetObject(tier3);
-    //    SetObject(tier3a);
-
-    //}
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.M))
-    //    {
-    //        Calculate();
-    //    }
-    //}//TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-
+    
     public Item GetDialogItem()
     {
         Calculate();
@@ -51,10 +24,12 @@ public class OB_TransportTarget : MonoBehaviour {
     // Räknar ut vilket item det finns flest av och vilken tier det finns flest av
     void Calculate()
     {
-        
-        foreach (var item in transportedItems)
+        if (transportedItems.Count > 0)
         {
-            items[(int)item.GetComponent<OB_Item>().GetItemType()]++;
+            foreach (var item in transportedItems)
+            {
+                items[(int)item.GetComponent<OB_Item>().GetItemType()]++;
+            }
         }
 
         itemsTier = CalculateTier();

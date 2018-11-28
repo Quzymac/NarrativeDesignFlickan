@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class FairyFollowingPlayer : MonoBehaviour {
 
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject fairy;
+    GameObject player;
+    GameObject fairy;
     Vector3 fairyStartPos;
     bool fairyFollowing = false;
     [SerializeField] float followDistance = 3f;
 
     private void Start()
     {
+        fairy = this.gameObject;
+        player = FindObjectOfType<CH_PlayerMovement>().gameObject;
         fairyStartPos = transform.position;
     }
 

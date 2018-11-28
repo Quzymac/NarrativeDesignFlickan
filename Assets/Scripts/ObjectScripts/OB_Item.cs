@@ -26,7 +26,7 @@ public class OB_Item : OB_Interactable {
     {
         audioHandler = FindObjectOfType<AudioHandler>();
         scriptManager = FindObjectOfType<UI_FadingEffect>().gameObject;
-        //target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
+        target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
         if (type == Item.Apple)
             Respawn = true;
     }
@@ -53,7 +53,11 @@ public class OB_Item : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        if (!scriptManager.GetComponent<FairyFoodCollecting>().B3MiniGameActive)
+        if (scriptManager.GetComponent<FairyFoodCollecting>().B3MiniGameActive) //Only in use during b3 mini game
+        {
+            StartCoroutine(MoveObject(player));
+        }
+        else // Normal item pickup
         {
             if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
             {
@@ -68,12 +72,6 @@ public class OB_Item : OB_Interactable {
                 gameObject.SetActive(false);
             }
         }
-        //Only in use during b3 mini game
-        else
-        {
-            StartCoroutine(MoveObject(player));
-        }
-
     }
 
     //Coroutinen körs tills objektet har flyttats fram till target.

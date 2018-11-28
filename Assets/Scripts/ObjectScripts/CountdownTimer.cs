@@ -7,10 +7,8 @@ using UnityEngine.Events;
 public class CountdownTimer : MonoBehaviour {
 
 
-    [SerializeField] float countDownTime = 3f;
+    [SerializeField] float countDownTime = 30f;
     [SerializeField] string CountdownFinishedText;
-    [SerializeField] UnityEvent TimedEvent;
-
     [SerializeField] GameObject countdownCanvas;
     [SerializeField] Text countDownText;
     float timer;
@@ -37,7 +35,8 @@ public class CountdownTimer : MonoBehaviour {
             if (timer < 0f)
             {
                 countDownText.text = CountdownFinishedText;
-                TimedEvent.Invoke();
+
+                FindObjectOfType<FairyFoodCollecting>().GameTimerFinished();
 
                 if(timer < -1.5f)
                 {

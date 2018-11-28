@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FairyBarrier : MonoBehaviour {
 
-    [SerializeField] Transform endPos; //Where the player will be pushed to
+    [SerializeField] Transform pushOutEndPos; //Where the player will be pushed to
     [SerializeField] GameObject barrier;//gameobject with collider to keep player out and particleEffect forceField
-    [SerializeField] GameObject player;
+     GameObject player;
 
     [SerializeField] float pushSpeed = 10f;
    
@@ -17,6 +17,10 @@ public class FairyBarrier : MonoBehaviour {
         //{
         //    StartCoroutine(PushPlayerAway());
         //}
+    }
+    private void Start()
+    {
+        player = FindObjectOfType<CH_PlayerMovement>().gameObject;
     }
     public void Pushplayer()
     {
@@ -42,10 +46,10 @@ public class FairyBarrier : MonoBehaviour {
         while (true)
         {
             startTime += Time.deltaTime * (0.01f * pushSpeed);
-            player.transform.position = Vector3.Lerp(player.transform.position, endPos.transform.position, startTime);
-            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, endPos.transform.rotation, startTime * 10);
+            player.transform.position = Vector3.Lerp(player.transform.position, pushOutEndPos.transform.position, startTime);
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, pushOutEndPos.transform.rotation, startTime * 10);
 
-            if (Vector3.Distance(player.transform.position, endPos.transform.position) < 0.1f)    //player.transform.position == endPos.transform.position)
+            if (Vector3.Distance(player.transform.position, pushOutEndPos.transform.position) < 0.1f)    //player.transform.position == endPos.transform.position)
             {
                 barrier.SetActive(true);
                 player.GetComponent<CH_PlayerMovement>().SetStop(false);
