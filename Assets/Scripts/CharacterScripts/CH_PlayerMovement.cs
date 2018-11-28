@@ -13,7 +13,7 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-    private bool jump, grounded;
+    private bool jump, jumping, grounded, running;
     private float jumpTime;
 
     private void Start()
@@ -31,11 +31,11 @@ public class CH_PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            SetSpeed(defaultMoveSpeed * runMultiplier, defaultRotationSpeed);
-            CameraShake.Instance.ShakeCamera(.1f, .05f, 5);
-        } else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            SetSpeed();
+            running = !running;
+            if (running)
+                SetSpeed(defaultMoveSpeed * runMultiplier, defaultRotationSpeed);
+            else
+                SetSpeed();
         }
         if (!stop && Input.GetKey(KeyCode.Space) && Time.time > jumpTime)
         {
@@ -53,6 +53,7 @@ public class CH_PlayerMovement : MonoBehaviour
                     jumpTime = Time.time + .1f;
                     body.AddForce(Vector3.up * 3, ForceMode.Impulse);
                     grounded = false;
+                    jumping = true;
                 }
                 jump = false;
             }
@@ -92,7 +93,16 @@ public class CH_PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            if (jumping)
+            {
+                Debug.Log("kakor");
+                float shakeIntencity = collision.relativeVelocity.y;
+                if (shakeIntencity > 1)
+                    shakeIntencity = 1;
+                CameraShake.Instance.ShakeCamera(shakeIntencity / 10, shakeIntencity / 10, 4);
+            }
             grounded = true;
+            jumping = false;
         }
     }
     private void OnCollisionStay(Collision collision)
