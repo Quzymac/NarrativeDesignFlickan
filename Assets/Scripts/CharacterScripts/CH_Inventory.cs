@@ -82,14 +82,14 @@ public class CH_Inventory : MonoBehaviour {
             itemSlot = 7;
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSlot < 7)
-        {
-            itemSlot++;
-            inventorySlots[itemSlot].Select();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSlot > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSlot > 0)
         {
             itemSlot--;
+            inventorySlots[itemSlot].Select();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSlot < 7)
+        {
+            itemSlot++;
             inventorySlots[itemSlot].Select();
         }
 
@@ -190,7 +190,7 @@ public class CH_Inventory : MonoBehaviour {
             activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
             StartCoroutine(DrunkEffect(5));
         }
-        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()]);
+        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()],5f);
         if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
         {
             Destroy(items[itemSlot]);
@@ -198,27 +198,6 @@ public class CH_Inventory : MonoBehaviour {
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
         }
-        //StartCoroutine(RemoveItemText());
-    }
-
-    IEnumerator RemoveItemText()
-    {
-        int time = 3;
-        while(true)
-        {
-            yield return new WaitForSecondsRealtime(1f);
-            if (time <= 0)
-            {
-                UI_DialogueController.Instance.Closemessage();
-                yield break;
-            }
-            else
-            {
-                time--;
-                yield return null;
-            }
-        }
-
     }
 
     IEnumerator DrunkEffect(int drunkTime)
@@ -267,23 +246,11 @@ public class CH_Inventory : MonoBehaviour {
 
     IEnumerator SpawnNewItem(GameObject copy)
     {
-        int time = 10;
+        //int time = 10;
         GameObject newItem;
-        while (true)
-        {
-            yield return new WaitForSecondsRealtime(1f);
-            if (time <= 0)
-            {
-                newItem = Instantiate(copy);
-                newItem.SetActive(true);
-                yield break;
-            }
-            else
-            {
-                time--;
-                yield return null;
-            }
-        }
+        yield return new WaitForSeconds(10f);
+        newItem = Instantiate(copy);
+        newItem.SetActive(true);
     }
 
     //Hittar ett item i inventory och retunerar true om den hittas annars false. 
