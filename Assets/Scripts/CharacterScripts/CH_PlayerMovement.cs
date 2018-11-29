@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CH_PlayerMovement : MonoBehaviour
 {
-
+    [SerializeField]
+    Animator myAnimator;
     [SerializeField]
     private Rigidbody body;
     [SerializeField]
@@ -13,7 +14,7 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-    private bool jump, jumping, grounded, running;
+    private bool jump, jumping, grounded, running, idle;
     private float jumpTime;
 
     private void Start()
@@ -54,6 +55,7 @@ public class CH_PlayerMovement : MonoBehaviour
                     body.AddForce(Vector3.up * 3, ForceMode.Impulse);
                     grounded = false;
                     jumping = true;
+                    myAnimator.SetBool("Jump", true);
                 }
                 jump = false;
             }
@@ -72,7 +74,33 @@ public class CH_PlayerMovement : MonoBehaviour
             float speedForward = Vector3.Dot(transform.forward, moveDirection);
             if (speedForward < 0)
                 speedForward = 0;
+            if (speedForward < 0.001 && !jumping)
+            {
+                myAnimator.SetBool("Idle", true);
+                idle = true;
+            }
+            else
+            {
+                idle = false;
+                myAnimator.SetBool("Idle", false);
+            }
             //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)
+            if (jumping)
+            {
+                myAnimator.SetBool("Walking", false);
+                myAnimator.SetBool("Running", false);
+            }
+            else if (!idle && running)
+            {
+                myAnimator.SetBool("Running", true);
+                myAnimator.SetBool("Walking", false);
+            }
+            else if (!idle && !running)
+            {
+                myAnimator.SetBool("Walking", true);
+                myAnimator.SetBool("Running", false);
+            }
+
             Vector3 velocityVector = speedForward * moveDirection;
             velocityVector *= moveSpeed; //Gångra med movespeed
             velocityVector.y = body.velocity.y;   //Vi vill inte ändra velocity i y led eftersom det skulle påvärka gravitationen
@@ -103,6 +131,7 @@ public class CH_PlayerMovement : MonoBehaviour
             }
             grounded = true;
             jumping = false;
+            myAnimator.SetBool("Jump", false);
         }
     }
     private void OnCollisionStay(Collision collision)
