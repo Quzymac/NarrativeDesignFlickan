@@ -25,7 +25,7 @@ public class LevelLoading : MonoBehaviour {
 
     IEnumerator SceneSwitchFadeTimer()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.1f);
         SceneManager.LoadScene(buildIndex);
     }
 
