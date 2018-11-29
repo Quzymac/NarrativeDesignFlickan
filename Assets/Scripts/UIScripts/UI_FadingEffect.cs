@@ -1,27 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_FadingEffect : MonoBehaviour {
 
-    public GameObject Fade;
-    public static UI_FadingEffect FadeActivation;
+    [SerializeField] Image fadeCanvas;
+
     private void Start()
     {
-        FadeActivation = this;
+        fadeCanvas.color = new Color(0, 0, 0, 1);
+        DeactivateFading();
     }
+
     public void ActivateFading()
     {
-        Fade.SetActive(true);
+        StartCoroutine(FadeImage(false));
     }
 
     public void DeactivateFading()
     {
-        Fade.SetActive(false);
+        StartCoroutine(FadeImage(true));
     }
-
-    public GameObject Returnfade()
+    IEnumerator FadeImage(bool fadeAway)
     {
-        return Fade;
+        // fade from opaque to transparent
+        if (fadeAway)
+        {
+            // loop over 1 second backwards
+            for (float i = 1; i >= 0; i -= Time.deltaTime)
+            {
+                // set color with i as alpha
+                fadeCanvas.color = new Color(0, 0, 0, i);
+                yield return null;
+            }
+        }
+        // fade from transparent to opaque
+        else
+        {
+            // loop over 1 second
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                // set color with i as alpha
+                fadeCanvas.color = new Color(0, 0, 0, i);
+                yield return null;
+            }
+        }
     }
 }
