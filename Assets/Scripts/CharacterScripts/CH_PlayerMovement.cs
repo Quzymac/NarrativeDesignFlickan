@@ -99,7 +99,7 @@ public class CH_PlayerMovement : MonoBehaviour
                 float shakeIntencity = collision.relativeVelocity.y;
                 if (shakeIntencity > 1)
                     shakeIntencity = 1;
-                CameraShake.Instance.ShakeCamera(shakeIntencity / 10, shakeIntencity / 10, 4);
+                CameraShake.Instance.ShakeCamera(shakeIntencity / 20, shakeIntencity / 10, 4);
             }
             grounded = true;
             jumping = false;
