@@ -16,6 +16,7 @@ public class CH_RequestItems : OB_Interactable {
     int givingTrollItems = 1;
     int refusedTroll;
     SE_SopaScript sopaScript;
+    CH_Interact tempPlayer;
 
     private void OnEnable()
     {
@@ -38,6 +39,8 @@ public class CH_RequestItems : OB_Interactable {
             if(e.Value == givingTrollItems)
             {
                 enabled = true;
+                tempPlayer.RemoveInteractable(GetComponent<OB_Dialogue>());
+                tempPlayer.AddInteractable(this);
                 GetComponent<OB_Dialogue>().enabled = false;
             }
         }
@@ -47,19 +50,23 @@ public class CH_RequestItems : OB_Interactable {
     {
         enabled = false;
         if (character.GetPersistentMethodName(0) == "Troll")
+        {
             sopaScript = GetComponent<SE_SopaScript>();
+            tempPlayer = FindObjectOfType<CH_Interact>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(enabled)
+        if (enabled)
+        {
             OnEnter(other);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(enabled)
-            OnExit(other);
+        OnExit(other);
     }
 
     public void GiveItems(List<GameObject> inItems)
@@ -190,7 +197,7 @@ public class CH_RequestItems : OB_Interactable {
             if(refusedTroll == 5)
             {
                 StartCoroutine(sopaScript.PushPlayer());
-                StartCoroutine(SendMessage("Troll", "Nu har du vari på tok taskig, du får inte kom tillbaka"));
+                StartCoroutine(SendMessage("Troll", "Nu har du vari på tok för taskig, jag tänker inte prata mer me dig"));
                 character = null;
             }
         }
@@ -203,7 +210,7 @@ public class CH_RequestItems : OB_Interactable {
         UI_DialogueController.Instance.Closemessage();
         if(extraText)
         {
-            StartCoroutine(SendMessage("Troll", "Näcken spelar violin, så skärp örona dina. Och om du än har energin, kolla under alla stenar fina!",false));
+            StartCoroutine(SendMessage("Troll", "Näcken spelar violin, så skärp örona dina. Och om du än har energin, kolla under alla stenar fina!"));
         }
     } 
 }
