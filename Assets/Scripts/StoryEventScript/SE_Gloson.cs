@@ -17,6 +17,7 @@ public class SE_Gloson : OB_Interactable {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (active)
         OnEnter(other);
     }
     private void OnTriggerExit(Collider other)

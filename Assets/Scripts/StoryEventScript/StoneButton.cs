@@ -5,14 +5,14 @@ using UnityEngine;
 public class StoneButton : MonoBehaviour {
 
     [SerializeField]
-    private GameObject reward;
+    private GameObject korok;
     private bool complete;
 
     public void Complete()
     {
         if (!complete)
         {
-            Instantiate(reward, transform.position, Quaternion.identity);
+            korok.SetActive(true);
             complete = true;
         }
     }
