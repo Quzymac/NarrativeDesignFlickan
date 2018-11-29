@@ -42,10 +42,5 @@ public class FairyFollowingPlayer : MonoBehaviour {
         {
             fairy.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * (Vector3.Distance(player.transform.position, fairy.transform.position) - 1));
         }
-
-        //if (Input.GetKeyDown(KeyCode.F)) //__===000__===0000 TESTING ONLY ===000___===000
-        //{
-        //    FairyFollowToggle(!fairyFollowing);
-        //}
     }
 }

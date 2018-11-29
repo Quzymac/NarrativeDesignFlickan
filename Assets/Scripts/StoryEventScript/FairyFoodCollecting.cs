@@ -10,15 +10,13 @@ public class FairyFoodCollecting : MonoBehaviour
     UI_DialogueController dialogController;
     CountdownTimer countdownTimer;
     [SerializeField] Transform endGamePos;
-    [SerializeField] GameObject fadeInCanvas;
+    UI_FadingEffect fadeCanvas;
     GameObject fairyChest;
     GameObject fairy;
     public Transform GetFairyChest()
     {
         return fairyChest.transform;
     }
-
-    bool fairyAreFollowing = false;
 
     [SerializeField] float dialogMessageDuration = 5f;
     int dialogTier;
@@ -34,6 +32,7 @@ public class FairyFoodCollecting : MonoBehaviour
         fairyChest = FindObjectOfType<OB_TransportTarget>().gameObject;
         dialogController = FindObjectOfType<UI_DialogueController>();
         countdownTimer = FindObjectOfType<CountdownTimer>();
+        fadeCanvas = FindObjectOfType<UI_FadingEffect>();
     }
     private void OnEnable()
     {
@@ -147,13 +146,17 @@ public class FairyFoodCollecting : MonoBehaviour
     IEnumerator TeleportToFairies()
     {
         //Fade WIP
-        //scriptManager.GetComponent<UI_FadingEffect>().ActivateFading();
+        fadeCanvas.ActivateFading();
         yield return new WaitForSeconds(1);
         player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
+        player.GetComponent<Rigidbody>().isKinematic = true;
+
         player.transform.position = endGamePos.position;
         fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
+        player.GetComponent<Rigidbody>().isKinematic = true;
+
         yield return new WaitForSeconds(0.8f);
-        //fadeInCanvas.SetActive(true);
+        fadeCanvas.DeactivateFading();
         yield return new WaitForSeconds(1.5f);
 
     }

@@ -9,15 +9,7 @@ public class FairyBarrier : MonoBehaviour {
      GameObject player;
 
     [SerializeField] float pushSpeed = 10f;
-   
-	void Update ()
-    {
-        //Only for testing 000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------000000_____------
-        //if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    StartCoroutine(PushPlayerAway());
-        //}
-    }
+
     private void Start()
     {
         player = FindObjectOfType<CH_PlayerMovement>().gameObject;
@@ -42,6 +34,7 @@ public class FairyBarrier : MonoBehaviour {
     {
         float startTime = 0f;
         player.GetComponent<CH_PlayerMovement>().SetStop(true);
+        player.GetComponent<Rigidbody>().isKinematic = true;
 
         while (true)
         {
@@ -53,6 +46,7 @@ public class FairyBarrier : MonoBehaviour {
             {
                 barrier.SetActive(true);
                 player.GetComponent<CH_PlayerMovement>().SetStop(false);
+                player.GetComponent<Rigidbody>().isKinematic = false;
 
                 yield break;
             }
