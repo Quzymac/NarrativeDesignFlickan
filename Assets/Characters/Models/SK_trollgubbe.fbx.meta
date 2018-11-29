@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: ba1c21ea653342e4ebbb05568248ff68
+timeCreated: 1543496949
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Forhead
+    100002: Gut
+    100004: Head
+    100006: ikHandle1
+    100008: ikHandle2
+    100010: ikHandle3
+    100012: ikHandle4
+    100014: ikHandle5
+    100016: L_arm
+    100018: L_arm_controller
+    100020: L_foot
+    100022: L_forearm
+    100024: L_hand
+    100026: L_handfingers
+    100028: L_leg
+    100030: L_leg_controller
+    100032: L_shin
+    100034: L_toes
+    100036: LOWPOLY_trollgubbe:Group36117
+    100038: Neck
+    100040: Nose
+    100042: Nosetip
+    100044: R_arm
+    100046: R_arm_controller
+    100048: R_foot
+    100050: R_forearm
+    100052: R_hand
+    100054: R_hand_fingers
+    100056: R_leg
+    100058: R_leg_controller
+    100060: R_shin
+    100062: R_toes
+    100064: Shoulders
+    100066: Stomach
+    100068: Tail_1
+    100070: Tail_2
+    100072: Tail_3
+    100074: Tail_4
+    100076: Tail_5
+    100078: Tail_6
+    100080: Tail_7
+    100082: Tail_controller
+    100084: Tail_end
+    100086: Tail_Tofs
+    100088: Torso_higher
+    100090: Torso_lower
+    100092: //RootNode
+    100094: Trollgubbe_skin
+    400000: Forhead
+    400002: Gut
+    400004: Head
+    400006: ikHandle1
+    400008: ikHandle2
+    400010: ikHandle3
+    400012: ikHandle4
+    400014: ikHandle5
+    400016: L_arm
+    400018: L_arm_controller
+    400020: L_foot
+    400022: L_forearm
+    400024: L_hand
+    400026: L_handfingers
+    400028: L_leg
+    400030: L_leg_controller
+    400032: L_shin
+    400034: L_toes
+    400036: LOWPOLY_trollgubbe:Group36117
+    400038: Neck
+    400040: Nose
+    400042: Nosetip
+    400044: R_arm
+    400046: R_arm_controller
+    400048: R_foot
+    400050: R_forearm
+    400052: R_hand
+    400054: R_hand_fingers
+    400056: R_leg
+    400058: R_leg_controller
+    400060: R_shin
+    400062: R_toes
+    400064: Shoulders
+    400066: Stomach
+    400068: Tail_1
+    400070: Tail_2
+    400072: Tail_3
+    400074: Tail_4
+    400076: Tail_5
+    400078: Tail_6
+    400080: Tail_7
+    400082: Tail_controller
+    400084: Tail_end
+    400086: Tail_Tofs
+    400088: Torso_higher
+    400090: Torso_lower
+    400092: //RootNode
+    400094: Trollgubbe_skin
+    2100000: trollgubben
+    4300000: LOWPOLY_trollgubbe:Group36117
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: LOWPOLY_trollgubbe:Group36117
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
