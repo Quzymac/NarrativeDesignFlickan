@@ -13,7 +13,7 @@ public class OptionsManager
     //Define all bools to keep track of options here.    
     //0 = false, 1 = true. If more options are nessecary they can be counted up as 3, 4 ,5 etc.
     private Dictionary<string, int> b1Bools = new Dictionary<string, int>() {
-        { "test", 0}, { "B1_Alf_1", 0}, {"Items", 0}, {"B2_Vadis_1", 0}, {"B3_Alvor_1", 0 }
+        { "test", 0}, { "B1_Alf_1", 0}, {"Items", 0}, {"B2_Vadis_1", 0}, {"B3_Alvor_1", 0 }, {"B1_Sopa_1", 0}
     };
 
     //PropertiesArea1

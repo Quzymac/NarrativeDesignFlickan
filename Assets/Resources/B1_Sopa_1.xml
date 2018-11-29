@@ -4,12 +4,17 @@
         <Text text="Magen på dagen, hur den håller gorm som en storm. Tyr du mat kommer du fram.">
           </Text>             
     </Name>
-      <Name name="Tyra">
-        <Text text="[Vill han också ha mat från skogen? Eller så kanske det finns något hemma jag kan ge honom?]">
+      <Name name="Tyra Tänker">
+        <Text text="Vill han också ha mat från skogen? Eller så kanske det finns något hemma jag kan ge honom?">
           </Text>
     </Name>
-      <Name name="Tyra">
-        <Text text="[Jag måste skynda mig hem för att kolla, innan alla andra på Gården vaknar.]">
+      <Name name="Tyra Tänker">
+        <Text text="Jag måste skynda mig hem för att kolla, innan alla andra på Gården vaknar.">
           </Text>
+
+        <ChoiceName choiceName="B1_Sopa_1">
+        </ChoiceName>
+        <ChoiceBool choiceBool="1">
+        </ChoiceBool>
     </Name>
 </Dialogue>

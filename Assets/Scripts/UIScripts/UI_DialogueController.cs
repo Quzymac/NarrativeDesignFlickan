@@ -162,19 +162,26 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
                 DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
                 if(DialogueManager.Instance.DialogueIndex < 0)
                 {
+                    SetBools();
                     EndDialogue();
                     DisableOptionButtons();
                     DisableNextPageText();
-                    SetBools();
+                }
+                else
+                {
+                    SetDialogue(DialogueManager.Instance.Message());
+                    //SetButtonsState();
+                    DialogueManager.Instance.IsResponding = false;
+                    SetNextPageText();
                 }
             }
         }
         else if (isActive && !DialogueManager.Instance.HasOptions() && !DialogueManager.Instance.HasRemainingMessages() && Input.GetKeyDown(KeyCode.E)) //if there are no remaining messages and no options, end.
         {
+            SetBools();
             EndDialogue();
             DisableOptionButtons();
             DisableNextPageText();
-            SetBools();
         }
     }
 
@@ -272,7 +279,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
 
     public void SetNextPageText()
     {
-        nextTextPage.text = "Press E to continue";
+        nextTextPage.text = "Tryck E för att fortsätta";
         nextTextPage.enabled = true;
         StartBlink(arrowImage);
     }

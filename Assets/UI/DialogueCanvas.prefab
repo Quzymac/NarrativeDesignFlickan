@@ -519,9 +519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press E To Continue
-
-'
+  m_Text: "Tryck E f\xF6r att forts\xE4tta\n"
 --- !u!114 &114303937049253002
 MonoBehaviour:
   m_ObjectHideFlags: 1
