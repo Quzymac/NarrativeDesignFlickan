@@ -338,7 +338,6 @@ public class CH_Inventory : MonoBehaviour {
             requester = inRequester;
             maximumItems = maxNumberOfItems;
             reqItems.AddRange(inItems);
-            inRequester.GetComponent<OB_Interactable>().enabled = false;
             itemsToGive = new List<GameObject>();
             givingItems = true;
             Debug.Log("Giving Items");
@@ -349,7 +348,6 @@ public class CH_Inventory : MonoBehaviour {
     public void GiveItems()
     {
         requester.GetComponent<CH_RequestItems>().GiveItems(itemsToGive);
-        requester.GetComponent<OB_Interactable>().enabled = true;
         requester = null;
         gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
         itemsToGive.Clear();
