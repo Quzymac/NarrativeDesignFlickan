@@ -163,7 +163,7 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false &&
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false &&
             items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Blueberry && items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Lingonberry)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
@@ -189,8 +189,9 @@ public class CH_Inventory : MonoBehaviour {
             Debug.Log("Can't throw this item");
             strength = 0f;
         }
-        else if(Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        else if(Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
+            items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
             items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
