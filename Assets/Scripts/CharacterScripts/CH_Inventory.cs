@@ -15,12 +15,16 @@ public class CH_Inventory : MonoBehaviour {
     [SerializeField]
     ParticleSystem particle;
     ParticleSystem activeParticle;
+    [SerializeField]
+    Sprite orgInvImage; //InvImage inactive
+    [SerializeField]
+    Sprite giveInvImgage; //InvImage given
     List<Item> consumables = new List<Item> { Item.Apple, Item.Blueberry, Item.Chanterelle, Item.Lingonberry, Item.Wine };
     string[] itemNames = {"Äpple", "Blåbär", "Kantarell", "Röd flugsvamp", "Lingon", "Gulfotshätta", "Vinflaska", "Falukorv", "Björkticka", "Tallkotte", "Grankotte" };
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
     "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
-    
+    List<Button> changedButtons = new List<Button>();
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
@@ -99,11 +103,13 @@ public class CH_Inventory : MonoBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R) && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && givingItems)
+        if (Input.GetKeyDown(KeyCode.R) && items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && givingItems)
         {
             if(!itemsToGive.Contains(items[itemSlot]) && itemsToGive.Count < maximumItems)
             {
                 itemsToGive.Add(items[itemSlot]);
+                changedButtons.Add(inventorySlots[itemSlot]);
+                inventorySlots[itemSlot].image.sprite = giveInvImgage;
                 Debug.Log("Added a " + items[itemSlot].GetComponent<OB_Item>().GetItemType().ToString() + " to give");
             }
             else if(itemsToGive.Count == maximumItems)
@@ -128,10 +134,20 @@ public class CH_Inventory : MonoBehaviour {
                 }
             }
             GiveItems();
+            foreach(Button b in changedButtons)
+            {
+                b.image.sprite = orgInvImage;
+            }
+            changedButtons.Clear();
             givingItems = false;
         }
         else if(Input.GetKeyDown(KeyCode.T) && givingItems)
         {
+            foreach (Button b in changedButtons)
+            {
+                b.image.sprite = orgInvImage;
+            }
+            changedButtons.Clear();
             itemsToGive.Clear();
             givingItems = false;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
@@ -232,6 +248,7 @@ public class CH_Inventory : MonoBehaviour {
                 items[i] = itemToAdd;
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
+                Debug.Log(itemToAdd.GetComponent<OB_Item>().Respawn);
                 if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
@@ -246,7 +263,6 @@ public class CH_Inventory : MonoBehaviour {
 
     IEnumerator SpawnNewItem(GameObject copy, Vector3 position)
     {
-        //int time = 10;
         GameObject newItem;
         yield return new WaitForSeconds(10f);
         newItem = Instantiate(copy,position, Quaternion.identity);
@@ -317,14 +333,17 @@ public class CH_Inventory : MonoBehaviour {
     List<Item> reqItems = new List<Item>();
     public void RequestItems(GameObject inRequester, Item[] inItems, int maxNumberOfItems)
     {
-        requester = inRequester;
-        maximumItems = maxNumberOfItems;
-        reqItems.AddRange(inItems);
-        inRequester.GetComponent<OB_Interactable>().enabled = false;
-        itemsToGive = new List<GameObject>();
-        givingItems = true;
-        Debug.Log("Giving Items");
-        gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
+        if (!givingItems)
+        {
+            requester = inRequester;
+            maximumItems = maxNumberOfItems;
+            reqItems.AddRange(inItems);
+            inRequester.GetComponent<OB_Interactable>().enabled = false;
+            itemsToGive = new List<GameObject>();
+            givingItems = true;
+            Debug.Log("Giving Items");
+            gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
+        }
     }
 
     public void GiveItems()

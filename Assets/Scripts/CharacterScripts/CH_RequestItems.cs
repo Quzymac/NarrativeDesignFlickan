@@ -13,17 +13,29 @@ public class CH_RequestItems : OB_Interactable {
     int maxNumberOfItemsToBeGiven;
     List<GameObject> items = new List<GameObject>();
     int givinhgTomteItems = 1;
+    int givingTrollItems = 1;
+    int refusedTroll;
+    SE_SopaScript sopaScript;
 
     private void OnEnable()
     {
-        OptionsManager.NewChoice += Compare;
+        OptionsManager.NewChoice += Compare; 
     }
 
     private void Compare(object sender, OptionsEventArgs e)
     {
-        if(e.Option == "B1_Alf_1")
+        if(e.Option == "B1_Alf_1" && character.GetPersistentMethodName(0) == "Tomte")
         {
             if (e.Value == givinhgTomteItems)
+            {
+                enabled = true;
+                GetComponent<OB_Dialogue>().enabled = false;
+            }
+        }
+
+        if(e.Option == "B1_Sopa_1" && character.GetPersistentMethodName(0) == "Troll")
+        {
+            if(e.Value == givingTrollItems)
             {
                 enabled = true;
                 GetComponent<OB_Dialogue>().enabled = false;
@@ -34,6 +46,8 @@ public class CH_RequestItems : OB_Interactable {
     private void Start()
     {
         enabled = false;
+        if (character.GetPersistentMethodName(0) == "Troll")
+            sopaScript = GetComponent<SE_SopaScript>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -160,21 +174,25 @@ public class CH_RequestItems : OB_Interactable {
         else if (falukorv == false && berry == true && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Det här va gott, men nåt smakrikare hade suttit bra. Om du inte har brått' vill jag mer mat ha."));
-            character = null;
         }
         else if (falukorv == false && berry == true && mushroom == false)
         {
             StartCoroutine(SendMessage("Troll", "Det här va delikat och magen min känns rätt, men det ä' väl klart att mer krävs för att ja ska bli mätt."));
-            character = null;
         }
         else if (falukorv == false && berry == false && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Det här ä' på tok för lite mat för mej, om du ä' klok så hämtar du nån mer grej."));
-            character = null;
         }
         else
         {
-            StartCoroutine(SendMessage("Troll", "Jag tänker inte hjälpa dig",false));
+            StartCoroutine(SendMessage("Troll", "Fy va taskigt, jag tänker inte hjälpa dig"));
+            refusedTroll++;
+            if(refusedTroll == 5)
+            {
+                StartCoroutine(sopaScript.PushPlayer());
+                StartCoroutine(SendMessage("Troll", "Nu har du vari på tok taskig, du får inte kom tillbaka"));
+                character = null;
+            }
         }
     }
 
@@ -185,7 +203,7 @@ public class CH_RequestItems : OB_Interactable {
         UI_DialogueController.Instance.Closemessage();
         if(extraText)
         {
-            StartCoroutine(SendMessage("Troll", "Näcken spelar violin, så skärp örona dina.Och om du än har energin, kolla under alla stenar fina!",false));
+            StartCoroutine(SendMessage("Troll", "Näcken spelar violin, så skärp örona dina. Och om du än har energin, kolla under alla stenar fina!",false));
         }
     } 
 }
