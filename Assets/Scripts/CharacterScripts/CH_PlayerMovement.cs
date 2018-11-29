@@ -21,6 +21,7 @@ public class CH_PlayerMovement : MonoBehaviour
     {
         moveSpeed = defaultMoveSpeed;
         rotationSpeed = defaultRotationSpeed;
+        running = false;
     }
 
     public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
@@ -74,32 +75,25 @@ public class CH_PlayerMovement : MonoBehaviour
             float speedForward = Vector3.Dot(transform.forward, moveDirection);
             if (speedForward < 0)
                 speedForward = 0;
-            if (speedForward < 0.001 && !jumping)
+            if (!running && speedForward > 0)
+            {
+                myAnimator.SetBool("Walk", true);
+                myAnimator.SetBool("Idle", false);
+                myAnimator.SetBool("Run", false);
+            }
+            else if (running && speedForward > 0)
+            {
+                myAnimator.SetBool("Run", true);
+                myAnimator.SetBool("Idle", false);
+                myAnimator.SetBool("Walk", false);
+            }
+            else if(speedForward == 0)
             {
                 myAnimator.SetBool("Idle", true);
-                idle = true;
-            }
-            else
-            {
-                idle = false;
-                myAnimator.SetBool("Idle", false);
+                myAnimator.SetBool("Run", false);
+                myAnimator.SetBool("Walk", false);
             }
             //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)
-            if (jumping)
-            {
-                myAnimator.SetBool("Walking", false);
-                myAnimator.SetBool("Running", false);
-            }
-            else if (!idle && running)
-            {
-                myAnimator.SetBool("Running", true);
-                myAnimator.SetBool("Walking", false);
-            }
-            else if (!idle && !running)
-            {
-                myAnimator.SetBool("Walking", true);
-                myAnimator.SetBool("Running", false);
-            }
 
             Vector3 velocityVector = speedForward * moveDirection;
             velocityVector *= moveSpeed; //Gångra med movespeed
