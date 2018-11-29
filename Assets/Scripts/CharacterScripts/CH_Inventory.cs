@@ -12,7 +12,7 @@ public class CH_Inventory : MonoBehaviour {
     Image[] itemImages = new Image[8];
     int itemSlot = 0;
     float strength = 0f;
-    [SerializeField]
+    //[SerializeField]
     ParticleSystem particle;
     ParticleSystem activeParticle;
     [SerializeField]
@@ -25,6 +25,13 @@ public class CH_Inventory : MonoBehaviour {
     "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
     List<Button> changedButtons = new List<Button>();
+    [Header("Blåbär prefab utan bär")]
+    [SerializeField]
+    GameObject blueberryPrefab;
+    [Header("Lingon prefab utan bär")]
+    [SerializeField]
+    GameObject lingonPrefab;
+
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
@@ -103,22 +110,21 @@ public class CH_Inventory : MonoBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R) && items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && givingItems)
+        if (Input.GetKeyDown(KeyCode.R) &&  givingItems)
         {
-            if(!itemsToGive.Contains(items[itemSlot]) && itemsToGive.Count < maximumItems)
+            if(items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && !itemsToGive.Contains(items[itemSlot]) && itemsToGive.Count < maximumItems)
             {
                 itemsToGive.Add(items[itemSlot]);
                 changedButtons.Add(inventorySlots[itemSlot]);
                 inventorySlots[itemSlot].image.sprite = giveInvImgage;
-                Debug.Log("Added a " + items[itemSlot].GetComponent<OB_Item>().GetItemType().ToString() + " to give");
             }
             else if(itemsToGive.Count == maximumItems)
             {
-                Debug.Log("Du kan inte ge " + requester.name + " fler saker");
+                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.name + " vill inte ha fler saker", 3f);
             }
-            else
+            else if(items[itemSlot] != null)
             {
-                Debug.Log(requester.name + " vill inte ha detta item");
+                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.name + " vill inte ha detta föremål", 3f);
             }
         }
 
@@ -157,7 +163,8 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false &&
+            items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Blueberry && items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Lingonberry)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -171,7 +178,7 @@ public class CH_Inventory : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Can't drop items here");
+            Debug.Log("Can't drop");
         }
     }
 
@@ -248,11 +255,20 @@ public class CH_Inventory : MonoBehaviour {
                 items[i] = itemToAdd;
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
-                Debug.Log(itemToAdd.GetComponent<OB_Item>().Respawn);
                 if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position));
+                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 10f));
+                }
+                else if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Blueberry && itemToAdd.GetComponent<OB_Item>().Respawn)
+                {
+                    itemToAdd.GetComponent<OB_Item>().Respawn = false;
+                    StartCoroutine(SpawnNewItem(blueberryPrefab, itemToAdd.transform.position, 0f));
+                }
+                else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Lingonberry && itemToAdd.GetComponent<OB_Item>().Respawn)
+                {
+                    itemToAdd.GetComponent<OB_Item>().Respawn = false;
+                    StartCoroutine(SpawnNewItem(lingonPrefab, itemToAdd.transform.position, 0f));
                 }
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
@@ -261,11 +277,11 @@ public class CH_Inventory : MonoBehaviour {
         return false;
     }
 
-    IEnumerator SpawnNewItem(GameObject copy, Vector3 position)
+    IEnumerator SpawnNewItem(GameObject copy, Vector3 position, float time)
     {
         GameObject newItem;
-        yield return new WaitForSeconds(10f);
-        newItem = Instantiate(copy,position, Quaternion.identity);
+        yield return new WaitForSeconds(time);
+        newItem = Instantiate(copy, position, Quaternion.identity);
         newItem.SetActive(true);
     }
 

@@ -77,7 +77,7 @@ public class CH_RequestItems : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        if(character.GetPersistentEventCount() > 0)
+        if(character != null && character.GetPersistentEventCount() > 0)
         {
             player.GetComponent<CH_Inventory>().RequestItems(gameObject, itemsWanted, maxNumberOfItemsToBeGiven);
         }
@@ -104,7 +104,7 @@ public class CH_RequestItems : OB_Interactable {
             }
             else
             {
-                StartCoroutine(SendMessage("Tomte", "Det var inte så snällt av dig, hoppas trollmamman tar dej som hon tog männskobarnet som sprang förbi nyss."));
+                UI_DialogueController.Instance.DisplayMessage("Tomte", "Det var inte så snällt av dig, hoppas trollmamman tar dej som hon tog männskobarnet som sprang förbi nyss.", 5f);
             }
         }
     }

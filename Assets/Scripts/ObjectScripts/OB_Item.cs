@@ -27,7 +27,7 @@ public class OB_Item : OB_Interactable {
         audioHandler = FindObjectOfType<AudioHandler>();
         scriptManager = FindObjectOfType<UI_FadingEffect>().gameObject;
         target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
-        if (type == Item.Apple)
+        if (type == Item.Apple || type == Item.Blueberry || type == Item.Lingonberry)
             Respawn = true;
     }
 
@@ -95,24 +95,4 @@ public class OB_Item : OB_Interactable {
             yield return null;
         }
     }
-
-    /*
-    public void NeedItem(GameObject requestedItem)
-    {
-        if (inventory.SearchInventory(requestedItem) && recivedItem == false)
-        {
-            PlaceItem(requestedItem);
-            inventory.RemoveItem(requestedItem);
-            recivedItem = true;
-            Debug.Log("Thanks");
-        }
-        else if (recivedItem == false)
-        {
-            Debug.Log("I need a " + requestedItem.name);
-        }
-        else if (recivedItem == true)
-        {
-            Debug.Log("I have already recieved a" + requestedItem.name);
-        }
-    }*/
 }
