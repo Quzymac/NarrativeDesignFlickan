@@ -30,6 +30,7 @@ public class SE_Gloson : OB_Interactable {
         {
             Debug.Log("GLOSNOMNOMNOMNOMNOM");
             inventory.RemoveItems(Item.Apple, 3);
+            player.GetComponent<CH_Interact>().RemoveInteractable(this);
             storyEvent.CompleteQuest();
         }
     }
