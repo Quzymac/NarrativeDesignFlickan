@@ -52,7 +52,7 @@ public class CH_PlayerMovement : MonoBehaviour
             {
                 if (grounded)
                 {
-                    jumpTime = Time.time + .1f;
+                    jumpTime = Time.time + 1f;
                     body.AddForce(Vector3.up * 3, ForceMode.Impulse);
                     grounded = false;
                     jumping = true;
@@ -123,10 +123,10 @@ public class CH_PlayerMovement : MonoBehaviour
                     shakeIntencity = 1;
                 CameraShake.Instance.ShakeCamera(shakeIntencity / 20, shakeIntencity / 10, 4);
             }
-            grounded = true;
             jumping = false;
-            myAnimator.SetBool("Jump", false);
+            grounded = true;
         }
+        myAnimator.SetBool("Jump", false);
     }
     private void OnCollisionStay(Collision collision)
     {
