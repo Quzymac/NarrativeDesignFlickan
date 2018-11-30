@@ -145,7 +145,6 @@ public class FairyFoodCollecting : MonoBehaviour
 
     IEnumerator TeleportToFairies()
     {
-        //Fade WIP
         fadeCanvas.ActivateFading();
         yield return new WaitForSeconds(1);
         player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
@@ -163,7 +162,7 @@ public class FairyFoodCollecting : MonoBehaviour
 
     void Update()
     {
-
+        // FORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTING
         if (Input.GetKeyDown(KeyCode.P))
         {
             countdownTimer.StartTimer();
