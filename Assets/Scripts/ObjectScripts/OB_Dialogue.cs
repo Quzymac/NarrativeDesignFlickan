@@ -51,6 +51,7 @@ public class OB_Dialogue : OB_Interactable
             }
             if(e.Value == 2)
             {
+                dialogueFile = exhausteddialogueFile;
                 enabled = false;
             }
         }
