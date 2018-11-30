@@ -12,7 +12,7 @@ public class BirdSounds : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(BirdsSoundsCO());
+        //StartCoroutine(BirdsSoundsCO());
         soundRange = GetComponent<SphereCollider>();
         soundRange.radius = audioSource.maxDistance;
     }
