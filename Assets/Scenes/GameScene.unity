@@ -358,7 +358,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -382,7 +382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mammaGoal: {fileID: 90874125}
-  mammaTroll: {fileID: 60893962}
 --- !u!4 &64696521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4974264241310912, guid: 65da476c7a208264b91b9b7d2b8c61cc,
@@ -410,7 +409,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 90874124}
   m_LocalRotation: {x: -0, y: 0.31939545, z: -0, w: 0.9476215}
-  m_LocalPosition: {x: 216.44, y: 12.589, z: 269.15}
+  m_LocalPosition: {x: 216.44, y: 13.105, z: 269.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1804317837}

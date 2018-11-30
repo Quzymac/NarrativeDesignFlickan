@@ -10,9 +10,6 @@ public class CH_MammaTroll : MonoBehaviour {
 
     NavMeshAgent troll;
 
-    [SerializeField]
-    GameObject mammaTroll;
-
     void Start()
     {
         troll = GetComponent<NavMeshAgent>();
@@ -20,9 +17,9 @@ public class CH_MammaTroll : MonoBehaviour {
     }
     private void Update()
     {
-        if (troll.transform.position == mammaGoal.transform.position)
+        if (Vector3.Distance(gameObject.transform.position,mammaGoal.transform.position) <= 1f)
         {
-            Destroy(mammaTroll);
+            Destroy(gameObject);
         }
     }
 }
