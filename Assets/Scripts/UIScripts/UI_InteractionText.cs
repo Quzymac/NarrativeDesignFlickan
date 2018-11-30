@@ -11,7 +11,7 @@ public class UI_InteractionText : MonoBehaviour {
 
     Canvas interactionTextCanvas;
     Transform cam;
-    string itemName;
+    Item itemName;
     bool canvasActive;
 
     //Call this method with "true" when interaction is possible to display text.
@@ -28,28 +28,55 @@ public class UI_InteractionText : MonoBehaviour {
         interactionTextCanvas = GetComponentInChildren<Canvas>();
         interactionTextCanvas.gameObject.SetActive(false);
 
-        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" to interact";
+        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att använda";
         //Sets text to match itemType
         if (GetComponent<OB_Item>())
         {
-            itemName = GetComponentInParent<OB_Item>().GetItemType().ToString();
-            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + itemName;
+            itemName = GetComponentInParent<OB_Item>().GetItemType();
+            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att ta " + TranslateItemName(itemName);
         }
 
         if (GetComponent<OB_Dialogue>())
         {
-            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" to speak";
+            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att prata";
         }
     }
-
-    void Update ()
+    string TranslateItemName(Item item)
     {
-        //for testing, remove when implemented in OB_Interactable
-        if (Input.GetKeyDown(KeyCode.Space))
+        switch (item)
         {
-            SetTextActive(!canvasActive);
+            case Item.Blueberry:
+                return "blåbär";
+            case Item.BlueberryBush:
+                return "blåbär";
+            case Item.LingonBush:
+                return "lingon";
+            case Item.Lingonberry:
+                return "lingon";
+            case Item.Apple:
+                return "äpple";
+            case Item.Chanterelle:
+                return "kantarell";
+            case Item.Falukorv:
+                return "falukorv";
+            case Item.Birch_polypore:
+                return "björkticka";
+            case Item.Fly_agaric:
+                return "flugsvamp";
+            case Item.Gulfotshatta:
+                return "gulfotshätta";
+            case Item.Pine_cone:
+                return "tallkotte";
+            case Item.Fir_cone:
+                return "grankotte";
+            case Item.Wine:
+                return "vin";
         }
 
+        return "SomeString";
+    }
+    void Update ()
+    {
         if (canvasActive)
         {
             //Rotates text towards camera when active
