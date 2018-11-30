@@ -152,7 +152,7 @@ public class FairyFoodCollecting : MonoBehaviour
 
         player.transform.position = endGamePos.position;
         fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(false);
-        player.GetComponent<Rigidbody>().isKinematic = true;
+        player.GetComponent<Rigidbody>().isKinematic = false;
 
         yield return new WaitForSeconds(0.8f);
         fadeCanvas.DeactivateFading();
