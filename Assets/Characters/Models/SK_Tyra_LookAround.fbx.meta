@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dcbba65f1ad17cb4b8b6f22b52480680
+guid: fbbe1822508545f4daa25582426f1a34
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -64,7 +64,7 @@ ModelImporter:
     3300000: default
     4300000: default
     4300002: tyra
-    7400000: tyra_idle
+    7400000: tyra_lookaround
     9500000: //RootNode
     13700000: tyra
     2186277476908879412: ImportLogs
@@ -97,10 +97,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: tyra_idle
+      name: tyra_lookaround
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 360
+      lastFrame: 376
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
