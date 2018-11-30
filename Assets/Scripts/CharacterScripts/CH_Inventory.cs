@@ -269,7 +269,7 @@ public class CH_Inventory : MonoBehaviour
                 if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 10f));
+                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 40f));
                 }
 
                 else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush && itemToAdd.GetComponent<OB_Item>().Respawn)

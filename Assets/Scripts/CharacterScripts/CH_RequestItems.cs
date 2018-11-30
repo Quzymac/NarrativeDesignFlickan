@@ -17,6 +17,7 @@ public class CH_RequestItems : OB_Interactable {
     int refusedTroll;
     SE_SopaScript sopaScript;
     CH_Interact tempPlayer;
+    string characterName;
 
     private void OnEnable()
     {
@@ -53,7 +54,18 @@ public class CH_RequestItems : OB_Interactable {
         {
             sopaScript = GetComponent<SE_SopaScript>();
             tempPlayer = FindObjectOfType<CH_Interact>();
+            characterName = "Trollet";
         }
+
+        if(character.GetPersistentMethodName(0) == "Tomte")
+        {
+            characterName = "Tomten";
+        }
+    }
+
+    public string GetCharacterName()
+    {
+        return characterName;
     }
 
     private void OnTriggerEnter(Collider other)
