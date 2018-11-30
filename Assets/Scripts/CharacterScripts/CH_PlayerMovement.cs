@@ -14,14 +14,18 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-    private bool jump, jumping, grounded, running, idle;
+    private bool jump, jumping, grounded, running, idle, pushing;
     private float jumpTime;
+
+    public Animator MyAnimator { get { return myAnimator; } }
+    public bool Pushing { set { pushing = value; } }
 
     private void Start()
     {
         moveSpeed = defaultMoveSpeed;
         rotationSpeed = defaultRotationSpeed;
         running = false;
+        pushing = false;
     }
 
     public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
@@ -57,6 +61,7 @@ public class CH_PlayerMovement : MonoBehaviour
                     grounded = false;
                     jumping = true;
                     myAnimator.SetBool("Jump", true);
+                    myAnimator.speed = 1;
                 }
                 jump = false;
             }
@@ -75,23 +80,26 @@ public class CH_PlayerMovement : MonoBehaviour
             float speedForward = Vector3.Dot(transform.forward, moveDirection);
             if (speedForward < 0)
                 speedForward = 0;
-            if (!running && speedForward > 0)
+            if (!running && speedForward > 0 && !pushing)
             {
                 myAnimator.SetBool("Walk", true);
                 myAnimator.SetBool("Idle", false);
                 myAnimator.SetBool("Run", false);
+                myAnimator.speed = speedForward;
             }
-            else if (running && speedForward > 0)
+            else if (running && speedForward > 0 && !pushing)
             {
                 myAnimator.SetBool("Run", true);
                 myAnimator.SetBool("Idle", false);
                 myAnimator.SetBool("Walk", false);
+                myAnimator.speed = speedForward;
             }
             else if(speedForward == 0)
             {
                 myAnimator.SetBool("Idle", true);
                 myAnimator.SetBool("Run", false);
                 myAnimator.SetBool("Walk", false);
+                myAnimator.speed = 1;
             }
             //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)
 

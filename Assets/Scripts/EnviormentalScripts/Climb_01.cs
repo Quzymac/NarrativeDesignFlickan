@@ -97,6 +97,7 @@ public class Climb_01 : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
+        player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", true);
         ClimbUp(player);
     }
 }

@@ -37,7 +37,7 @@
     </Text>
     <ChoiceName choiceName="B2_Vadis_1">
     </ChoiceName>
-    <ChoiceBool choiceBool="2">
+    <ChoiceBool choiceBool="1">
     </ChoiceBool>
   </Name>
 </Dialogue>

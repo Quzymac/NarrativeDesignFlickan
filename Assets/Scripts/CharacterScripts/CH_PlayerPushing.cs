@@ -37,6 +37,9 @@ public class CH_PlayerPushing : MonoBehaviour {
         {
             this.bodyToMove = null;
             GetComponent<CH_PlayerMovement>().SetStop(false);
+            GetComponent<CH_PlayerMovement>().Pushing = false;
+            GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
+            GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
         }
     }
 	
@@ -61,6 +64,29 @@ public class CH_PlayerPushing : MonoBehaviour {
             velocityVector.y = body.velocity.y;   //Vi vill inte ändra velocity i y led eftersom det skulle påvärka gravitationen
             body.velocity = velocityVector;   //GO! BLAH!
             velocityVector.y = bodyToMove.velocity.y;
+            if(velocityVector.x < 0)
+            {
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", true);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", false);
+                GetComponent<CH_PlayerMovement>().Pushing = true;
+            }
+            else if(velocityVector.x > 0)
+            {
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", true);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", false);
+                GetComponent<CH_PlayerMovement>().Pushing = true;
+            }
+            else
+            {
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
+                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", true);
+                GetComponent<CH_PlayerMovement>().Pushing = true;
+            }
+
+
             float distanceBonus = 1; //Ser till så att det man puttar på inte åker snabbare/saktare än spelaren
             if (speedForward < 0)
             {
