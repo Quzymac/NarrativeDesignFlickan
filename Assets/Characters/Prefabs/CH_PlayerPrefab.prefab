@@ -958,9 +958,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 95635007686895648}
   body: {fileID: 54222548761097512}
-  defaultMoveSpeed: 3
+  defaultMoveSpeed: 2
   defaultRotationSpeed: 10
-  runMultiplier: 2
+  runMultiplier: 2.5
   cameraTrans: {fileID: 0}
 --- !u!114 &114094297598253226
 MonoBehaviour:
@@ -993,9 +993,13 @@ MonoBehaviour:
   - {fileID: 0}
   orgInvImage: {fileID: 21300000, guid: ff1924b72a9e0b147b43f7bd10df4ea5, type: 3}
   giveInvImgage: {fileID: 21300000, guid: 0ecb7d3057a68414283f12afcedc66c6, type: 3}
-  blueberryPrefab: {fileID: 1302637045522118, guid: 6ce861563c0acd84881ef786f741f996,
+  blueberryBushPrefab: {fileID: 1302637045522118, guid: 6ce861563c0acd84881ef786f741f996,
     type: 2}
-  lingonPrefab: {fileID: 1619630856236234, guid: 2893bccea65fa0d469fbe7d901927da6,
+  lingonBushPrefab: {fileID: 1619630856236234, guid: 2893bccea65fa0d469fbe7d901927da6,
+    type: 2}
+  blueberryPrefab: {fileID: 1753487590002070, guid: 303a505aa8f40314f9597198096b64da,
+    type: 2}
+  lingonberryPrefab: {fileID: 1784518186651776, guid: 779aeb49bf2197d4b8aeafd5947cbe29,
     type: 2}
 --- !u!114 &114210721505206794
 MonoBehaviour:
@@ -1052,7 +1056,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.55, z: 0}
 --- !u!137 &137358992856621546
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
