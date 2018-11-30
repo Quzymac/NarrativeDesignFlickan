@@ -20,7 +20,7 @@ public class CH_Inventory : MonoBehaviour {
     [SerializeField]
     Sprite giveInvImgage; //InvImage given
     List<Item> consumables = new List<Item> { Item.Apple, Item.Blueberry, Item.Chanterelle, Item.Lingonberry, Item.Wine };
-    string[] itemNames = {"Äpple", "Blåbär", "Lingon", "Kantarell", "Falukorv", "Björkticka", "Röd flugsvamp", "Gulfotshätta", "Tallkotte", "Grankotte", "Vinflaska" };
+    string[] itemNames = {"Äpple", "Blåbär", "Kantarell", "Röd flugsvamp", "Lingon", "Gulfotshätta", "Vinflaska", "Falukorv", "Björkticka", "Tallkotte", "Grankotte" };
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
     "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
@@ -98,6 +98,17 @@ public class CH_Inventory : MonoBehaviour {
             itemSlot = 7;
         }
 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSlot > 0)
+        {
+            itemSlot--;
+            inventorySlots[itemSlot].Select();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSlot < 7)
+        {
+            itemSlot++;
+            inventorySlots[itemSlot].Select();
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             ConsumeItem();
@@ -157,13 +168,12 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.2f, 0.2f, 0.2f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
             if (items[itemSlot].GetComponent<Rigidbody>())
             {
-                items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 items[itemSlot].GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             items[itemSlot] = null;
@@ -208,7 +218,7 @@ public class CH_Inventory : MonoBehaviour {
             activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
             StartCoroutine(DrunkEffect(5));
         }
-        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()],3f);
+        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()],5f);
         if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
         {
             Destroy(items[itemSlot]);

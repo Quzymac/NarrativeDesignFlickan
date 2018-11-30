@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som helst
 
-    [SerializeField] //Target är ett empty gameObject som sitter vid karaktärens huvud
+    [SerializeField]
     private Transform target, cameraUpDown, cameraLeftRight, cameraRayOrigin; //Target = spelaren, cameraUpDown och leftRight är päron till kameran
     [SerializeField]
     private float sensitivity = 0.5f;
-    private float maxAngleX = .6f, minAngleX = 0, maxDist = 9, minDist = 1.5f;
-    private float cameraDist = 4;
+    private float maxAngleX = .6f, minAngleX = 0;
     private bool stop;
     [SerializeField]
     LayerMask mask;
@@ -37,14 +36,14 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     {
         RaycastHit wallHit = new RaycastHit();
         //linecast from your player (targetFollow) to your cameras mask (camMask) to find collisions.
-        if (Physics.Linecast(target.position, cameraRayOrigin.position - cameraRayOrigin.forward, out wallHit, mask))
+        if (Physics.Linecast(target.position + Vector3.up * .5f, cameraRayOrigin.position - cameraRayOrigin.forward, out wallHit, mask))
         {
             Vector3 camPosition = cameraUpDown.GetChild(0).position;
             camPosition = new Vector3(wallHit.point.x + wallHit.normal.x * 0.5f, camPosition.y, wallHit.point.z + wallHit.normal.z * 0.5f);
-            cameraUpDown.GetChild(0).position = Vector3.Lerp(cameraUpDown.GetChild(0).position, camPosition, Time.deltaTime * cameraDist);
+            cameraUpDown.GetChild(0).position = Vector3.Lerp(cameraUpDown.GetChild(0).position, camPosition, Time.deltaTime * 8);
         } else
         {
-            cameraUpDown.GetChild(0).localPosition = Vector3.Lerp(cameraUpDown.GetChild(0).localPosition, Vector3.back * cameraDist, Time.deltaTime * 2);
+            cameraUpDown.GetChild(0).localPosition = Vector3.Lerp(cameraUpDown.GetChild(0).localPosition, Vector3.back * 8, Time.deltaTime * 2);
         }
         /*Debug.Log((cameraUpDown.GetChild(0).position.x + cameraUpDown.GetChild(0).position.z) - (target.position.x + target.position.z));
         Debug.Log(Vector3.Distance(target.position, cameraUpDown.GetChild(0).position));
@@ -66,7 +65,6 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     {
         if (!stop)
         {
-            CameraScroll();
             Quaternion newRotation = cameraUpDown.localRotation * Quaternion.Euler(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
             if (newRotation.x < minAngleX)
             {
@@ -88,26 +86,6 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
             }*/
             cameraLeftRight.position = target.position;
             AvoidStuff();
-        }
-    }
-    private void CameraScroll()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            cameraDist -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * 200;
-            if (cameraDist > maxDist)
-                cameraDist = maxDist;
-            Vector3 rayOrigin = cameraRayOrigin.localPosition;
-            rayOrigin.z = -cameraDist;
-            cameraRayOrigin.localPosition = rayOrigin;
-        } else if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {
-            cameraDist -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * 200;
-            if (cameraDist < minDist)
-                cameraDist = minDist;
-            Vector3 rayOrigin = cameraRayOrigin.localPosition;
-            rayOrigin.z = -cameraDist;
-            cameraRayOrigin.localPosition = rayOrigin;
         }
     }
 }

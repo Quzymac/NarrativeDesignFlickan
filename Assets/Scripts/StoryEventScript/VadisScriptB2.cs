@@ -5,8 +5,8 @@ using UnityEngine;
 //Skriptet ska ligga på en trigger collider som täcker ån
 public class VadisScriptB2 : MonoBehaviour {
 
-    static bool gotCorrectItem = false;
-    static bool recivedItemRecently = false;
+    bool gotCorrectItem = false;
+    bool recivedItemRecently = false;
     CH_PlayerMovement player;
 
     private void Start()
@@ -20,7 +20,6 @@ public class VadisScriptB2 : MonoBehaviour {
         {
             player.SetStop(true);
             recivedItemRecently = true;
-            StartCoroutine(QuasiRemoveItem(other));
             if(other.GetComponent<OB_Item>().GetItemType() == Item.Birch_polypore)
             {
                 StartCoroutine(BirchPolyPore());
@@ -39,19 +38,6 @@ public class VadisScriptB2 : MonoBehaviour {
                 StartCoroutine(OtherThings());
             }
         }
-    }
-
-    IEnumerator QuasiRemoveItem(Collider c)
-    {
-        foreach(Collider col in c.GetComponents<Collider>())
-        {
-            if(!col.isTrigger)
-            {
-                col.enabled = false;
-            }
-        }
-        yield return new WaitForSeconds(1f);
-        c.gameObject.SetActive(false);
     }
 
     IEnumerator BirchPolyPore()

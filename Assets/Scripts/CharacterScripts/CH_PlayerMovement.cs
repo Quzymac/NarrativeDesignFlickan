@@ -47,10 +47,6 @@ public class CH_PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
-        if (Time.time > jumpTime - .7f)
-        {
-            myAnimator.SetBool("Jump", false);
-        }
     }
     void FixedUpdate()
     {
@@ -138,6 +134,7 @@ public class CH_PlayerMovement : MonoBehaviour
             jumping = false;
             grounded = true;
         }
+        myAnimator.SetBool("Jump", false);
     }
     private void OnCollisionStay(Collision collision)
     {
