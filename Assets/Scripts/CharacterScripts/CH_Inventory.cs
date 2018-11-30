@@ -25,13 +25,18 @@ public class CH_Inventory : MonoBehaviour {
     "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
     List<Button> changedButtons = new List<Button>();
-    [Header("Blåbär prefab utan bär")]
+    [Header("BlåbärBush prefab utan bär")]
+    [SerializeField]
+    GameObject blueberryBushPrefab;
+    [Header("LingonBush prefab utan bär")]
+    [SerializeField]
+    GameObject lingonBushPrefab;
+    [Header("Blueberry Prefab")]
     [SerializeField]
     GameObject blueberryPrefab;
-    [Header("Lingon prefab utan bär")]
+    [Header("Lingonberry Prefab")]
     [SerializeField]
-    GameObject lingonPrefab;
-
+    GameObject lingonberryPrefab;
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
@@ -163,8 +168,7 @@ public class CH_Inventory : MonoBehaviour {
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false &&
-            items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Blueberry && items[itemSlot].GetComponent<OB_Item>().GetItemType() != Item.Lingonberry)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -253,24 +257,42 @@ public class CH_Inventory : MonoBehaviour {
         {
             if (items[i] == null)
             {
-                items[i] = itemToAdd;
+                if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush)
+                {
+                    items[i] = Instantiate(blueberryPrefab);
+                    items[i].SetActive(false);
+                }
+                else if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.LingonBush)
+                {
+                    items[i] = Instantiate(lingonberryPrefab);
+                    items[i].SetActive(false);
+                }
+                else
+                {
+                    items[i] = itemToAdd;
+                }
+
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
+
                 if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
                     StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 10f));
                 }
-                else if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Blueberry && itemToAdd.GetComponent<OB_Item>().Respawn)
+
+                else if(itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(blueberryPrefab, itemToAdd.transform.position, 0f));
+                    StartCoroutine(SpawnNewItem(blueberryBushPrefab, itemToAdd.transform.position, 0f));
                 }
-                else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Lingonberry && itemToAdd.GetComponent<OB_Item>().Respawn)
+
+                else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.LingonBush && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(lingonPrefab, itemToAdd.transform.position, 0f));
+                    StartCoroutine(SpawnNewItem(lingonBushPrefab, itemToAdd.transform.position, 0f));
                 }
+
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
             }

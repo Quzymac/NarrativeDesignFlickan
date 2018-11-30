@@ -2,43 +2,93 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VadisScriptB2 : OB_Interactable {
+//Skriptet ska ligga på en trigger collider som täcker ån
+public class VadisScriptB2 : MonoBehaviour {
 
-    bool B2Area = false;
+    bool gotCorrectItem = false;
+    bool recivedItemRecently = false;
+    CH_PlayerMovement player;
 
-    string[] Conversation = new string[19] { "Vem gömmer sej där? Är du den store vitormen så ska du veta att jag inte är snopen att du är här - jag såg dina spår tidigare!",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""       
-    };
-
-    public override void Activate(GameObject player)
+    private void Start()
     {
-        
+        player = FindObjectOfType<CH_PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        OnEnter(other);
+        if(other.GetComponent<OB_Item>() && !gotCorrectItem && !recivedItemRecently)
+        {
+            player.SetStop(true);
+            recivedItemRecently = true;
+            if(other.GetComponent<OB_Item>().GetItemType() == Item.Birch_polypore)
+            {
+                StartCoroutine(BirchPolyPore());
+            }
+            else if(other.GetComponent<OB_Item>().GetItemType() == Item.Pine_cone)
+            {
+                gotCorrectItem = true;
+                StartCoroutine(PineCone());
+            }
+            else if(other.GetComponent<OB_Item>().GetItemType() == Item.Fir_cone)
+            {
+                StartCoroutine(FirCone());
+            }
+            else
+            {
+                StartCoroutine(OtherThings());
+            }
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator BirchPolyPore()
     {
-        OnExit(other);
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Svamp från björk?");
+        yield return new WaitForSeconds(2f);
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Tyra vet väl redan att Trollmor Saga tycker att björkar har jättefula fläckar!");
+        yield return new WaitForSeconds(5f);
+        UI_DialogueController.Instance.DisplayMessage("Tyra", "Det visste jag väl redan. Den råkade jag bara knuffa i!");
+        yield return new WaitForSeconds(4f);
+        UI_DialogueController.Instance.Closemessage();
+        recivedItemRecently = false;
+        player.SetStop(false);
+    }
+
+    IEnumerator FirCone()
+    {
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Kotte från gran?");
+        yield return new WaitForSeconds(2f);
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Tyra vet väl redan att Trollmor Saga tycker att granar att alldeles för sköra!");
+        yield return new WaitForSeconds(5f);
+        UI_DialogueController.Instance.DisplayMessage("Tyra", "Det visste jag väl redan. Den råkade jag bara knuffa i!");
+        yield return new WaitForSeconds(4f);
+        UI_DialogueController.Instance.Closemessage();
+        recivedItemRecently = false;
+        player.SetStop(false);
+    }
+
+    IEnumerator OtherThings()
+    {
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Buuuu!");
+        yield return new WaitForSeconds(2f);
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Varför gav du mig en sån? Tramsas Tyra med Vådis?");
+        yield return new WaitForSeconds(5f);
+        UI_DialogueController.Instance.DisplayMessage("Tyra", "Ta det lugnt. Det var ju bara på skoj!");
+        yield return new WaitForSeconds(4f);
+        UI_DialogueController.Instance.Closemessage();
+        recivedItemRecently = false;
+        player.SetStop(false);
+    }
+
+    IEnumerator PineCone()
+    {
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Kotte från tall?");
+        yield return new WaitForSeconds(2f);
+        UI_DialogueController.Instance.DisplayMessage("Vådis", "Jaaa! Trollmor Saga säger ju jämt att tallar påminner om trollhemmet bland bergen!");
+        yield return new WaitForSeconds(5f);
+        UI_DialogueController.Instance.DisplayMessage("Tyra", "Nu vet Vådis att Tyra och Trollmor Saga verkligen är kompisar. Då är Tyra och Vådis också kompisar!");
+        yield return new WaitForSeconds(5f);
+        UI_DialogueController.Instance.Closemessage();
+        recivedItemRecently = false;
+        player.SetStop(false);
     }
 }

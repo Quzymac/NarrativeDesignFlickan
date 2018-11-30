@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Ska testa så att alla items har en gemensam beskriving så alla cloner av ett item kan användas för quest.
-public enum Item {Apple, Blueberry, Lingonberry, Chanterelle, Falukorv, Birch_polypore, Fly_agaric, Gulfotshatta, Pine_cone, Fir_cone, Wine } //Beskriver item type, lägg till med nya sorters items
+public enum Item {Apple, Blueberry, Lingonberry, Chanterelle, Falukorv, Birch_polypore, Fly_agaric, Gulfotshatta, Pine_cone, Fir_cone, Wine, BlueberryBush, LingonBush } //Beskriver item type, lägg till med nya sorters items
 public class OB_Item : OB_Interactable {
 
     [SerializeField]    //Ställ in i inspektorn vilket sorts item detta är.
@@ -27,7 +27,7 @@ public class OB_Item : OB_Interactable {
         audioHandler = FindObjectOfType<AudioHandler>();
         scriptManager = FindObjectOfType<UI_FadingEffect>().gameObject;
         target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
-        if (type == Item.Apple || type == Item.Blueberry || type == Item.Lingonberry)
+        if (type == Item.Apple || type == Item.BlueberryBush || type == Item.LingonBush)
             Respawn = true;
     }
 
