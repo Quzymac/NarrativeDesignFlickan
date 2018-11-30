@@ -36,7 +36,7 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     {
         RaycastHit wallHit = new RaycastHit();
         //linecast from your player (targetFollow) to your cameras mask (camMask) to find collisions.
-        if (Physics.Linecast(target.position, cameraRayOrigin.position - cameraRayOrigin.forward, out wallHit, mask))
+        if (Physics.Linecast(target.position + Vector3.up * .5f, cameraRayOrigin.position - cameraRayOrigin.forward, out wallHit, mask))
         {
             Vector3 camPosition = cameraUpDown.GetChild(0).position;
             camPosition = new Vector3(wallHit.point.x + wallHit.normal.x * 0.5f, camPosition.y, wallHit.point.z + wallHit.normal.z * 0.5f);
