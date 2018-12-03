@@ -7,37 +7,74 @@ public class VadisScriptB2 : MonoBehaviour {
 
     bool gotCorrectItem = false;
     bool recivedItemRecently = false;
+    bool minigameActive = false;
     CH_PlayerMovement player;
+    [Header("Dra in VadisCharacter")]
+    [SerializeField]
+    GameObject vadis;
 
     private void Start()
     {
         player = FindObjectOfType<CH_PlayerMovement>();
     }
 
+    private void OnEnable()
+    {
+        OptionsManager.NewChoice += ActivateMinigame;
+    }
+
+    private void ActivateMinigame(object sender, OptionsEventArgs e)
+    {
+        if (e.Option == "B2_Vadis_1")
+        {
+            minigameActive = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<OB_Item>() && !gotCorrectItem && !recivedItemRecently)
+        if(other.GetComponent<OB_Item>())
         {
-            player.SetStop(true);
-            recivedItemRecently = true;
-            if(other.GetComponent<OB_Item>().GetItemType() == Item.Birch_polypore)
+            foreach (Collider c in other.GetComponents<Collider>())
             {
-                StartCoroutine(BirchPolyPore());
+                if (!c.isTrigger)
+                {
+                    c.enabled = false;
+                    StartCoroutine(EnableCollider(c));
+                }
             }
-            else if(other.GetComponent<OB_Item>().GetItemType() == Item.Pine_cone)
+
+            if (!gotCorrectItem && !recivedItemRecently && minigameActive)
             {
-                gotCorrectItem = true;
-                StartCoroutine(PineCone());
-            }
-            else if(other.GetComponent<OB_Item>().GetItemType() == Item.Fir_cone)
-            {
-                StartCoroutine(FirCone());
-            }
-            else
-            {
-                StartCoroutine(OtherThings());
+                player.SetStop(true);
+                recivedItemRecently = true;
+
+                if (other.GetComponent<OB_Item>().GetItemType() == Item.Birch_polypore)
+                {
+                    StartCoroutine(BirchPolyPore());
+                }
+                else if (other.GetComponent<OB_Item>().GetItemType() == Item.Pine_cone)
+                {
+                    gotCorrectItem = true;
+                    StartCoroutine(PineCone());
+                }
+                else if (other.GetComponent<OB_Item>().GetItemType() == Item.Fir_cone)
+                {
+                    StartCoroutine(FirCone());
+                }
+                else
+                {
+                    StartCoroutine(OtherThings());
+                }
             }
         }
+    }
+
+    IEnumerator EnableCollider(Collider collider)
+    {
+        yield return new WaitForSeconds(1f);
+        collider.enabled = true;
+        collider.gameObject.SetActive(false);
     }
 
     IEnumerator BirchPolyPore()
@@ -89,6 +126,7 @@ public class VadisScriptB2 : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         UI_DialogueController.Instance.Closemessage();
         recivedItemRecently = false;
+        vadis.SetActive(false);
         player.SetStop(false);
     }
 }

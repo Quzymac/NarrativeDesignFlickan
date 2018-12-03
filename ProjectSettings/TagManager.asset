@@ -22,8 +22,8 @@ TagManager:
   - Player
   - IgnorePlayer
   - CameraCollision
-  - 
-  - 
+  - Item
+  - IgnoreItem
   - 
   - 
   - 
