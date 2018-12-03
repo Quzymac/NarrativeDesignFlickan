@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FairyFoodCollecting : MonoBehaviour
 {
@@ -119,13 +120,23 @@ public class FairyFoodCollecting : MonoBehaviour
         switch (dialogTier)
         {
             case 1:
-                dialogController.DisplayMessage("Älvor", "[TIER 1] PLACEHOLDER", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Den snabbaste vägen till trollmor går här, vi ska visa dig vägen flicka lilla!", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage(" ", "[Tyra går vidare till C1]", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                fadeCanvas.ActivateFading();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene(2);
                 // Vidare till C1
                 break;
             case 2:
-                dialogController.DisplayMessage("Älvor", "[TIER 2] PLACEHOLDER", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Följ med oss, vi ska visa dig hur du ska gå för att komma till en säker plats.", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage(" ", "[Tyra går vidare till C2]", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                fadeCanvas.ActivateFading();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene(2);
                 // Vidare till C3
                 break;
             case 3:
@@ -147,7 +158,8 @@ public class FairyFoodCollecting : MonoBehaviour
     {
         fadeCanvas.ActivateFading();
         yield return new WaitForSeconds(1);
-        player.GetComponent<CH_PlayerMovement>().SetStop(true); //to force player to talk to fairy after collecting
+        player.GetComponent<CH_PlayerMovement>().SetStop(true); 
+        player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", true);
         player.GetComponent<Rigidbody>().isKinematic = true;
 
         player.transform.position = endGamePos.position;

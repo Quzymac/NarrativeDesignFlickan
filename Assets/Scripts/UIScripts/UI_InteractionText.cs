@@ -84,8 +84,6 @@ public class UI_InteractionText : MonoBehaviour {
     {
         if (canvasActive)
         {
-            Debug.Log(cam.name);
-
             //Rotates text towards camera when active
             interactionTextCanvas.transform.LookAt(cam);
             interactionTextCanvas.transform.rotation *= Quaternion.Euler(0, 180f, 0);
