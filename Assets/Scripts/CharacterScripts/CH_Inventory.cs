@@ -206,18 +206,21 @@ public class CH_Inventory : MonoBehaviour
 
     void ConsumeItem()
     {
-        if (items[itemSlot].GetComponent<OB_Item>().GetItemType() == Item.Wine)
+        if (items[itemSlot] != null)
         {
-            activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
-            StartCoroutine(DrunkEffect(5));
-        }
-        UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], 3f);
-        if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
-        {
-            Destroy(items[itemSlot]);
-            items[itemSlot] = null;
-            itemImages[itemSlot].sprite = null;
-            itemImages[itemSlot].gameObject.SetActive(false);
+            if (items[itemSlot].GetComponent<OB_Item>().GetItemType() == Item.Wine)
+            {
+                activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
+                StartCoroutine(DrunkEffect(5));
+            }
+            UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], 3f);
+            if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
+            {
+                Destroy(items[itemSlot]);
+                items[itemSlot] = null;
+                itemImages[itemSlot].sprite = null;
+                itemImages[itemSlot].gameObject.SetActive(false);
+            }
         }
     }
 
