@@ -8,7 +8,7 @@ public class OB_TransportTarget : MonoBehaviour {
     List<GameObject> transportedItems = new List<GameObject>();
     int itemsTier = 0;
     Item dialogItem;
-    int[] items = new int[10];
+    int[] items = new int[12];
     
     public Item GetDialogItem()
     {

@@ -92,6 +92,8 @@ public class OB_Item : OB_Interactable {
 
                 target.gameObject.GetComponent<OB_TransportTarget>().SetObject(gameObject);
                 gameObject.GetComponent<Collider>().enabled = true;
+                gameObject.SetActive(false);
+
                 yield break;
             }
 

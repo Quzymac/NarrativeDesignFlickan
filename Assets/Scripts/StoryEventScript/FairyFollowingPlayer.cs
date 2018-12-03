@@ -24,7 +24,6 @@ public class FairyFollowingPlayer : MonoBehaviour {
         {
             fairyFollowing = true;
             fairy.GetComponent<UI_InteractionText>().SetTextActive(false);
-            fairy.GetComponent<Collider>().enabled = false;
         }
         else
         {
