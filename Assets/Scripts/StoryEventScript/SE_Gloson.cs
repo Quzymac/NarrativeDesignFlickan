@@ -31,7 +31,18 @@ public class SE_Gloson : OB_Interactable {
             Debug.Log("GLOSNOMNOMNOMNOMNOM");
             inventory.RemoveItems(Item.Apple, 3);
             player.GetComponent<CH_Interact>().RemoveInteractable(this);
+            RemoveParticles(gameObject);
+            OnExit(player.GetComponent<Collider>());
             storyEvent.CompleteQuest();
+            active = false;
+        }
+    }
+    private void RemoveParticles(GameObject obj)
+    {
+        ParticleSystem[] systems = GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < systems.Length; i++)
+        {
+            systems[i].Stop();
         }
     }
 }

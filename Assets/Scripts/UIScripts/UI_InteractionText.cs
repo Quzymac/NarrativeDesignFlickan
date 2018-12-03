@@ -13,10 +13,12 @@ public class UI_InteractionText : MonoBehaviour {
     Transform cam;
     Item itemName;
     bool canvasActive;
+    [SerializeField]
+    string customText;
 
     //Call this method with "true" when interaction is possible to display text.
     //Call this method with "false" when interaction is not possible to stop displaying text
-	public void SetTextActive(bool isActive)
+    public void SetTextActive(bool isActive)
     {
         interactionTextCanvas.gameObject.SetActive(isActive);
         canvasActive = isActive;
@@ -40,6 +42,8 @@ public class UI_InteractionText : MonoBehaviour {
         {
             interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att prata";
         }
+        if (customText != "")
+            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + customText;
 
     }
     string TranslateItemName(Item item)

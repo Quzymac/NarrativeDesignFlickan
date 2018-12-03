@@ -55,7 +55,7 @@ public class SE_ThreeApples : MonoBehaviour {
         //YAY!
         currentState = Status.Complete;
         Destroy(osynligVägg);
-        Destroy(gloson.gameObject);
+        //Destroy(gloson.gameObject);
         //Stänga av osynliga väggar
     }
     public void PickUpApple(object sender, OptionsEventArgs e)
