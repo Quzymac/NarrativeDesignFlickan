@@ -107,51 +107,61 @@ public class CH_Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && givingItems)
         {
-            if (items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && !itemsToGive.Contains(items[itemSlot]) && itemsToGive.Count < maximumItems)
+            if (items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && !itemsToGive.Contains(items[itemSlot]) && !itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) &&itemsToGive.Count < maximumItems)
             {
                 itemsToGive.Add(items[itemSlot]);
                 changedButtons.Add(inventorySlots[itemSlot]);
                 inventorySlots[itemSlot].image.sprite = giveInvImgage;
+                itemsToGiveTypes.Add(items[itemSlot].GetComponent<OB_Item>().GetItemType());
+            }
+            else if(itemsToGive.Contains(items[itemSlot]))
+            {
+                itemsToGive.Remove(items[itemSlot]);
+                changedButtons.Remove(inventorySlots[itemSlot]);
+                inventorySlots[itemSlot].image.sprite = orgInvImage;
+                itemsToGiveTypes.Remove(items[itemSlot].GetComponent<OB_Item>().GetItemType());
+            }
+            else if(itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
+            {
+                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler sådana");
             }
             else if (itemsToGive.Count == maximumItems)
             {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler saker", 3f);
+                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler saker");
             }
             else if (items[itemSlot] != null)
             {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål", 3f);
+                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål");
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Return) && givingItems)
         {
-            for (int i = 0; i < items.Length; i++)
+            if (itemsToGive.Count > 0)
             {
-                if (itemsToGive.Contains(items[i]))
+                for (int i = 0; i < items.Length; i++)
                 {
-                    items[i] = null;
-                    itemImages[i].sprite = null;
-                    itemImages[i].gameObject.SetActive(false);
+                    if (itemsToGive.Contains(items[i]))
+                    {
+                        items[i] = null;
+                        itemImages[i].sprite = null;
+                        itemImages[i].gameObject.SetActive(false);
+                    }
                 }
+                GiveItems();
+                foreach (Button b in changedButtons)
+                {
+                    b.image.sprite = orgInvImage;
+                }
+                changedButtons.Clear();
+                givingItems = false;
             }
-            GiveItems();
-            foreach (Button b in changedButtons)
+            else
             {
-                b.image.sprite = orgInvImage;
+                gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
+                UI_DialogueController.Instance.Closemessage();
+                givingItems = false;
             }
-            changedButtons.Clear();
-            givingItems = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.T) && givingItems)
-        {
-            foreach (Button b in changedButtons)
-            {
-                b.image.sprite = orgInvImage;
-            }
-            changedButtons.Clear();
-            itemsToGive.Clear();
-            givingItems = false;
-            gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
         }
     }
 
@@ -195,6 +205,7 @@ public class CH_Inventory : MonoBehaviour
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
+            items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
             strength = 0f;
         }
         else
@@ -362,6 +373,7 @@ public class CH_Inventory : MonoBehaviour
     }
 
     List<GameObject> itemsToGive;
+    List<Item> itemsToGiveTypes;
     GameObject requester;
     bool givingItems;
     int maximumItems;
@@ -374,16 +386,20 @@ public class CH_Inventory : MonoBehaviour
             maximumItems = maxNumberOfItems;
             reqItems.AddRange(inItems);
             itemsToGive = new List<GameObject>();
+            itemsToGiveTypes = new List<Item>();
             givingItems = true;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
+            UI_DialogueController.Instance.DisplayMessage("Tyra","Giving items");
         }
     }
 
     public void GiveItems()
     {
+        UI_DialogueController.Instance.Closemessage();
         requester.GetComponent<CH_RequestItems>().GiveItems(itemsToGive);
         requester = null;
         gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
         itemsToGive.Clear();
+        itemsToGiveTypes.Clear();
     }
 }
