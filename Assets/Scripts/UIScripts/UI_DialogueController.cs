@@ -170,6 +170,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
                 }
                 else
                 {
+                    DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
                     SetDialogue(DialogueManager.Instance.Message());
                     //SetButtonsState();
                     DialogueManager.Instance.IsResponding = false;

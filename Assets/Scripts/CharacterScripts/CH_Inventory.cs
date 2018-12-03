@@ -186,6 +186,7 @@ public class CH_Inventory : MonoBehaviour
         }
         else if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
+            GetComponent<CH_PlayerMovement>().Throwing = true;
             items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);

@@ -14,13 +14,14 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-    private bool jump, jumping, grounded, running, idle, pushing, pickup, dancing;
+    private bool jump, jumping, grounded, running, idle, pushing, pickup, dancing, throwing;
     private float jumpTime;
 
     public Animator MyAnimator { get { return myAnimator; } }
     public bool Pushing { set { pushing = value; } }
     public bool Pickup { set { pickup = value; } }
     public bool Jumping { get { return jumping; } }
+    public bool Throwing { set { throwing = value; } }
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class CH_PlayerMovement : MonoBehaviour
         pushing = false;
         pickup = false;
         dancing = false;
+        throwing = false;
     }
 
     public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
@@ -124,6 +126,14 @@ public class CH_PlayerMovement : MonoBehaviour
                 IEnumerator waitForPickup = WaitForAnimation(1.0f, "Pickup");
                 speedForward = 0;
                 StartCoroutine(waitForPickup);
+            }
+            else if (throwing)
+            {
+                throwing = false;
+                myAnimator.speed = 1;
+                IEnumerator waitForThrow = WaitForAnimation(1.0f, "Pickup");
+                speedForward = 0;
+                StartCoroutine(waitForThrow);
             }
 
             //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)

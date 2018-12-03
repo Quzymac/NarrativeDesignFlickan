@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36f502a268bfe61478ecad91729ab1bc
+guid: eb2d7f5b2935f1c44b5f74d81c9abd56
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -100,7 +100,7 @@ ModelImporter:
       name: tyra_climbing
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 46
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
