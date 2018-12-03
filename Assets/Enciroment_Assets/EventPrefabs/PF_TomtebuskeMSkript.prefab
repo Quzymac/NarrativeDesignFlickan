@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114132978363307238}
   - component: {fileID: 114483542717539424}
   - component: {fileID: 114257322668962396}
+  - component: {fileID: 114283825652196620}
   m_Layer: 0
   m_Name: PF_TomtebuskeMSkript
   m_TagString: Untagged
@@ -216,6 +217,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   itemsWanted: 00000000010000000200000003000000
   maxNumberOfItemsToBeGiven: 1
+--- !u!114 &114283825652196620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485407517136882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b02eb01b7d557141b6b14efb43ab017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: -0.1
 --- !u!114 &114483542717539424
 MonoBehaviour:
   m_ObjectHideFlags: 1
