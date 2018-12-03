@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54819039652478100}
   - component: {fileID: 65067704077819592}
   - component: {fileID: 114023093492239930}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "PF_gulfotsh\xE4tta_Pickup"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4814904645792772}
   - component: {fileID: 198267737255306656}
   - component: {fileID: 199388722433175678}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4940982443753880}
   - component: {fileID: 198467414759768068}
   - component: {fileID: 199499379492904708}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

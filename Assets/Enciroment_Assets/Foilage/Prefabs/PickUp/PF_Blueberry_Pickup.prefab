@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4763534665953456}
   - component: {fileID: 198545654342537978}
   - component: {fileID: 199210329724295180}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4405318046670946}
   - component: {fileID: 198076446265746836}
   - component: {fileID: 199944783766053728}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 65792057476288788}
   - component: {fileID: 114382089616126548}
   - component: {fileID: 114745779874601900}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_Blueberry_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

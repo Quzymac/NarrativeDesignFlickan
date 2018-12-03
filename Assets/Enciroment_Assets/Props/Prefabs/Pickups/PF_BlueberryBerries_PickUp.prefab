@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 54966785319972816}
   - component: {fileID: 114471343924944520}
   - component: {fileID: 114831776537827178}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_BlueberryBerries_PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

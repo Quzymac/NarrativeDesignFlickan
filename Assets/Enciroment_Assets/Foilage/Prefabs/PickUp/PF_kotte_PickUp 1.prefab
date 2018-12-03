@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4690692926117288}
   - component: {fileID: 198259466977018472}
   - component: {fileID: 199202463921766122}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 135295089538453742}
   - component: {fileID: 114393242609367356}
   - component: {fileID: 114441513850700724}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_kotte_PickUp 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4282932018776200}
   - component: {fileID: 198794298455847870}
   - component: {fileID: 199989414647758678}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

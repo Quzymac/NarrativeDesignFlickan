@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114461430685585242}
   - component: {fileID: 114663406668169616}
   - component: {fileID: 54187383137896330}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_kantarell_Lowpoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4597846676162326}
   - component: {fileID: 198719417639569516}
   - component: {fileID: 199710149503589980}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4536485866486396}
   - component: {fileID: 198087225618890002}
   - component: {fileID: 199959119145751624}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

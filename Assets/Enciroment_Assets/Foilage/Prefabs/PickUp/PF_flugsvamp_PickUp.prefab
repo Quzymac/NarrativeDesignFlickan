@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4972322682927780}
   - component: {fileID: 198614504640046042}
   - component: {fileID: 199270057586277940}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4017912593551480}
   - component: {fileID: 198335424352678032}
   - component: {fileID: 199505920091714344}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 54243406412910454}
   - component: {fileID: 114373917414275248}
   - component: {fileID: 65035704832149978}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_flugsvamp_PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

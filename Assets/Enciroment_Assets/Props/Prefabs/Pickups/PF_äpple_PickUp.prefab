@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114963401642798392}
   - component: {fileID: 114884852422803144}
   - component: {fileID: 54190096512869660}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "PF_\xE4pple_PickUp"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4243019110480938}
   - component: {fileID: 198818348029300496}
   - component: {fileID: 199805870704643340}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_ItemShimmer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

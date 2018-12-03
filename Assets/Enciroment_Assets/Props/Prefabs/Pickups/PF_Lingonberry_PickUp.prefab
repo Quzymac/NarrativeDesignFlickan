@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114547528571612092}
   - component: {fileID: 114207365299477748}
   - component: {fileID: 54917200564934462}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PF_Lingonberry_PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
