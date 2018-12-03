@@ -11,12 +11,13 @@ public class CH_MonsterPatrol : MonoBehaviour {
         //Hittar navmesh och gör så att den börjar gå mot sin första waypoint
         player = GetComponent<NavMeshAgent>();
         player.SetDestination(wayPoints[0].position);
+        playerPos = FindObjectOfType<CH_PlayerMovement>().transform;
     }
     [Header("List of Waypoints")]
     [SerializeField] Transform[] wayPoints;
 
     [Header("Player Transform")]
-    [SerializeField] Transform playerPos;
+    Transform playerPos;
     [SerializeField] Transform rayOrigin;
 
     [Header("Vision Settings")]
