@@ -170,6 +170,7 @@ public class CH_Inventory : MonoBehaviour
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
+            GetComponent<CH_PlayerMovement>().Pickup = true;
         }
         else
         {

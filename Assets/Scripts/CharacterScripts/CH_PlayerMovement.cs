@@ -131,7 +131,7 @@ public class CH_PlayerMovement : MonoBehaviour
             {
                 throwing = false;
                 myAnimator.speed = 1;
-                IEnumerator waitForThrow = WaitForAnimation(1.0f, "Pickup");
+                IEnumerator waitForThrow = WaitForAnimation(1.0f, "Throw");
                 speedForward = 0;
                 StartCoroutine(waitForThrow);
             }
