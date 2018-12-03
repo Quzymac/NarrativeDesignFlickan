@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Dialogue>
       <Name name="Älvor">
-        <Text text="Vi älvor vill tacka för att du har lagat vår älvring. En ynklig tomtenisse hade sönder den, vilket kvävde våra magiska förmågor.">
+        <Text text="Vi älvor var tvungna att laga vår älvring. En ynklig tomtenisse hade sönder den, vilket kvävde våra magiska förmågor.">
           </Text>
 
         <Optionregion>

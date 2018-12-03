@@ -236,7 +236,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5344ec8014beb9c498fbcdadc923d3db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b9e27f4a7223ab468be4b8da035b284, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11d91316bc7b6e4b9d7e6c515c0df88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: 11
+  dialogue: 0
 --- !u!1 &258663031
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 949e339fe4b8033449db09bbf0c4b69d,
+          m_ObjectArgument: {fileID: 21300000, guid: 53ca9998f33f67d4dbeed086c0530d7d,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -924,7 +924,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 949e339fe4b8033449db09bbf0c4b69d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53ca9998f33f67d4dbeed086c0530d7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1552,7 +1552,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 53128af930f940d4c9d9cf6ec5a1f855,
+          m_ObjectArgument: {fileID: 21300000, guid: b69dc978c5c54bb4380cd2cc89d65c50,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -1788,7 +1788,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 61f128f23c91db04c9db3329676b894b,
+          m_ObjectArgument: {fileID: 21300000, guid: 83e053d9b0c1ed34996855372e2d4bd5,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -2434,7 +2434,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: d4471ccd0cb0adc429a9ae264ce625d4,
+          m_ObjectArgument: {fileID: 21300000, guid: 1d7c9050878475d408d45dbac10bf467,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -2529,7 +2529,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d4471ccd0cb0adc429a9ae264ce625d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d7c9050878475d408d45dbac10bf467, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2947,7 +2947,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b5b4cb0c7c428424eaf918e69407f725, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11542dc11074b6545877d0aca299135c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3755,7 +3755,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 4db8d0095186252408f441024653fa44,
+          m_ObjectArgument: {fileID: 21300000, guid: 5ffb42702070b564f9e517b3eea71f1d,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -3850,7 +3850,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4db8d0095186252408f441024653fa44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ffb42702070b564f9e517b3eea71f1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3980,7 +3980,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: ec84689c82641ec4ba013ab30b3cc1a4,
+          m_ObjectArgument: {fileID: 21300000, guid: 86a318328d5a0c04e8acb2b755c30153,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
