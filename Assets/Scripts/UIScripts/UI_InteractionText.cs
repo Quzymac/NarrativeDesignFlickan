@@ -24,7 +24,7 @@ public class UI_InteractionText : MonoBehaviour {
 
     void Start()
     {
-        cam = FindObjectOfType<Camera>().transform;
+        cam = FindObjectOfType<Camera>().transform; 
         interactionTextCanvas = GetComponentInChildren<Canvas>();
         interactionTextCanvas.gameObject.SetActive(false);
 
@@ -40,6 +40,7 @@ public class UI_InteractionText : MonoBehaviour {
         {
             interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att prata";
         }
+
     }
     string TranslateItemName(Item item)
     {
@@ -79,6 +80,8 @@ public class UI_InteractionText : MonoBehaviour {
     {
         if (canvasActive)
         {
+            Debug.Log(cam.name);
+
             //Rotates text towards camera when active
             interactionTextCanvas.transform.LookAt(cam);
             interactionTextCanvas.transform.rotation *= Quaternion.Euler(0, 180f, 0);
