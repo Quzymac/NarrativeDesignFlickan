@@ -1304,7 +1304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4429470336204852}
   m_Layer: 0
-  m_Name: HouseScene
+  m_Name: HousePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3266,8 +3266,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149893729762772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.043045, y: 2.2886124, z: 0.19493103}
-  m_LocalScale: {x: 0.5, y: 3.2, z: 2}
+  m_LocalPosition: {x: 152.144, y: 3.5, z: 135.12}
+  m_LocalScale: {x: 0.5, y: 3, z: 1.5}
   m_Children:
   - {fileID: 224133530583130404}
   m_Father: {fileID: 4429470336204852}
@@ -3436,7 +3436,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201043519393974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.956955, y: 2.2886124, z: 0.19493103}
+  m_LocalPosition: {x: 170.2, y: -212.369, z: 112.65}
   m_LocalScale: {x: 0.5, y: 3.2, z: 2}
   m_Children:
   - {fileID: 224584602272395366}
@@ -3450,7 +3450,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518997932410888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 156.18695, y: -28.738613, z: 149.56506}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4823044117653038}
@@ -4253,7 +4253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639310218406700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -156.18695, y: 28.738613, z: -149.56506}
+  m_LocalPosition: {x: 19.8, y: -185.9, z: -37.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4534738966943074}
@@ -10901,7 +10901,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -3, y: 0, z: 0}
+  m_Center: {x: 3, y: 0, z: 0}
 --- !u!65 &65540362553612228
 BoxCollider:
   m_ObjectHideFlags: 1
