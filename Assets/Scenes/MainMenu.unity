@@ -1321,9 +1321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'How to play
-
-'
+  m_Text: Hur man spelar
 --- !u!222 &750688103
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3309,7 +3307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2032541126
 MonoBehaviour:
   m_ObjectHideFlags: 0
