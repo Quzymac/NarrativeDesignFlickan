@@ -2872,24 +2872,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!1 &1905529694020710
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4318039985340310}
-  - component: {fileID: 33513658864593772}
-  - component: {fileID: 23840052300807848}
-  - component: {fileID: 136826589395132944}
-  m_Layer: 0
-  m_Name: PF_Torch_01 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
 --- !u!1 &1921969836070694
 GameObject:
   m_ObjectHideFlags: 1
@@ -3246,7 +3228,6 @@ Transform:
   m_Children:
   - {fileID: 4220354812985212}
   - {fileID: 4793538500896656}
-  - {fileID: 4318039985340310}
   - {fileID: 4484310366377290}
   - {fileID: 4382247927631334}
   m_Father: {fileID: 4823044117653038}
@@ -3850,19 +3831,6 @@ Transform:
   m_Father: {fileID: 4321495279269706}
   m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!4 &4318039985340310
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905529694020710}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -147.77003, y: -26.25, z: 159.08002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4028623832715550}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4319041239117106
 Transform:
   m_ObjectHideFlags: 1
@@ -4078,7 +4046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4028623832715550}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4386028607459184
 Transform:
@@ -4398,7 +4366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4028623832715550}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4485634302636952
 Transform:
@@ -9842,41 +9810,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23840052300807848
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905529694020710}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: ff0bd875e4c8c484e84534e7c1a4a5ca, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!23 &23841057352847580
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -11263,13 +11196,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017132970642426}
   m_Mesh: {fileID: 4300000, guid: 02f1fb45b360e47ebb712b950377d721, type: 3}
---- !u!33 &33513658864593772
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905529694020710}
-  m_Mesh: {fileID: 4300000, guid: fa5fa117dfc1d8d4c8e0788724424d08, type: 3}
 --- !u!33 &33517292402084268
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -13674,19 +13600,6 @@ CapsuleCollider:
   m_Height: 1.3566632
   m_Direction: 1
   m_Center: {x: 0.48716736, y: 0.60766864, z: -0.50476277}
---- !u!136 &136826589395132944
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905529694020710}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.13713393
-  m_Height: 0.58678395
-  m_Direction: 1
-  m_Center: {x: -0.13684025, y: 0.12291023, z: -0.07219115}
 --- !u!136 &136938338758277028
 CapsuleCollider:
   m_ObjectHideFlags: 1
