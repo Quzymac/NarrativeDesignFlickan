@@ -202,10 +202,10 @@ public class CH_Inventory : MonoBehaviour
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
             items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
+            items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
             items[itemSlot] = null;
             itemImages[itemSlot].sprite = null;
             itemImages[itemSlot].gameObject.SetActive(false);
-            items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
             strength = 0f;
         }
         else
