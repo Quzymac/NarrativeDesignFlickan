@@ -159,13 +159,14 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
             }
             else
             {
-                DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
-                if(DialogueManager.Instance.DialogueIndex < 0)
+                //DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
+                if(DialogueManager.Instance.Message().DialogueOptionsIndexes[0] < 0)
                 {
                     SetBools();
                     EndDialogue();
                     DisableOptionButtons();
                     DisableNextPageText();
+                    DialogueManager.Instance.DialogueIndex = DialogueManager.Instance.Message().DialogueOptionsIndexes[0];
                 }
                 else
                 {
@@ -187,7 +188,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
 
     private void SetBools()
     {
-        if(DialogueManager.Instance.Message().ChoiceNames.Count > 0)
+        if(DialogueManager.Instance.DialogueIndex > -1 && DialogueManager.Instance.Message().ChoiceNames.Count > 0)
         {
             for (int i = 0; i < DialogueManager.Instance.Message().ChoiceNames.Count; i++)
             {
@@ -226,6 +227,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         nameField.text = null;
         textBox.text = null;
         textBoxFirstChar.text = null;
+        nextTextPage.enabled = false;
         isActive = false;
         arrowImage.enabled = false;
         StopBlink();

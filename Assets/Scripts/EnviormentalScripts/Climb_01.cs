@@ -22,6 +22,8 @@ public class Climb_01 : OB_Interactable {
 
     private void OnTriggerExit(Collider other)
     {
+        if(other.tag == "Player")
+            other.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", false);
         OnExit(other);
     }
 
@@ -45,18 +47,18 @@ public class Climb_01 : OB_Interactable {
 
         while (movingToStartPosition)
         {
-            player.transform.LookAt(gameObject.transform, Vector3.up);
+            //player.transform.LookAt(gameObject.transform, Vector3.up);
             if (climbingUp)
             {
 
-                player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
+                //player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
                 player.transform.position = Vector3.MoveTowards(player.transform.position, target, Time.deltaTime * 4f);
                 if (player.transform.position == target)
                     movingToStartPosition = false;
             }
             else
             {
-                player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
+                //player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
                 player.transform.position = Vector3.MoveTowards(player.transform.position, target, Time.deltaTime * 4f);
                 if (player.transform.position == target)
                     movingToStartPosition = false;

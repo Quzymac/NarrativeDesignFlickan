@@ -14,11 +14,13 @@ public class CH_PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTrans;
     private bool stop;
-    private bool jump, jumping, grounded, running, idle, pushing;
+    private bool jump, jumping, grounded, running, idle, pushing, pickup, dancing;
     private float jumpTime;
 
     public Animator MyAnimator { get { return myAnimator; } }
     public bool Pushing { set { pushing = value; } }
+    public bool Pickup { set { pickup = value; } }
+    public bool Jumping { get { return jumping; } }
 
     private void Start()
     {
@@ -26,6 +28,8 @@ public class CH_PlayerMovement : MonoBehaviour
         rotationSpeed = defaultRotationSpeed;
         running = false;
         pushing = false;
+        pickup = false;
+        dancing = false;
     }
 
     public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
@@ -43,7 +47,7 @@ public class CH_PlayerMovement : MonoBehaviour
             else
                 SetSpeed();
         }
-        if (!stop && Input.GetKey(KeyCode.Space) && Time.time > jumpTime)
+        if (!stop && !dancing && Input.GetKey(KeyCode.Space) && Time.time > jumpTime)
         {
             jump = true;
         }
@@ -51,10 +55,18 @@ public class CH_PlayerMovement : MonoBehaviour
         {
             myAnimator.SetBool("Jump", false);
         }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            dancing = !dancing;
+            if(dancing)
+                myAnimator.SetBool("Dance", true);
+            else
+                myAnimator.SetBool("Dance", false);
+        }
     }
     void FixedUpdate()
     {
-        if (!stop)
+        if (!stop && !dancing)
         {
             if (jump)
             {
@@ -105,6 +117,14 @@ public class CH_PlayerMovement : MonoBehaviour
                 myAnimator.SetBool("Walk", false);
                 myAnimator.speed = 1;
             }
+            if (pickup)
+            {
+                pickup = false;
+                myAnimator.speed = 1;
+                IEnumerator waitForPickup = WaitForAnimation(1.0f, "Pickup");
+                StartCoroutine(waitForPickup);
+            }
+
             //TODO Add running animation here. (Beroende på velocity så att den inte sprintar full speed instantly)
 
             Vector3 velocityVector = speedForward * moveDirection;
@@ -113,6 +133,18 @@ public class CH_PlayerMovement : MonoBehaviour
             body.velocity = velocityVector;   //GO! BLAH!
         }
     }
+
+    private IEnumerator WaitForAnimation(float seconds, string name)
+    {
+        myAnimator.SetBool(name, true);
+        SetStop(true);
+        body.velocity = Vector3.zero;
+        body.angularVelocity = Vector3.zero;
+        yield return new WaitForSeconds(seconds);
+        myAnimator.SetBool(name, false);
+        SetStop(false);
+    }
+
     public void SetSpeed(float moveSpeed = 0, float rotationSpeed = 0)
     {
         if (moveSpeed == 0)

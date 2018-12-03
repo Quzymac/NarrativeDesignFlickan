@@ -59,8 +59,11 @@ public class OB_Item : OB_Interactable {
         }
         else // Normal item pickup
         {
+            CH_PlayerMovement ch_movement = player.GetComponent<CH_PlayerMovement>();
             if (player.GetComponent<CH_Inventory>().AddItem(gameObject))
             {
+                ch_movement.Pickup = true;
+     
                 if (audioHandler != null)
                     audioHandler.PlaySound(sound);
 

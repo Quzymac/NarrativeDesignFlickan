@@ -10,6 +10,12 @@ public class CH_PlayerPushing : MonoBehaviour {
     private Rigidbody body;
     [SerializeField]
     private Transform cameraTrans;
+    private CH_PlayerMovement ch_movement;
+
+    private void Start()
+    {
+        ch_movement = GetComponent<CH_PlayerMovement>();
+    }
 
     public void Push(Rigidbody bodyToMove, float moveSpeed)
     {
@@ -36,10 +42,10 @@ public class CH_PlayerPushing : MonoBehaviour {
         if (this.bodyToMove == bodyToMove)
         {
             this.bodyToMove = null;
-            GetComponent<CH_PlayerMovement>().SetStop(false);
-            GetComponent<CH_PlayerMovement>().Pushing = false;
-            GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
-            GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
+            ch_movement.SetStop(false);
+            ch_movement.Pushing = false;
+            ch_movement.MyAnimator.SetBool("Pull", false);
+            ch_movement.MyAnimator.SetBool("Push", false);
         }
     }
 	
@@ -64,26 +70,26 @@ public class CH_PlayerPushing : MonoBehaviour {
             velocityVector.y = body.velocity.y;   //Vi vill inte ändra velocity i y led eftersom det skulle påvärka gravitationen
             body.velocity = velocityVector;   //GO! BLAH!
             velocityVector.y = bodyToMove.velocity.y;
-            if(velocityVector.x < 0)
+            if(velocityVector.x > 0)
             {
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", true);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", false);
-                GetComponent<CH_PlayerMovement>().Pushing = true;
+                ch_movement.MyAnimator.SetBool("Pull", true);
+                ch_movement.MyAnimator.SetBool("Push", false);
+                ch_movement.MyAnimator.SetBool("Idle", false);
+                ch_movement.Pushing = true;
             }
-            else if(velocityVector.x > 0)
+            else if(velocityVector.x < 0)
             {
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", true);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", false);
-                GetComponent<CH_PlayerMovement>().Pushing = true;
+                ch_movement.MyAnimator.SetBool("Pull", false);
+                ch_movement.MyAnimator.SetBool("Push", true);
+                ch_movement.MyAnimator.SetBool("Idle", false);
+                ch_movement.Pushing = true;
             }
             else
             {
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Pull", false);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Push", false);
-                GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Idle", true);
-                GetComponent<CH_PlayerMovement>().Pushing = true;
+                ch_movement.MyAnimator.SetBool("Pull", false);
+                ch_movement.MyAnimator.SetBool("Push", false);
+                ch_movement.MyAnimator.SetBool("Idle", true);
+                ch_movement.Pushing = true;
             }
 
 
