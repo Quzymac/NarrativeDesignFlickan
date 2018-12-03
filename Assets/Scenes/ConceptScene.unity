@@ -1552,7 +1552,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: e31d602313b0e364eb9f6ca65c63f4d4,
+          m_ObjectArgument: {fileID: 21300000, guid: 53128af930f940d4c9d9cf6ec5a1f855,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -3980,7 +3980,7 @@ MonoBehaviour:
         m_MethodName: set_sprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 0f21f2e7f63dccc43b079b585be8a699,
+          m_ObjectArgument: {fileID: 21300000, guid: ec84689c82641ec4ba013ab30b3cc1a4,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
