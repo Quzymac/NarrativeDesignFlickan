@@ -51,7 +51,7 @@ public class CH_PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
-        if (myAnimator.GetBool("Jump") && Time.time > jumpTime -.7f)
+        if (myAnimator.GetBool("Jump") && Time.time > jumpTime -0.3f)
         {
             myAnimator.SetBool("Jump", false);
         }
@@ -122,6 +122,7 @@ public class CH_PlayerMovement : MonoBehaviour
                 pickup = false;
                 myAnimator.speed = 1;
                 IEnumerator waitForPickup = WaitForAnimation(1.0f, "Pickup");
+                speedForward = 0;
                 StartCoroutine(waitForPickup);
             }
 
