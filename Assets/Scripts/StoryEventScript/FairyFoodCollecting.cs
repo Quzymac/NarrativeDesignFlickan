@@ -171,16 +171,4 @@ public class FairyFoodCollecting : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
     }
-
-    void Update()
-    {
-        // FORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTINGFORTESTING
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            countdownTimer.StartTimer();
-            fairy.GetComponent<FairyFollowingPlayer>().FairyFollowToggle(true);
-            B3MiniGameActive = true;
-        }
-
-    }
 }

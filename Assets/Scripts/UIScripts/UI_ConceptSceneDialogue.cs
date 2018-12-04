@@ -9,6 +9,8 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     private void Start()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
     private void Awake()
