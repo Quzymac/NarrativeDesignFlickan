@@ -176,7 +176,6 @@ public class CH_PlayerMovement : MonoBehaviour
         {
             if (jumping)
             {
-                Debug.Log("kakor");
                 float shakeIntencity = collision.relativeVelocity.y;
                 if (shakeIntencity > 1)
                     shakeIntencity = 1;
