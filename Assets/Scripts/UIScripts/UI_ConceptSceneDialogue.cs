@@ -6,6 +6,11 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
 {
     private Dialogues dialogue;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     private void Awake()
     {
         //We do not want multiple controllers in one scene. THERE CAN BE ONLY ONE!
@@ -40,5 +45,10 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     public void CurrentDialogue(Dialogues dialogue)
     {
         this.dialogue = dialogue;
+    }
+
+    public void StartDialogue()
+    {
+
     }
 }
