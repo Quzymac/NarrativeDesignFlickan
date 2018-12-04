@@ -10,7 +10,7 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     private float sensitivity = 0.5f;
     private float maxAngleX = .6f, minAngleX = 0, maxDist = 9, minDist = 1.5f;
     private float cameraDist = 4;
-    private bool stop;
+    private bool stop, lockedScroll;
     [SerializeField]
     LayerMask mask;
 
@@ -86,7 +86,8 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     {
         if (!stop)
         {
-            CameraScroll();
+            if (!lockedScroll)
+                CameraScroll();
             Quaternion newRotation = cameraUpDown.localRotation * Quaternion.Euler(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
             if (newRotation.x < minAngleX)
             {
@@ -108,6 +109,18 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
             }*/
             cameraLeftRight.position = target.position;
             AvoidStuff();
+        }
+    }
+    public void LockCamera(bool locked)
+    {
+        Debug.Log(locked);
+        lockedScroll = locked;
+        if (lockedScroll)
+        {
+            cameraDist = 2;
+        } else
+        {
+            cameraDist = 4;
         }
     }
 }
