@@ -18,6 +18,7 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        LockCamera(true);
     }
 
     public void FreeMouse(bool b) //True = låst kamera och olåst mus

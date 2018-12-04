@@ -5,6 +5,8 @@ using UnityEngine;
 public class CH_TeleportPlayer : OB_Interactable {
 
     [SerializeField] Transform position1;
+    [SerializeField]
+    bool lockCamera;
 
     UI_FadingEffect fadeCanvas;
 
@@ -35,7 +37,7 @@ public class CH_TeleportPlayer : OB_Interactable {
         fadeCanvas.ActivateFading();
         yield return new WaitForSeconds(1);
         player.transform.position = position1.position;
-
+        player.GetComponent<CH_PlayerCamera>().LockCamera(lockCamera);
         fadeCanvas.DeactivateFading();
     }
 }
