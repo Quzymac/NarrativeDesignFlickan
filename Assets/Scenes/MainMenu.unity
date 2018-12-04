@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -107.94999, y: 23.625}
-  m_SizeDelta: {x: -215.89998, y: -47.25}
+  m_AnchoredPosition: {x: -83.9, y: -27.7}
+  m_SizeDelta: {x: -167.8, y: 55.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22504856
 MonoBehaviour:
@@ -179,11 +179,12 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "W A S D f\xF6r att g\xE5\nTryck Shift f\xF6r att springa\nTryck E f\xF6r
     att interagera med saker\nTryck X f\xF6r att l\xE4gga ner saker\nH\xE5ll in X
     f\xF6r att kasta saker\nTryck C f\xF6r att \xE4ta saker\n1-8 f\xF6r att v\xE4lja
-    items\nScrolla f\xF6r att zooma in och ut"
+    saker\nR f\xF6r att markera saker\nEnter f\xF6r att ge sakerna\nScrolla f\xF6r
+    att zooma in och ut"
 --- !u!222 &22504857
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1340,7 +1341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &670188427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3516,7 +3517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2032541126
 MonoBehaviour:
   m_ObjectHideFlags: 0
