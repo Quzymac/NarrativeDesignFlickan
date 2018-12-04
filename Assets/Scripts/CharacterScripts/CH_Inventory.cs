@@ -129,7 +129,7 @@ public class CH_Inventory : MonoBehaviour
             {
                 UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler saker");
             }
-            else if (items[itemSlot] != null)
+            else if (items[itemSlot] != null || !reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
             {
                 UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål");
             }
