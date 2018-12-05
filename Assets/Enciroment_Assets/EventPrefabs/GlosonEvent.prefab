@@ -963,7 +963,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219653126398496}
   m_LocalRotation: {x: -0, y: -0.24065156, z: -0, w: 0.9706116}
-  m_LocalPosition: {x: 29.38808, y: 2.5693798, z: -30.317705}
+  m_LocalPosition: {x: 29.232, y: 2.5693798, z: -30.022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224830313600805540}
@@ -991,7 +991,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905082662751432}
   m_LocalRotation: {x: -0, y: -0.24065156, z: -0, w: 0.9706116}
-  m_LocalPosition: {x: 24.474594, y: 3.0363798, z: -40.007404}
+  m_LocalPosition: {x: 24.44, y: 3.0363798, z: -39.942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224285695943185856}
@@ -1486,6 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: 
 --- !u!114 &114402741170229626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1716,6 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: "f\xF6r att mata"
 --- !u!114 &114818111305814442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1727,6 +1729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: 
 --- !u!114 &114832848414887086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1816,6 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: 
 --- !u!114 &114962377856531760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1883,6 +1887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: 
 --- !u!135 &135339631904641400
 SphereCollider:
   m_ObjectHideFlags: 1
