@@ -9,6 +9,9 @@ public class UI_PausMenu : MonoBehaviour {
     private GameObject pauseMenuUI;
 
     [SerializeField]
+    private GameObject howToPlayUI;
+
+    [SerializeField]
     private GameObject inventoryUI;
 
     // Update is called once per frame
@@ -33,6 +36,18 @@ public class UI_PausMenu : MonoBehaviour {
         inventoryUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
+    }
+
+    public void HowToPlayActivate()
+    {
+        howToPlayUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void HowToPlayDeactivate()
+    {
+        pauseMenuUI.SetActive(true);
+        howToPlayUI.SetActive(false);
     }
 
     void Pause()
