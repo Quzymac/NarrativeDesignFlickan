@@ -19,7 +19,10 @@ public class CH_Inventory : MonoBehaviour
     [SerializeField]
     Sprite orgInvImage; //InvImage inactive
     [SerializeField]
-    Sprite giveInvImgage; //InvImage given
+    Sprite giveInvImage; //InvImage given
+    SpriteState state = new SpriteState();
+    SpriteState orgState = new SpriteState();
+
     List<Item> consumables = new List<Item> { Item.Apple, Item.Blueberry, Item.Chanterelle, Item.Lingonberry, Item.Wine };
     string[] itemNames = { "Äpple", "Blåbär", "Lingon", "Kantarell", "Falukorv", "Björkticka", "Röd flugsvamp", "Gulfotshätta", "Tallkotte", "Grankotte", "Vinflaska" };
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
@@ -38,6 +41,13 @@ public class CH_Inventory : MonoBehaviour
     [Header("Lingonberry Prefab")]
     [SerializeField]
     GameObject lingonberryPrefab;
+
+    private void Start()
+    {
+        state.highlightedSprite = giveInvImage;
+        orgState.highlightedSprite = inventorySlots[0].spriteState.highlightedSprite;
+    }
+
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
     //Keycodes kommer bytas ut till input manager referenser senare antagligen.
     private void Update()
@@ -107,31 +117,36 @@ public class CH_Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && givingItems)
         {
-            if (items[itemSlot] != null && reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && !itemsToGive.Contains(items[itemSlot]) && !itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) &&itemsToGive.Count < maximumItems)
+            if (items[itemSlot] != null)
             {
-                itemsToGive.Add(items[itemSlot]);
-                changedButtons.Add(inventorySlots[itemSlot]);
-                inventorySlots[itemSlot].image.sprite = giveInvImgage;
-                itemsToGiveTypes.Add(items[itemSlot].GetComponent<OB_Item>().GetItemType());
-            }
-            else if(itemsToGive.Contains(items[itemSlot]))
-            {
-                itemsToGive.Remove(items[itemSlot]);
-                changedButtons.Remove(inventorySlots[itemSlot]);
-                inventorySlots[itemSlot].image.sprite = orgInvImage;
-                itemsToGiveTypes.Remove(items[itemSlot].GetComponent<OB_Item>().GetItemType());
-            }
-            else if(itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
-            {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler sådana");
-            }
-            else if (itemsToGive.Count == maximumItems)
-            {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler saker");
-            }
-            else if (items[itemSlot] != null || !reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
-            {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål");
+                if (reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && !itemsToGive.Contains(items[itemSlot]) && !itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()) && itemsToGive.Count < maximumItems)
+                {
+                    itemsToGive.Add(items[itemSlot]);
+                    changedButtons.Add(inventorySlots[itemSlot]);
+                    inventorySlots[itemSlot].image.sprite = giveInvImage;
+                    inventorySlots[itemSlot].spriteState = state;
+                    itemsToGiveTypes.Add(items[itemSlot].GetComponent<OB_Item>().GetItemType());
+                }
+                else if (itemsToGive.Contains(items[itemSlot]))
+                {
+                    itemsToGive.Remove(items[itemSlot]);
+                    changedButtons.Remove(inventorySlots[itemSlot]);
+                    inventorySlots[itemSlot].image.sprite = orgInvImage;
+                    inventorySlots[itemSlot].spriteState = orgState;
+                    itemsToGiveTypes.Remove(items[itemSlot].GetComponent<OB_Item>().GetItemType());
+                }
+                else if (itemsToGiveTypes.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
+                {
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler sådana");
+                }
+                else if (itemsToGive.Count == maximumItems)
+                {
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha fler saker");
+                }
+                else if (items[itemSlot] != null || !reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
+                {
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål");
+                }
             }
         }
 
@@ -152,6 +167,7 @@ public class CH_Inventory : MonoBehaviour
                 foreach (Button b in changedButtons)
                 {
                     b.image.sprite = orgInvImage;
+                    b.spriteState = orgState;
                 }
                 changedButtons.Clear();
                 givingItems = false;
@@ -389,7 +405,7 @@ public class CH_Inventory : MonoBehaviour
             itemsToGiveTypes = new List<Item>();
             givingItems = true;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
-            UI_DialogueController.Instance.DisplayMessage("Tyra","Giving items");
+            UI_DialogueController.Instance.DisplayMessage("Tyra","Tryck på R för att välja item, Enter för att ge valda items");
         }
     }
 
