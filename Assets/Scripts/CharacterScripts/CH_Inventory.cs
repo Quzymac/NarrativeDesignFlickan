@@ -28,6 +28,14 @@ public class CH_Inventory : MonoBehaviour
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
     "Nej! Kall korv är verkligen inte gott.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
+
+    string[] itemDescription = { "Ibland tar farbror Ernfrid med sig hem äpplen från bortom skogen. Dom brukar smaka sötare.", "En av dom roligaste sakerna att göra på sensommaren är att plocka blåbär vid bäcken.",
+        "Jag kan göra lingonsylt till Hilding med dom här när vi går tillbaka hem till Gården.", "Mor och far kommer att bli glada när dom får se att jag har hittat kantareller.",
+        "Korv äter vi nästan bara då vi har något att fira. Hoppas ingen blir arg att jag tog den.", "Som en väldigt blek och hård hatt. Jag vet inte riktigt vad jag kan göra med en sån.",
+        "Röda svampar med vita prickar är giftiga! Det fick jag lära mig för många år sedan.", "Såna här ser jag inte ofta. Ser ut som en gullig liten familj av svampar!",
+        "Dom andra barnen på Gården tycker att det är skojigt att kasta tallkottar på varandra.", "Den är väldigt vacker. Jag brukade ofta ta med mig såna hem när jag var yngre.",
+        "Vad är det här egentligen för dricka? Doftar som allt som finns i skogen på samma gång." };
+
     List<Button> changedButtons = new List<Button>();
     [Header("BlåbärBush prefab utan bär")]
     [SerializeField]
@@ -291,15 +299,18 @@ public class CH_Inventory : MonoBehaviour
                 {
                     items[i] = Instantiate(blueberryPrefab);
                     items[i].SetActive(false);
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", itemDescription[1], 5f);
                 }
                 else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.LingonBush)
                 {
                     items[i] = Instantiate(lingonberryPrefab);
                     items[i].SetActive(false);
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", itemDescription[2], 5f);
                 }
                 else
                 {
                     items[i] = itemToAdd;
+                    UI_DialogueController.Instance.DisplayMessage("Tyra", itemDescription[(int)itemToAdd.GetComponent<OB_Item>().GetItemType()], 5f);
                 }
 
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
@@ -322,7 +333,7 @@ public class CH_Inventory : MonoBehaviour
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
                     StartCoroutine(SpawnNewItem(lingonBushPrefab, itemToAdd.transform.position, 0f));
                 }
-
+                
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
             }
