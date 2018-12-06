@@ -129,6 +129,8 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
             rayOrigin.z = -cameraDist;
             cameraRayOrigin.localPosition = rayOrigin;
             cameraUpDown.GetChild(0).localPosition = Vector3.back * cameraDist;
+            cameraLeftRight.rotation = Quaternion.Euler(0, 20, 0);
+            cameraUpDown.rotation = Quaternion.Euler(20, 20, 0);
         }
     }
 }
