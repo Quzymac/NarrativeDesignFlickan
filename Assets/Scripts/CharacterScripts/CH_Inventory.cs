@@ -214,21 +214,28 @@ public class CH_Inventory : MonoBehaviour
         else if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
         {
             GetComponent<CH_PlayerMovement>().Throwing = true;
-            items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
-            items[itemSlot].SetActive(true);
-            items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
-            items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
-            items[itemSlot] = null;
-            itemImages[itemSlot].sprite = null;
-            itemImages[itemSlot].gameObject.SetActive(false);
-            strength = 0f;
+            StartCoroutine("Throw", 0.7f);
         }
         else
         {
             strength = 0f;
             Debug.Log("Can't throw this here");
         }
+    }
+
+    private IEnumerator Throw(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
+        items[itemSlot].SetActive(true);
+        items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
+        items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
+        items[itemSlot] = null;
+        itemImages[itemSlot].sprite = null;
+        itemImages[itemSlot].gameObject.SetActive(false);
+        strength = 0f;
+
     }
 
     void ConsumeItem()
