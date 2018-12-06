@@ -16,6 +16,6 @@ public class CH_TrollBaby : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        UI_DialogueController.Instance.DisplayMessage("Tyra", "Den här ungen är inte min Lillebror! Detta är ett litet trollbarn! Har någon bytt ut min lillebror mot ett litet trollbarn?", 5f);
+        UI_DialogueController.Instance.DisplayMessage("Tyra", "Det ser ut som Hilding, men jag är säker på att det inte är det! Var har min lillebror tagit vägen?", 5);
     }
 }
