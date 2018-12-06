@@ -14,6 +14,7 @@ public class Climb_01 : OB_Interactable {
     bool climbingUp;
     [SerializeField]
     Transform lookTarget;
+    static bool climbing = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -73,11 +74,12 @@ public class Climb_01 : OB_Interactable {
             if (climbingUp)
             {
                 player.transform.position = Vector3.MoveTowards(player.transform.position, climbTop.transform.position, Time.deltaTime * climbSpeed);
-                if (Vector3.Distance(climbTop.transform.position, player.transform.position) < 1)
+                if (Vector3.Distance(climbTop.transform.position, player.transform.position) < 0.1f)
                 {
                     player.GetComponent<Rigidbody>().useGravity = true;
                     player.GetComponent<Rigidbody>().isKinematic = false;
                     player.GetComponent<CH_PlayerMovement>().SetStop(false);
+                    climbing = false;
                     yield break;
                 }
             }
@@ -85,11 +87,12 @@ public class Climb_01 : OB_Interactable {
             else
             {
                 player.transform.position = Vector3.MoveTowards(player.transform.position, climbBottom.transform.position, Time.deltaTime * climbSpeed);
-                if (Vector3.Distance(climbBottom.transform.position, player.transform.position) < 1)
+                if (Vector3.Distance(climbBottom.transform.position, player.transform.position) < 0.1f)
                 {
                     player.GetComponent<Rigidbody>().useGravity = true;
                     player.GetComponent<Rigidbody>().isKinematic = false;
                     player.GetComponent<CH_PlayerMovement>().SetStop(false);
+                    climbing = false;
                     yield break;
                 }
             }
@@ -99,7 +102,11 @@ public class Climb_01 : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", true);
-        ClimbUp(player);
+        if (climbing == false)
+        {
+            player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", true);
+            climbing = true;
+            ClimbUp(player);
+        }
     }
 }
