@@ -27,4 +27,6 @@ public class CH_MammaTroll : MonoBehaviour {
     {
         mammaGoal = transform;
     }
+
+ 
 }
