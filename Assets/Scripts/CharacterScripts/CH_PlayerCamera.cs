@@ -114,14 +114,21 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
     }
     public void LockCamera(bool locked)
     {
-        Debug.Log(locked);
         lockedScroll = locked;
         if (lockedScroll)
         {
             cameraDist = 2;
+            Vector3 rayOrigin = cameraRayOrigin.localPosition;
+            rayOrigin.z = -cameraDist;
+            cameraRayOrigin.localPosition = rayOrigin;
+            cameraUpDown.GetChild(0).localPosition = Vector3.back * cameraDist;
         } else
         {
             cameraDist = 4;
+            Vector3 rayOrigin = cameraRayOrigin.localPosition;
+            rayOrigin.z = -cameraDist;
+            cameraRayOrigin.localPosition = rayOrigin;
+            cameraUpDown.GetChild(0).localPosition = Vector3.back * cameraDist;
         }
     }
 }
