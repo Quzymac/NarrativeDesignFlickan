@@ -64,8 +64,11 @@ public class CH_PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             dancing = !dancing;
-            if(dancing)
+            if (dancing)
+            {
                 myAnimator.SetBool("Dance", true);
+                myAnimator.speed = 1;
+            }               
             else
                 myAnimator.SetBool("Dance", false);
         }
