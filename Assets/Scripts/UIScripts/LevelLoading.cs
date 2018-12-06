@@ -31,6 +31,7 @@ public class LevelLoading : MonoBehaviour {
 
     public void QuitGame()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Application.Quit();
     }
 }
