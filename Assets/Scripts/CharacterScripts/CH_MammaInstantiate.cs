@@ -26,7 +26,7 @@ public class CH_MammaInstantiate : MonoBehaviour {
             mamma = Instantiate(MammaTroll, spawnposition, Quaternion.identity).GetComponent<CH_MammaTroll>();          
             mamma.SetMammaGoal(GameObject.FindGameObjectWithTag("MammaGoal").transform);
             firstSpawn = true;
-            UI_DialogueController.Instance.DisplayMessage("Tyra", "Trollmamman tog min lillebror! Jag måste få tillbaka honom från trollet! jag borde följa efter fför att se vart hon kan leda mig", 8f);
+            UI_DialogueController.Instance.DisplayMessage("Tyra", "Trollmamman tog min lillebror! Jag måste få tillbaka honom från trollet! jag borde följa efter för att se vart hon kan leda mig", 8f);
         }
         else
         {

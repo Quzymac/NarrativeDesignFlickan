@@ -240,7 +240,7 @@ public class CH_Inventory : MonoBehaviour
                 activeParticle = Instantiate(particle, gameObject.transform.position + Vector3.up, particle.transform.rotation, gameObject.transform);
                 StartCoroutine(DrunkEffect(5));
             }
-            UI_DialogueController.Instance.DisplayMessage(itemNames[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], 3f);
+            UI_DialogueController.Instance.DisplayMessage("Tyra", itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], 3f);
             if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
             {
                 Destroy(items[itemSlot]);
