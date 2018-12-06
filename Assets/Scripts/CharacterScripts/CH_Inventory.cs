@@ -26,7 +26,7 @@ public class CH_Inventory : MonoBehaviour
     List<Item> consumables = new List<Item> { Item.Apple, Item.Blueberry, Item.Chanterelle, Item.Lingonberry, Item.Wine };
     string[] itemNames = { "Äpple", "Blåbär", "Lingon", "Kantarell", "Falukorv", "Björkticka", "Röd flugsvamp", "Gulfotshätta", "Tallkotte", "Grankotte", "Vinflaska" };
     string[] itemConsumeDesc = { "Syrligt och mättande!", "Söta blåbär är det bästa som finns!", "Beska, men ändå underbara!", "Skogens guld är både matig och god!",
-    "Trollet kanske vill ha den här.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
+    "Nej! Kall korv är verkligen inte gott.", "Ser inte god ut. Jag är nog hellre hungrig.", "Jag blir fasligt sjuk om jag äter den här.", "Jag tror inte jag kan äta såna här svampar.",
     "Dom här kan jag bara äta omogna.", "Den här kommer jag nog bara få ont i munnen av att äta.", "Jättegott! Men jag känner mig lite konstig nu."};
     List<Button> changedButtons = new List<Button>();
     [Header("BlåbärBush prefab utan bär")]
