@@ -34,6 +34,7 @@ public class UI_PausMenu : MonoBehaviour {
         FindObjectOfType<CH_PlayerCamera>().FreeMouse(false);
         pauseMenuUI.SetActive(false);
         inventoryUI.SetActive(true);
+        howToPlayUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
