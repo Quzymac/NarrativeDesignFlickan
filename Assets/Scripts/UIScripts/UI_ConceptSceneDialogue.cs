@@ -7,7 +7,6 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     private Dialogues dialogue;
     private LevelLoading lvl;
     private bool loadScene1 = false;
-    private bool introDone = false;
 
     private void Start()
     {
@@ -55,18 +54,13 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
         }
         else if (!UI_DialogueController.Instance.IsActive && loadScene1)
         {
-            introDone = true;
             lvl.StartCoroutine("SceneSwitchFadeTimer");
+            this.enabled = false;
         }
 	}
 
     public void CurrentDialogue(Dialogues dialogue)
     {
         this.dialogue = dialogue;
-    }
-
-    public void StartDialogue()
-    {
-
     }
 }
