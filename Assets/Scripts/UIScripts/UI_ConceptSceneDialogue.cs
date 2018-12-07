@@ -7,6 +7,7 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     private Dialogues dialogue;
     private LevelLoading lvl;
     private bool loadScene1 = false;
+    private bool introDone = false;
 
     private void Start()
     {
@@ -40,11 +41,11 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE)
+        if (Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE && lvl != null && !introDone)
         {
             UI_DialogueController.Instance.DisplayTextBox(dialogue);
         }
-        else if (lvl.Intro)
+        else if (lvl != null && lvl.Intro)
         {
             DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
             UI_DialogueController.Instance.OpenDialogue(DialogueManager.Instance.Message());
@@ -52,8 +53,9 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
             lvl.Intro = false;
             loadScene1 = true;
         }
-        if (!UI_DialogueController.Instance.IsActive && loadScene1)
+        else if (!UI_DialogueController.Instance.IsActive && loadScene1)
         {
+            introDone = true;
             lvl.StartCoroutine("SceneSwitchFadeTimer");
         }
 	}
