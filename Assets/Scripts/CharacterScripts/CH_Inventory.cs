@@ -433,7 +433,7 @@ public class CH_Inventory : MonoBehaviour
             itemsToGiveTypes = new List<Item>();
             givingItems = true;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
-            UI_DialogueController.Instance.DisplayMessage("Tyra","Tryck på R för att välja item, Enter för att ge valda items");
+            UI_DialogueController.Instance.DisplayMessage("","Tryck på R för att välja item, Enter för att ge valda items");
         }
     }
 
