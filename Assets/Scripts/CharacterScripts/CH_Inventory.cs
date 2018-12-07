@@ -70,7 +70,7 @@ public class CH_Inventory : MonoBehaviour
         {
             if (items[itemSlot] != null && items[itemSlot].GetComponent<OB_Item>().GetItemType() == Item.Falukorv)
             {
-                UI_DialogueController.Instance.DisplayMessage("Tyra", "Den som var så dyr! Jag kan inte bara kasta bort den", 3f);
+                UI_DialogueController.Instance.DisplayMessage("Tyra", "Den som var så dyr! Jag kan inte bara kasta bort den.", 3f);
                 strength = 0f;
             }
             else if (strength < 1f)
