@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_InteractionText : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class UI_InteractionText : MonoBehaviour {
     //Add Camera in inspector to canvas event camera
 
     Canvas interactionTextCanvas;
+    TextMeshProUGUI interactionText;
+
     Transform cam;
     Item itemName;
     bool canvasActive;
@@ -30,20 +33,20 @@ public class UI_InteractionText : MonoBehaviour {
         interactionTextCanvas = GetComponentInChildren<Canvas>();
         interactionTextCanvas.gameObject.SetActive(false);
 
-        interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att använda";
-        //Sets text to match itemType
+        interactionText = interactionTextCanvas.GetComponentInChildren<TextMeshProUGUI>();
+
+        interactionText.SetText("<sprite=0> Använd");
         if (GetComponent<OB_Item>())
         {
-            itemName = GetComponentInParent<OB_Item>().GetItemType();
-            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att ta " + TranslateItemName(itemName);
+            interactionText.SetText("<sprite=0> Plocka");
         }
 
         if (GetComponent<OB_Dialogue>())
         {
-            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" för att prata";
+            interactionText.SetText("<sprite=0> Prata");
         }
         if (customText != "")
-            interactionTextCanvas.GetComponentInChildren<Text>().text = "\"E\" " + customText;
+            interactionText.SetText("<sprite=0> " + customText);
 
     }
     string TranslateItemName(Item item)
