@@ -31,6 +31,7 @@ public class SE_ThreeApples : MonoBehaviour {
         {
             if (currentState == Status.Waiting)
             {
+                other.GetComponent<CH_PlayerCamera>().LookAtSomething(transform, 3);
                 currentState = Status.Dialog;
                 Dialog();
             }

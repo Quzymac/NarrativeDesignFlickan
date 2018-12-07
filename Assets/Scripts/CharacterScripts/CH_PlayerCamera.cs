@@ -47,20 +47,9 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
         {
             cameraUpDown.GetChild(0).localPosition = Vector3.Lerp(cameraUpDown.GetChild(0).localPosition, Vector3.back * cameraDist, Time.deltaTime * 2);
         }
-        /*Debug.Log((cameraUpDown.GetChild(0).position.x + cameraUpDown.GetChild(0).position.z) - (target.position.x + target.position.z));
-        Debug.Log(Vector3.Distance(target.position, cameraUpDown.GetChild(0).position));
-        float angle = .8f - .28284f * Mathf.Sqrt(Vector3.Distance(target.position, cameraUpDown.GetChild(0).position));
-        if (angle < 0)
-            angle = 0;
-        Quaternion rotation = cameraUpDown.GetChild(0).localRotation;
-        rotation.x = angle;*/
-        /*if (Mathf.Abs((cameraUpDown.GetChild(0).position.x + cameraUpDown.GetChild(0).position.z) - (target.position.x + target.position.z)) > 1)
-        {
-            Debug.Log(Time.time);*/
+
             cameraUpDown.GetChild(0).LookAt(target);
-        //}
-        //cameraUpDown.GetChild(0).localRotation = Quaternion.RotateTowards(cameraUpDown.GetChild(0).localRotation, rotation, 8);
-        //cameraUpDown.GetChild(0).localRotation = rotation;
+
     }
     private void CameraScroll()
     {
@@ -97,17 +86,10 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
             {
                 newRotation.x = maxAngleX;
             }
+            newRotation.y = 0;
+            newRotation.z = 0;
             cameraUpDown.localRotation = Quaternion.RotateTowards(cameraUpDown.localRotation, newRotation, sensitivity * 4);
             cameraLeftRight.Rotate(0, Input.GetAxis("Mouse X") * sensitivity, 0);
-            //cameraUpDown.Rotate(-Input.GetAxis("Mouse Y") * sensitivity, 0, 0);
-            /*if (cameraUpDown.localRotation.eulerAngles.x < minAngleX)
-            {
-                cameraUpDown.localRotation = Quaternion.Euler(new Vector3(minAngleX, 0, 0));
-            }*/
-            /*if (cameraUpDown.localRotation.eulerAngles.x > maxAngleX)
-            {
-                cameraUpDown.localRotation = Quaternion.Euler(new Vector3(maxAngleX, 0, 0));
-            }*/
             cameraLeftRight.position = target.position;
             AvoidStuff();
         }
@@ -128,9 +110,34 @@ public class CH_PlayerCamera : MonoBehaviour { //Scriptet kan ligga vart som hel
             Vector3 rayOrigin = cameraRayOrigin.localPosition;
             rayOrigin.z = -cameraDist;
             cameraRayOrigin.localPosition = rayOrigin;
+            cameraUpDown.GetChild(0).localRotation = Quaternion.identity;
             cameraUpDown.GetChild(0).localPosition = Vector3.back * cameraDist;
             cameraLeftRight.rotation = Quaternion.Euler(0, 20, 0);
             cameraUpDown.rotation = Quaternion.Euler(20, 20, 0);
         }
+    }
+    public void LookAtSomething(Transform something, float duration)
+    {
+        StartCoroutine(LookTowards(cameraLeftRight, cameraUpDown, something, duration));
+    }
+    private IEnumerator LookTowards(Transform cameraLeftRight, Transform cameraUpDown, Transform target, float duration)
+    {
+        stop = true;
+        float lookTime = Time.time + duration;
+        while (Time.time < lookTime)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(target.position - cameraLeftRight.position);
+            Quaternion updown = newRotation;
+            updown.x = .1f;
+            newRotation.x = 0;
+            updown.z = 0;
+            updown.y = 0;
+            newRotation.z = 0;
+            cameraLeftRight.rotation = Quaternion.RotateTowards(cameraLeftRight.rotation, newRotation, Time.deltaTime * 60);
+            cameraUpDown.localRotation = Quaternion.RotateTowards(cameraUpDown.localRotation, updown, Time.deltaTime * 60);
+            cameraLeftRight.position = this.target.position;
+            yield return new WaitForEndOfFrame();
+        }
+        stop = false;
     }
 }
