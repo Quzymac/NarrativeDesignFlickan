@@ -12,6 +12,7 @@ public class shakeMe : MonoBehaviour {
 
     private void Start()
     {
+        bushSound.Play();
         StartCoroutine(ShakeMeDaddy());
     }
 
@@ -19,6 +20,7 @@ public class shakeMe : MonoBehaviour {
 		
 	}
 
+    [SerializeField] AudioSource bushSound;
     Vector3 origin;
     Vector3 newPos;
     IEnumerator ShakeMeDaddy()
