@@ -64,7 +64,6 @@ public class CH_Inventory : MonoBehaviour
         if (Input.GetKey(KeyCode.X) && items[itemSlot] != null && strength < 1)
         {
             strength += Time.deltaTime * 2;
-            Debug.Log(strength);
         }
         if (Input.GetKeyUp(KeyCode.X) && items[itemSlot] != null)
         {
@@ -433,7 +432,7 @@ public class CH_Inventory : MonoBehaviour
             itemsToGiveTypes = new List<Item>();
             givingItems = true;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
-            UI_DialogueController.Instance.DisplayMessage("","Tryck på R för att välja item, Enter för att ge valda items");
+            UI_DialogueController.Instance.DisplayMessage("","Tryck på R för att välja saker, Enter för att ge valda saker");
         }
     }
 
