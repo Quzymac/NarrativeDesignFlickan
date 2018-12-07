@@ -94,9 +94,24 @@ GameObject:
   - component: {fileID: 135114680234145916}
   - component: {fileID: 54243406412910454}
   - component: {fileID: 114373917414275248}
-  - component: {fileID: 65035704832149978}
   m_Layer: 14
   m_Name: PF_flugsvamp_PickUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1788710502800620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4155793926207840}
+  - component: {fileID: 65364979238664652}
+  m_Layer: 12
+  m_Name: ObjectCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +130,19 @@ Transform:
   m_Father: {fileID: 4972322682927780}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4155793926207840
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788710502800620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4793811152820188}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4793811152820188
 Transform:
   m_ObjectHideFlags: 1
@@ -122,11 +150,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778349000825256}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 145.94627, y: 2, z: 135.81776}
+  m_LocalPosition: {x: 174.66817, y: 3.0562973, z: 167.85756}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224687084396862990}
   - {fileID: 4972322682927780}
+  - {fileID: 4155793926207840}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,12 +230,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!65 &65035704832149978
+--- !u!65 &65364979238664652
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1778349000825256}
+  m_GameObject: {fileID: 1788710502800620}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -273,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ee0d7746020f645ae2c6de6c3b3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customText: 
 --- !u!114 &114390128357453192
 MonoBehaviour:
   m_ObjectHideFlags: 1
