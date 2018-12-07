@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Propery of John Martín
 public class CH_Inventory : MonoBehaviour
 {
 
@@ -215,7 +216,7 @@ public class CH_Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("Can't drop");
+            UI_DialogueController.Instance.DisplayMessage("Tyra", "Jag kan inte släppa detta här",2f);
         }
     }
 
@@ -242,15 +243,14 @@ public class CH_Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
+        items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward + new Vector3(0,0.5f,0);
         items[itemSlot].SetActive(true);
-        items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * 5 + transform.up * 6;
-        items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
-        items[itemSlot] = null;
+        items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * 3 + transform.up * 6;
         itemImages[itemSlot].sprite = null;
         itemImages[itemSlot].gameObject.SetActive(false);
         strength = 0f;
-
+        items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
+        items[itemSlot] = null;
     }
 
     void ConsumeItem()

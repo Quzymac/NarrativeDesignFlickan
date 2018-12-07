@@ -211,7 +211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4971060935787628}
   - component: {fileID: 65381426684794232}
-  - component: {fileID: 114772842714948342}
   m_Layer: 0
   m_Name: RiverWallTrigger
   m_TagString: Untagged
@@ -522,7 +521,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4200735343916334}
   - component: {fileID: 65394119204676970}
-  - component: {fileID: 114480204867147396}
   m_Layer: 0
   m_Name: RiverWallTrigger
   m_TagString: Untagged
@@ -2943,19 +2941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303cb4bf9a9ff9345b8b420ff0d779c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114480204867147396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1567138490370864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1194a6f8df6653a4292e1f9f9337f903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customText: 
-  wallType: 0
 --- !u!114 &114499420679503888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3146,19 +3131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vadis: {fileID: 1410667866218250}
---- !u!114 &114772842714948342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171744350233392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1194a6f8df6653a4292e1f9f9337f903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customText: 
-  wallType: 0
 --- !u!114 &114826670305972026
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Skriptet ska ligga på en trigger collider som täcker ån
+// Property of John Martín
 public class VadisScriptB2 : MonoBehaviour {
     
     bool recivedItemRecently = false;
@@ -32,7 +33,10 @@ public class VadisScriptB2 : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<OB_Item>())
+        OB_Item item = other.GetComponent<OB_Item>();
+        if (item == null)
+            item = other.GetComponentInParent<OB_Item>();
+        if(item != null)
         {
             foreach (Collider c in other.GetComponents<Collider>())
             {
