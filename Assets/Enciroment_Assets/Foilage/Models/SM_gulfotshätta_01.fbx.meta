@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c43878b7d93324b499fabe3163c08b32
+guid: d99fbeae7914ae04c8436908eba803de
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: kantarell2
+    4300000: "gulfotsh\xE4tta_03"
   externalObjects: {}
   materials:
     importMaterials: 1
