@@ -45,6 +45,18 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     private bool isActive = false;
     private bool isBlinking = false;
 
+    public bool IsActive { get { return isActive; } set { isActive = value; } }
+
+    float closeTime = 0;
+    bool closeMessage = false;
+
+    private void Update()
+    {
+        if(closeMessage && Time.time > closeTime)
+        {
+            Closemessage();
+        }
+    }
 
     //Do something when waking up.
     private void Awake()
@@ -85,7 +97,8 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         SetText(message);
         if(time > 0.001)
         {
-            Invoke("Closemessage", time);
+            closeMessage = true;
+            closeTime = Time.time + time;
         }
     }
 
@@ -203,7 +216,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
     //Arguments: A dialogue to display.
     //Return: void.
     //<Summary>
-    private void OpenDialogue(Dialogue nextDialogue)
+    public void OpenDialogue(Dialogue nextDialogue)
     {
         if (nextDialogue != null)
         {
