@@ -103,6 +103,7 @@ public class Climb_01 : OB_Interactable {
         if (climbing == false)
         {
             player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", true);
+            player.GetComponent<CH_PlayerMovement>().MyAnimator.speed = 1;
             climbing = true;
             ClimbUp(player);
         }
