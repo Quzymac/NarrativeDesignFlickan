@@ -8,8 +8,7 @@ public class Climb_01 : OB_Interactable {
     private GameObject climbBottom;
     [SerializeField]
     private GameObject climbTop;
-    [SerializeField]
-    private float climbSpeed = 5f;
+    private float climbSpeed = 1f;
     [SerializeField]
     bool climbingUp;
     [SerializeField]
@@ -23,8 +22,6 @@ public class Climb_01 : OB_Interactable {
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
-            other.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", false);
         OnExit(other);
     }
 
@@ -48,18 +45,17 @@ public class Climb_01 : OB_Interactable {
 
         while (movingToStartPosition)
         {
-            //player.transform.LookAt(gameObject.transform, Vector3.up);
             if (climbingUp)
             {
 
-                //player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
+                player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
                 player.transform.position = Vector3.MoveTowards(player.transform.position, target, Time.deltaTime * 4f);
                 if (player.transform.position == target)
                     movingToStartPosition = false;
             }
             else
             {
-                //player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
+                player.transform.LookAt(new Vector3(lookTarget.transform.position.x, player.transform.position.y, lookTarget.transform.position.z));
                 player.transform.position = Vector3.MoveTowards(player.transform.position, target, Time.deltaTime * 4f);
                 if (player.transform.position == target)
                     movingToStartPosition = false;
@@ -79,6 +75,7 @@ public class Climb_01 : OB_Interactable {
                     player.GetComponent<Rigidbody>().useGravity = true;
                     player.GetComponent<Rigidbody>().isKinematic = false;
                     player.GetComponent<CH_PlayerMovement>().SetStop(false);
+                    player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", false);
                     climbing = false;
                     yield break;
                 }
@@ -93,6 +90,7 @@ public class Climb_01 : OB_Interactable {
                     player.GetComponent<Rigidbody>().isKinematic = false;
                     player.GetComponent<CH_PlayerMovement>().SetStop(false);
                     climbing = false;
+                    player.GetComponent<CH_PlayerMovement>().MyAnimator.SetBool("Climb", false);
                     yield break;
                 }
             }
