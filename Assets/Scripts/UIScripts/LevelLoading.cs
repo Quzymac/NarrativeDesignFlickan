@@ -8,7 +8,14 @@ public class LevelLoading : MonoBehaviour {
 
     public static LevelLoading SceneSwitching;
     int buildIndex;
+    private bool intro = false;
+    public bool Intro { get { return intro; } set { intro = value; } }
     UI_FadingEffect fadeCanvas;
+
+    private void Update()
+    {
+        
+    }
 
     private void Awake()
     {
@@ -20,10 +27,15 @@ public class LevelLoading : MonoBehaviour {
     {
         buildIndex = _buildIndex;
         fadeCanvas.ActivateFading();
-        StartCoroutine(SceneSwitchFadeTimer());
+        if (buildIndex != 1)
+        {
+            StartCoroutine(SceneSwitchFadeTimer());
+        }
+        else
+            intro = true;
     }
 
-    IEnumerator SceneSwitchFadeTimer()
+    public IEnumerator SceneSwitchFadeTimer()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(buildIndex);

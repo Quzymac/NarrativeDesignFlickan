@@ -5,12 +5,14 @@ using UnityEngine;
 public class UI_ConceptSceneDialogue : MonoBehaviour
 {
     private Dialogues dialogue;
+    private LevelLoading lvl;
+    private bool loadScene1 = false;
 
     private void Start()
     {
+        lvl = gameObject.GetComponent<LevelLoading>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
     }
 
     private void Awake()
@@ -41,6 +43,18 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE)
         {
             UI_DialogueController.Instance.DisplayTextBox(dialogue);
+        }
+        else if (lvl.Intro)
+        {
+            DialogueManager.Instance.ActiveDialogues = DialogueManager.Instance.LoadDialogues(dialogue);
+            UI_DialogueController.Instance.OpenDialogue(DialogueManager.Instance.Message());
+            UI_DialogueController.Instance.SetNextPageText();
+            lvl.Intro = false;
+            loadScene1 = true;
+        }
+        if (!UI_DialogueController.Instance.IsActive && loadScene1)
+        {
+            lvl.StartCoroutine("SceneSwitchFadeTimer");
         }
 	}
 
