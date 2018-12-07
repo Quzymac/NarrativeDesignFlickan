@@ -55,6 +55,7 @@ public class UI_DialogueController : MonoBehaviour {    //TODO: Set up interacti
         if(closeMessage && Time.time > closeTime)
         {
             Closemessage();
+            closeMessage = false;
         }
     }
 
