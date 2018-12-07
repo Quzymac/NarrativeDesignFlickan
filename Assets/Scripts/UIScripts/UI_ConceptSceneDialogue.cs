@@ -41,7 +41,7 @@ public class UI_ConceptSceneDialogue : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE && lvl != null && !introDone)
+        if (Input.GetKeyDown(KeyCode.E) && dialogue != Dialogues.NONE)
         {
             UI_DialogueController.Instance.DisplayTextBox(dialogue);
         }
