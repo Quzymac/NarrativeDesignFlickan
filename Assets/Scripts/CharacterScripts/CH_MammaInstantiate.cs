@@ -26,7 +26,7 @@ public class CH_MammaInstantiate : MonoBehaviour {
             mamma = Instantiate(MammaTroll, spawnposition, Quaternion.identity).GetComponent<CH_MammaTroll>();          
             mamma.SetMammaGoal(GameObject.FindGameObjectWithTag("MammaGoal").transform);
             firstSpawn = true;
-            UI_DialogueController.Instance.DisplayMessage("Tyra", "Är det där ett troll som springer iväg med Hilding?! Jag måste hinna ikapp!", 8f);
+            UI_DialogueController.Instance.DisplayMessage("Tyra", "Springer det där trollet iväg med Hilding?! Jag måste hinna ikapp!", 8f);
             FindObjectOfType<CH_PlayerCamera>().LookAtSomething(mamma.transform, 3);
         }
         else

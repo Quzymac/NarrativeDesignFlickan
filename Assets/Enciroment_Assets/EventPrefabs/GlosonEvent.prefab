@@ -2415,7 +2415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1194a6f8df6653a4292e1f9f9337f903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customText: "B\xE4st jag matar gloson innan jag forts\xE4tter."
+  customText: "B\xE4st jag matar Gloson innan jag forts\xE4tter."
   wallType: 5
 --- !u!114 &114662325861036034
 MonoBehaviour:
