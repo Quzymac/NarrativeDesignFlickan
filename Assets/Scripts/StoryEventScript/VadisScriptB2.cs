@@ -4,10 +4,9 @@ using UnityEngine;
 
 //Skriptet ska ligga på en trigger collider som täcker ån
 public class VadisScriptB2 : MonoBehaviour {
-
-    bool gotCorrectItem = false;
+    
     bool recivedItemRecently = false;
-    bool minigameActive = false;
+    static bool minigameActive = false;
     CH_PlayerMovement player;
     [Header("Dra in VadisCharacter")]
     [SerializeField]
@@ -44,7 +43,7 @@ public class VadisScriptB2 : MonoBehaviour {
                 }
             }
 
-            if (!gotCorrectItem && !recivedItemRecently && minigameActive)
+            if (!recivedItemRecently && minigameActive)
             {
                 player.SetStop(true);
                 recivedItemRecently = true;
@@ -55,7 +54,7 @@ public class VadisScriptB2 : MonoBehaviour {
                 }
                 else if (other.GetComponent<OB_Item>().GetItemType() == Item.Pine_cone)
                 {
-                    gotCorrectItem = true;
+                    minigameActive = false;
                     StartCoroutine(PineCone());
                 }
                 else if (other.GetComponent<OB_Item>().GetItemType() == Item.Fir_cone)

@@ -27,7 +27,7 @@ public class OB_Item : OB_Interactable {
         audioHandler = FindObjectOfType<AudioHandler>();
         scriptManager = FindObjectOfType<UI_FadingEffect>().gameObject;
         target = FindObjectOfType<FairyFoodCollecting>().GetFairyChest();
-        if (type == Item.Apple || type == Item.BlueberryBush || type == Item.LingonBush)
+        if (type != Item.Falukorv)
             Respawn = true;
     }
 

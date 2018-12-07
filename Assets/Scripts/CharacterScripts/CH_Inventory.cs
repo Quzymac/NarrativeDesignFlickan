@@ -61,11 +61,19 @@ public class CH_Inventory : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.X) && items[itemSlot] != null && strength < 5)
-            strength += Time.deltaTime * 4;
+        if (Input.GetKey(KeyCode.X) && items[itemSlot] != null && strength < 1)
+        {
+            strength += Time.deltaTime * 2;
+            Debug.Log(strength);
+        }
         if (Input.GetKeyUp(KeyCode.X) && items[itemSlot] != null)
         {
-            if (strength < 1f)
+            if (items[itemSlot] != null && items[itemSlot].GetComponent<OB_Item>().GetItemType() == Item.Falukorv)
+            {
+                UI_DialogueController.Instance.DisplayMessage("Tyra", "Den som var så dyr! Jag kan inte bara kasta bort den", 3f);
+                strength = 0f;
+            }
+            else if (strength < 1f)
             {
                 DropItem();
                 strength = 0f;
@@ -192,7 +200,7 @@ public class CH_Inventory : MonoBehaviour
     //Flyttar ett item i sitt inventory framför karaktären, aktiverar det och tar bort det från inventory.
     void DropItem()
     {
-        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.2f, 0.2f, 0.2f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.2f, 0.2f, 0.2f), Quaternion.identity, 15, QueryTriggerInteraction.Ignore) == false)
         {
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
@@ -216,10 +224,10 @@ public class CH_Inventory : MonoBehaviour
     {
         if (items[itemSlot].GetComponent<Rigidbody>() == null)
         {
-            Debug.Log("Can't throw this item");
+            UI_DialogueController.Instance.DisplayMessage("Tyra", "Kan inte kasta detta", 2f);
             strength = 0f;
         }
-        else if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, -1, QueryTriggerInteraction.Ignore) == false)
+        else if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, 15, QueryTriggerInteraction.Ignore) == false)
         {
             GetComponent<CH_PlayerMovement>().Throwing = true;
             StartCoroutine("Throw", 0.7f);
@@ -227,7 +235,7 @@ public class CH_Inventory : MonoBehaviour
         else
         {
             strength = 0f;
-            Debug.Log("Can't throw this here");
+            UI_DialogueController.Instance.DisplayMessage("Tyra", "Kan inte kasta detta här", 2f);
         }
     }
 
@@ -237,7 +245,7 @@ public class CH_Inventory : MonoBehaviour
         items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
         items[itemSlot].SetActive(true);
-        items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * strength + transform.up * (strength * 2);
+        items[itemSlot].GetComponent<Rigidbody>().velocity = transform.forward * 5 + transform.up * 6;
         items[itemSlot].GetComponent<UI_InteractionText>().SetTextActive(false);
         items[itemSlot] = null;
         itemImages[itemSlot].sprite = null;
@@ -316,13 +324,9 @@ public class CH_Inventory : MonoBehaviour
                 itemImages[i].sprite = itemToAdd.GetComponent<OB_Item>().GetInvImage();
                 itemImages[i].gameObject.SetActive(true);
 
-                if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.Apple && itemToAdd.GetComponent<OB_Item>().Respawn)
-                {
-                    itemToAdd.GetComponent<OB_Item>().Respawn = false;
-                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 40f));
-                }
+                
 
-                else if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush && itemToAdd.GetComponent<OB_Item>().Respawn)
+                if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush && itemToAdd.GetComponent<OB_Item>().Respawn)
                 {
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
                     StartCoroutine(SpawnNewItem(blueberryBushPrefab, itemToAdd.transform.position, 0f));
@@ -333,7 +337,13 @@ public class CH_Inventory : MonoBehaviour
                     itemToAdd.GetComponent<OB_Item>().Respawn = false;
                     StartCoroutine(SpawnNewItem(lingonBushPrefab, itemToAdd.transform.position, 0f));
                 }
-                
+
+                else if (itemToAdd.GetComponent<OB_Item>().GetItemType() != Item.Falukorv && itemToAdd.GetComponent<OB_Item>().Respawn)
+                {
+                    itemToAdd.GetComponent<OB_Item>().Respawn = false;
+                    StartCoroutine(SpawnNewItem(itemToAdd, itemToAdd.transform.position, 120f));
+                }
+
                 OptionsManager.Instance.SetOptionArea1("Items", items.Length);
                 return true;
             }
