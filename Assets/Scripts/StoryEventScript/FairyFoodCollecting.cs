@@ -124,9 +124,13 @@ public class FairyFoodCollecting : MonoBehaviour
         switch (dialogTier)
         {
             case 1:
-                dialogController.DisplayMessage("Älvor", "Den snabbaste vägen till trollmor går här, vi ska visa dig vägen flicka lilla!", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Du har ett öga för det goda, flicka lilla, och lydigt gjort det vi älvor bett om.", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
-                dialogController.DisplayMessage(" ", "[Tyra går vidare till C1]", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Gå mot nordöst för att ta dej till trollens lya på snabbast möjliga vis.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Se denna vägledning som en belöning och ett tecken på vår tacksamhet.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage(" ", "[Tyra fortsätter till C1]", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
                 fadeCanvas.ActivateFading();
                 yield return new WaitForSeconds(1f);
@@ -134,9 +138,13 @@ public class FairyFoodCollecting : MonoBehaviour
                 // Vidare till C1
                 break;
             case 2:
-                dialogController.DisplayMessage("Älvor", "Följ med oss, vi ska visa dig hur du ska gå för att komma till en säker plats.", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Du har varit duktig, flicka lilla, och lydigt gjort det vi älvor bett om, men urnan din är ofullständig.", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
-                dialogController.DisplayMessage(" ", "[Tyra går vidare till C2]", dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Nyttiga svampar görs bäst sällskap av fagra lavar och mossor; gör oss sällskap till en plats där dessa växer.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage("Älvor", "Vi älvor visar dej samtidigt en bit på vägen till trollens lya, som tecken på vår tacksamhet.", dialogMessageDuration);
+                yield return new WaitForSeconds(dialogMessageDuration);
+                dialogController.DisplayMessage(" ", "[Tyra fortsätter till C3]", dialogMessageDuration);
                 yield return new WaitForSeconds(dialogMessageDuration);
                 fadeCanvas.ActivateFading();
                 yield return new WaitForSeconds(1f);
