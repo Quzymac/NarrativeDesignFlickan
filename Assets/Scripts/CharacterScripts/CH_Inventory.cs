@@ -161,7 +161,14 @@ public class CH_Inventory : MonoBehaviour
                 }
                 else if (items[itemSlot] != null || !reqItems.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
                 {
-                    UI_DialogueController.Instance.DisplayMessage("Tyra", requester.GetComponent<CH_RequestItems>().GetCharacterName() + " vill inte ha detta föremål");
+                    if (requester.GetComponent<CH_RequestItems>().GetCharacterName() == "Tomten")
+                    {
+                        UI_DialogueController.Instance.DisplayMessage("Alf", "Nä, dra mej baklänges! Det där vill ja minsann icke äte.");
+                    }
+                    else
+                    {
+                        UI_DialogueController.Instance.DisplayMessage("Sopa", "Nej ush, detta vill jag inte äta");
+                    }
                 }
             }
         }
@@ -432,7 +439,7 @@ public class CH_Inventory : MonoBehaviour
             itemsToGiveTypes = new List<Item>();
             givingItems = true;
             gameObject.GetComponent<CH_PlayerMovement>().SetStop(true);
-            UI_DialogueController.Instance.DisplayMessage("","Tryck på R för att välja saker, Enter för att ge valda saker");
+            UI_DialogueController.Instance.DisplayMessage("", "Tryck på [R] för att välja föremål och [Enter] för att ge valda föremål");
         }
     }
 

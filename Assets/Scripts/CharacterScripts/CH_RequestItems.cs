@@ -109,12 +109,12 @@ public class CH_RequestItems : OB_Interactable {
             }
             else if (item.GetComponent<OB_Item>().GetItemType() == Item.Blueberry || item.GetComponent<OB_Item>().GetItemType() == Item.Lingonberry)
             {
-                StartCoroutine(SendMessage("Tomte", "Tack så himla mycke flicka lilla, nån gång när du behöve hjelp kommer jag hjelpa dej"));
+                StartCoroutine(SendMessage("Tomte", "Tackar så himle mycke, flicka lilla. Nån gång när du behöve hjälp finns ja där."));
                 needItems = false;
             }
             else if (item.GetComponent<OB_Item>().GetItemType() == Item.Chanterelle)
             {
-                StartCoroutine(SendMessage("Tomte", "Tack så mycke, men hitte du inte nå godare?"));
+                StartCoroutine(SendMessage("Tomte", "Svamp ä fullkomligt vidrigt. Hitte du icke nå bättre?"));
                 needItems = false;
             }
             else
