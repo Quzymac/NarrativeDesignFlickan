@@ -22,6 +22,6 @@ public class OB_DoorMP : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        dialogController.DisplayMessage("Tyra", "Mor och far blir tokarga om jag väcker dom såhär pass på morgonen.", 3);
+        dialogController.DisplayMessage("Tyra", "Mor och far blir tokarga om jag väcker dom såhär pass på morgonen.", 5);
     }
 }
