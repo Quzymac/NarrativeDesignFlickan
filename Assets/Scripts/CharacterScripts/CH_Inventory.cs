@@ -195,6 +195,11 @@ public class CH_Inventory : MonoBehaviour
                 changedButtons.Clear();
                 givingItems = false;
             }
+            if(requester.GetComponent<CH_RequestItems>().GetCharacterName() == "Trollet")
+            {
+                GiveItems();
+                givingItems = false;
+            }
             else
             {
                 gameObject.GetComponent<CH_PlayerMovement>().SetStop(false);
