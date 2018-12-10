@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4412496145237984}
   - component: {fileID: 33114114741670314}
   - component: {fileID: 23749654911349606}
-  - component: {fileID: 135530070653318738}
+  - component: {fileID: 136223317557110400}
   m_Layer: 0
   m_Name: PF_LargeRock
   m_TagString: Untagged
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 135956380050888198}
   - component: {fileID: 135168906110818476}
   - component: {fileID: 114074455992871490}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1944,18 +1944,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 47
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135530070653318738
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064119462869322}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.3342612
-  m_Center: {x: -0.18308938, y: 0.9397498, z: 0}
 --- !u!135 &135830921420695496
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1993,6 +1981,19 @@ CapsuleCollider:
   m_Height: 0.448727
   m_Direction: 1
   m_Center: {x: -0.000000007450582, y: 0.2243635, z: 0.000000007450582}
+--- !u!136 &136223317557110400
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064119462869322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.94
+  m_Height: 2.63
+  m_Direction: 0
+  m_Center: {x: -0.13, y: 0.94, z: 0}
 --- !u!198 &198125414128552094
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -23766,7 +23767,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 65335
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -29636,7 +29637,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000308861611430}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29646,7 +29647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 8, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224691983886454400
