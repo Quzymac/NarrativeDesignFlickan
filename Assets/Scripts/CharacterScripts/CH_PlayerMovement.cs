@@ -36,6 +36,7 @@ public class CH_PlayerMovement : MonoBehaviour
 
     public void SetStop(bool b) //Starta/Stoppa spelarens normala movement (till exempel under dialog)
     {
+        body.velocity = Vector3.zero;
         stop = b;
         myAnimator.SetBool("Idle", true);
         myAnimator.SetBool("Run", false);

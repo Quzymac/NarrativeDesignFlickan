@@ -26,7 +26,7 @@ public class CH_RequestItems : OB_Interactable {
         OptionsManager.NewChoice += Compare; 
     }
 
-    private void OnDisable()
+    private void OnSceneUnloaded(Scene current)
     {
         OptionsManager.NewChoice -= Compare;
     }
@@ -57,6 +57,7 @@ public class CH_RequestItems : OB_Interactable {
 
     private void Start()
     {
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
         enabled = false;
         if (character.GetPersistentMethodName(0) == "Troll")
         {
