@@ -195,7 +195,7 @@ public class CH_Inventory : MonoBehaviour
                 changedButtons.Clear();
                 givingItems = false;
             }
-            if(requester.GetComponent<CH_RequestItems>().GetCharacterName() == "Trollet")
+            else if(requester.GetComponent<CH_RequestItems>().GetCharacterName() == "Trollet")
             {
                 GiveItems();
                 givingItems = false;
