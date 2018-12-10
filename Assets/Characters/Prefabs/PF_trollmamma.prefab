@@ -2282,7 +2282,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1229164255077456}
   m_LocalRotation: {x: -0, y: 0.31939545, z: -0, w: 0.9476215}
-  m_LocalPosition: {x: 149.03, y: 1.991, z: 148.67627}
+  m_LocalPosition: {x: 152.87892, y: 2, z: 150.15865}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4769851656094240}
@@ -3049,7 +3049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da0058ed8556954182ffcc9ea2a2dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mammaGoal: {fileID: 0}
 --- !u!137 &137824160340704572
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3175,7 +3174,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
