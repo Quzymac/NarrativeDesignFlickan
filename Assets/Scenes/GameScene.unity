@@ -8572,11 +8572,31 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114971995148569284, guid: cb95c3f17dae1bf4083b81b263c4412e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2065627474}
+    - target: {fileID: 114043772172039100, guid: cb95c3f17dae1bf4083b81b263c4412e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2065627474}
+    - target: {fileID: 114089837119932432, guid: cb95c3f17dae1bf4083b81b263c4412e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2065627474}
     - target: {fileID: 114294311476850708, guid: cb95c3f17dae1bf4083b81b263c4412e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 403138035}
+    - target: {fileID: 114294311476850708, guid: cb95c3f17dae1bf4083b81b263c4412e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2065627474}
     - target: {fileID: 224937374531446760, guid: cb95c3f17dae1bf4083b81b263c4412e,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -8736,16 +8756,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114019126338624218, guid: cb95c3f17dae1bf4083b81b263c4412e,
-        type: 2}
-      propertyPath: m_Text
-      value: "Forts\xE4tt Spela\n"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114549303623890642, guid: cb95c3f17dae1bf4083b81b263c4412e,
-        type: 2}
-      propertyPath: m_Text
-      value: Huvudmeny
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb95c3f17dae1bf4083b81b263c4412e, type: 2}
@@ -29679,6 +29689,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e7f9be0ac7ba954cb461cc61cd0fd76, type: 2}
   m_IsPrefabAsset: 0
+--- !u!82 &2065627474 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82020657416939592, guid: 8e7f9be0ac7ba954cb461cc61cd0fd76,
+    type: 2}
+  m_PrefabInternal: {fileID: 2065627473}
 --- !u!1 &2074443342
 GameObject:
   m_ObjectHideFlags: 0
