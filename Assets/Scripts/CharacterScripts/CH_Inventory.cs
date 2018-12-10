@@ -12,6 +12,7 @@ public class CH_Inventory : MonoBehaviour
     Button[] inventorySlots = new Button[8];
     [SerializeField]
     Image[] itemImages = new Image[8];
+    AudioHandler aH;
     int itemSlot = 0;
     float strength = 0f;
     //[SerializeField]
@@ -55,6 +56,7 @@ public class CH_Inventory : MonoBehaviour
     {
         state.highlightedSprite = giveInvImage;
         orgState.highlightedSprite = inventorySlots[0].spriteState.highlightedSprite;
+        aH = GetComponent<AudioHandler>();
     }
 
     //Kollar inputs. Om 1-8 byter itemslot i items arrayen. X gör att man droppar ett item i sitt inventory framför sig.
@@ -214,6 +216,7 @@ public class CH_Inventory : MonoBehaviour
     {
         if (Physics.CheckBox(gameObject.transform.position + gameObject.transform.forward + Vector3.up, new Vector3(0.2f, 0.2f, 0.2f), Quaternion.identity, 15, QueryTriggerInteraction.Ignore) == false)
         {
+            aH.PlaySound(Sounds.DropDown);
             items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward;
             items[itemSlot].SetActive(true);
             if (items[itemSlot].GetComponent<Rigidbody>())
@@ -254,6 +257,7 @@ public class CH_Inventory : MonoBehaviour
     private IEnumerator Throw(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        aH.PlaySound(Sounds.Throw);
         items[itemSlot].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         items[itemSlot].transform.position = gameObject.transform.position + gameObject.transform.forward + new Vector3(0,0.5f,0);
         items[itemSlot].SetActive(true);
@@ -277,6 +281,7 @@ public class CH_Inventory : MonoBehaviour
             UI_DialogueController.Instance.DisplayMessage("Tyra", itemConsumeDesc[(int)items[itemSlot].GetComponent<OB_Item>().GetItemType()], 3f);
             if (consumables.Contains(items[itemSlot].GetComponent<OB_Item>().GetItemType()))
             {
+                aH.PlaySound(Sounds.Eat);
                 Destroy(items[itemSlot]);
                 items[itemSlot] = null;
                 itemImages[itemSlot].sprite = null;
@@ -314,6 +319,7 @@ public class CH_Inventory : MonoBehaviour
         {
             if (items[i] == null)
             {
+                aH.PlaySound(Sounds.Pickup);
                 if (itemToAdd.GetComponent<OB_Item>().GetItemType() == Item.BlueberryBush)
                 {
                     items[i] = Instantiate(blueberryPrefab);

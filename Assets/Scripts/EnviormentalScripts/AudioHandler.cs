@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Beskrivning vilkét ljud som ska köras. Ska ha samma position som sitt ljud i sounds arrayen t.ex. Pickup ska ha position 0 i sounds
-public enum Sounds {Pickup }
+public enum Sounds {Pickup, DropDown, Throw, Eat}
 
 public class AudioHandler : MonoBehaviour {
 
