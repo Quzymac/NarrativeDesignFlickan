@@ -32,9 +32,9 @@ public class CH_Inventory : MonoBehaviour
 
     string[] itemDescription = { "Ibland tar farbror Ernfrid med sig hem äpplen från bortom skogen. Dom brukar smaka sötare.", "En av dom roligaste sakerna att göra på sensommaren är att plocka blåbär vid bäcken.",
         "Jag kan göra lingonsylt till Hilding med dom här när vi går tillbaka hem till Gården.", "Mor och far kommer att bli glada när dom får se att jag har hittat kantareller.",
-        "Korv äter vi nästan bara då vi har något att fira. Hoppas ingen blir arg att jag tog den.", "Som en väldigt blek och hård hatt. Jag vet inte riktigt vad jag kan göra med en sån.",
-        "Röda svampar med vita prickar är giftiga! Det fick jag lära mig för många år sedan.", "Såna här ser jag inte ofta. Ser ut som en gullig liten familj av svampar!",
-        "Dom andra barnen på Gården tycker att det är skojigt att kasta tallkottar på varandra.", "Den är väldigt vacker. Jag brukade ofta ta med mig såna hem när jag var yngre.",
+        "Korv äter vi nästan bara då vi har något att fira. Hoppas ingen blir arg att jag tog den.", "Som en väldigt blek och hård hatt. Jag vet inte riktigt vad jag kan göra med en björkticka.",
+        "Röda flugsvampar med vita prickar är giftiga! Det fick jag lära mig för många år sedan.", "Gulhättor här ser jag inte ofta. Ser ut som en gullig liten familj av svampar!",
+        "Dom andra barnen på Gården tycker att det är skojigt att kasta tallkottar på varandra.", "Grankottar är väldigt vackra. Jag brukade ofta ta med mig såna hem när jag var yngre.",
         "Vad är det här egentligen för dricka? Doftar som allt som finns i skogen på samma gång." };
 
     List<Button> changedButtons = new List<Button>();
