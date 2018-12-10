@@ -208,7 +208,7 @@ public class CH_RequestItems : OB_Interactable {
     IEnumerator SendMessage(string character, string text, bool extraText = false)
     {
         UI_DialogueController.Instance.DisplayMessage(character, text);
-        yield return new WaitForSecondsRealtime(6);
+        yield return new WaitForSecondsRealtime(7.5f);
         UI_DialogueController.Instance.Closemessage();
         if(extraText)
         {
