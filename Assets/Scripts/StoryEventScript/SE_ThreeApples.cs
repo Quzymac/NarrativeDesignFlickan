@@ -87,22 +87,22 @@ public class SE_ThreeApples : MonoBehaviour {
             case 0:
                 UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog]);
                 curDialog++;
-                Invoke("Dialog", 5);
+                Invoke("Dialog", 7);
                 break;
             case 1:
                 UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog]);
                 curDialog++;
-                Invoke("Dialog", 5);
+                Invoke("Dialog", 7);
                 break;
             case 2:
                 UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog]);
                 curDialog++;
-                Invoke("Dialog", 2);
+                Invoke("Dialog", 3);
                 break;
             case 3:
                 UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog], 8);
                 curDialog++;
-                Invoke("StartQuest", 9);
+                Invoke("StartQuest", 10);
                 break;
             case 4:
                 apples = inventory.NumberOfSpecificItem(Item.Apple);
