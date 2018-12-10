@@ -24,7 +24,7 @@ public class FairyBarrier : MonoBehaviour {
         OptionsManager.NewChoice += PushPlayer;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         OptionsManager.NewChoice -= PushPlayer;
     }

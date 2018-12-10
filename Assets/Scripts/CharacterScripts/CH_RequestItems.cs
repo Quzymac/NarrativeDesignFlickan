@@ -26,7 +26,7 @@ public class CH_RequestItems : OB_Interactable {
         OptionsManager.NewChoice += Compare; 
     }
 
-    private void OnDestory()
+    private void OnDisable()
     {
         OptionsManager.NewChoice -= Compare;
     }

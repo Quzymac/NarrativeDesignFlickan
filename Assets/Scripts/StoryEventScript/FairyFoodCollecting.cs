@@ -39,7 +39,7 @@ public class FairyFoodCollecting : MonoBehaviour
     {
         OptionsManager.NewChoice += StartGame;//subscribe 
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         OptionsManager.NewChoice -= StartGame;
     }

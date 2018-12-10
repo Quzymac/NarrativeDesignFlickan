@@ -23,7 +23,7 @@ public class VadisScriptB2 : MonoBehaviour {
         OptionsManager.NewChoice += ActivateMinigame;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         OptionsManager.NewChoice -= ActivateMinigame;
     }

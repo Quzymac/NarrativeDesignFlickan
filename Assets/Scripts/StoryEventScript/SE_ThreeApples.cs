@@ -25,7 +25,7 @@ public class SE_ThreeApples : MonoBehaviour {
         OptionsManager.NewChoice += PickUpApple;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         OptionsManager.NewChoice -= PickUpApple;
     }
