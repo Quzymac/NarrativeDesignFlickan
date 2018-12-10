@@ -25,6 +25,11 @@ public class SE_ThreeApples : MonoBehaviour {
         OptionsManager.NewChoice += PickUpApple;
     }
 
+    private void OnDestroy()
+    {
+        OptionsManager.NewChoice -= PickUpApple;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

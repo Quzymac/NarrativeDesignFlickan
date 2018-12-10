@@ -16,6 +16,11 @@ public class OB_Dialogue : OB_Interactable
         OptionsManager.NewChoice += OptionsScript_ValueChanged;
     }
 
+    private void OnDestroy()
+    {
+        OptionsManager.NewChoice -= OptionsScript_ValueChanged;
+    }
+
     private void OnDisable()
     {
         OptionsManager.NewChoice -= OptionsScript_ValueChanged;

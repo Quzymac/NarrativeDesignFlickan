@@ -26,6 +26,11 @@ public class CH_RequestItems : OB_Interactable {
         OptionsManager.NewChoice += Compare; 
     }
 
+    private void OnDestory()
+    {
+        OptionsManager.NewChoice -= Compare;
+    }
+
     private void Compare(object sender, OptionsEventArgs e)
     {
         if (e.Option == "B1_Alf_1" && character.GetPersistentMethodName(0) == "Tomte")

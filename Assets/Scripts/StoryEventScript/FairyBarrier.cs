@@ -23,6 +23,12 @@ public class FairyBarrier : MonoBehaviour {
     {
         OptionsManager.NewChoice += PushPlayer;
     }
+
+    private void OnDestroy()
+    {
+        OptionsManager.NewChoice -= PushPlayer;
+    }
+
     void PushPlayer(object sender, OptionsEventArgs e)
     {
         if (e.Option == "B3_Alvor_1" && e.Value == 1)

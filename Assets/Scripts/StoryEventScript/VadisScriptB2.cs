@@ -23,6 +23,11 @@ public class VadisScriptB2 : MonoBehaviour {
         OptionsManager.NewChoice += ActivateMinigame;
     }
 
+    private void OnDestroy()
+    {
+        OptionsManager.NewChoice -= ActivateMinigame;
+    }
+
     private void ActivateMinigame(object sender, OptionsEventArgs e)
     {
         if (e.Option == "B2_Vadis_1")
