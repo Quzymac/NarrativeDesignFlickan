@@ -100,7 +100,7 @@ public class SE_ThreeApples : MonoBehaviour {
                 Invoke("Dialog", 3);
                 break;
             case 3:
-                UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog], 8);
+                UI_DialogueController.Instance.DisplayMessage("Tyra", mainDialogs[curDialog], 10);
                 curDialog++;
                 Invoke("StartQuest", 10);
                 break;
