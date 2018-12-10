@@ -156,25 +156,25 @@ public class CH_RequestItems : OB_Interactable {
         {
             StartCoroutine(SendMessage("Troll", "Usch, va salt dehär va! Magen min känner sig inte gla'!"));
             needItems = false;
-            Invoke("CompletedPreAlpha", 7.5f);
+            Invoke("CompletedPreAlpha", 8f);
         }
         else if (falukorv == true && berry == true && mushroom == false)
         {
             StartCoroutine(SendMessage("Troll", "De va alldeles lagom gött, men mera mat hade också vart väl mött!"));
             needItems = false;
-            Invoke("CompletedPreAlpha", 7.5f);
+            Invoke("CompletedPreAlpha", 8f);
         }
         else if (falukorv  == true && berry == true && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Det va det bäste ja äti på ett tag, låt mej hjälp dej ned. Om du är vid sjön senare idag, se till att lämna Näcken ifred.",true));
             needItems = false;
-            Invoke("CompletedPreAlpha", 15);
+            Invoke("CompletedPreAlpha", 16);
         }
         else if (falukorv == true && berry == false && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Suck, det här va väl rätt smaskigt, men annat mums som drar på kinderna hade inte vart taskigt."));
             needItems = false;
-            Invoke("CompletedPreAlpha", 7.5f);
+            Invoke("CompletedPreAlpha", 8f);
         }
         else if (falukorv == false && berry == true && mushroom == true)
         {
@@ -208,7 +208,7 @@ public class CH_RequestItems : OB_Interactable {
     IEnumerator SendMessage(string character, string text, bool extraText = false)
     {
         UI_DialogueController.Instance.DisplayMessage(character, text);
-        yield return new WaitForSecondsRealtime(7.5f);
+        yield return new WaitForSecondsRealtime(8f);
         UI_DialogueController.Instance.Closemessage();
         if(extraText)
         {
