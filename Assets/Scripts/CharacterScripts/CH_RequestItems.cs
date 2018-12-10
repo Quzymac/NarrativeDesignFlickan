@@ -156,25 +156,25 @@ public class CH_RequestItems : OB_Interactable {
         {
             StartCoroutine(SendMessage("Troll", "Usch, va salt dehär va! Magen min känner sig inte gla'!"));
             needItems = false;
-            Invoke("CompletedPreAlpha", 6);
+            Invoke("CompletedPreAlpha", 7.5f);
         }
         else if (falukorv == true && berry == true && mushroom == false)
         {
             StartCoroutine(SendMessage("Troll", "De va alldeles lagom gött, men mera mat hade också vart väl mött!"));
             needItems = false;
-            Invoke("CompletedPreAlpha", 6);
+            Invoke("CompletedPreAlpha", 7.5f);
         }
         else if (falukorv  == true && berry == true && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Det va det bäste ja äti på ett tag, låt mej hjälp dej ned. Om du är vid sjön senare idag, se till att lämna Näcken ifred.",true));
             needItems = false;
-            Invoke("CompletedPreAlpha", 12);
+            Invoke("CompletedPreAlpha", 15);
         }
         else if (falukorv == true && berry == false && mushroom == true)
         {
             StartCoroutine(SendMessage("Troll", "Suck, det här va väl rätt smaskigt, men annat mums som drar på kinderna hade inte vart taskigt."));
             needItems = false;
-            Invoke("CompletedPreAlpha", 6);
+            Invoke("CompletedPreAlpha", 7.5f);
         }
         else if (falukorv == false && berry == true && mushroom == true)
         {
