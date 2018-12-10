@@ -7,12 +7,16 @@ public class CH_TeleportPlayer : OB_Interactable {
     [SerializeField] Transform position1;
     [SerializeField]
     bool lockCamera;
+    AudioSource audio;
+
 
     UI_FadingEffect fadeCanvas;
 
     private void Start()
     {
         fadeCanvas = FindObjectOfType<UI_FadingEffect>();
+        audio = GetComponent<AudioSource>();
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -27,15 +31,14 @@ public class CH_TeleportPlayer : OB_Interactable {
 
     public override void Activate(GameObject player)
     {
-        StartCoroutine(Bla(player));
-        
-
+        StartCoroutine(ActivateDoor(player));
     }
 
-    IEnumerator Bla(GameObject player)
+    IEnumerator ActivateDoor(GameObject player)
     {
         fadeCanvas.ActivateFading();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
+        audio.Play();
         player.transform.position = position1.position;
         player.GetComponent<CH_PlayerCamera>().LockCamera(lockCamera);
         fadeCanvas.DeactivateFading();
